@@ -10,8 +10,6 @@ namespace PayrollInteractors.usecases.employee.list
 {
     public class EmployeeListUseCase : EmployeeGatewayFunctionUseCase<EmployeeListRequest, EmployeeListResponse>
     {
-
-
         private AffiliationTypeResponseFactory affiliationTypeResponseFactory;
 
         public EmployeeListUseCase(
@@ -54,7 +52,6 @@ namespace PayrollInteractors.usecases.employee.list
                 employees.Select(employee => ToResponse(employee)).ToList<EmployeeForEmployeeListResponse>()
             );
         }
-
 
         private EmployeeForEmployeeListResponse ToResponse(Employee employee)
         {
