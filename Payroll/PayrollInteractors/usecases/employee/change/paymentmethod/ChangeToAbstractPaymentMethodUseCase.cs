@@ -1,27 +1,28 @@
-package hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.usecase.usecases.employee.change.paymentmethod;
+using PayrollEntities;
+using PayrollEntities.paymentmethod;
+using PayrollPorts.primaryAdminUseCase.request.changemployee;
+using PayrollPorts.secondary.database;
 
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.Employee;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.paymentmethod.PaymentMethod;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.usecase.usecases.employee.change.ChangeEmployeeUseCase;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.primary.admin.usecase.request.changeemployee.ChangeEmployeeRequest;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.database.EmployeeGateway;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.database.TransactionalRunner;
+namespace PayrollInteractors.usecases.employee.change.paymentmethod
+{
+    public abstract class ChangeToAbstractPaymentMethodUseCase<T> : ChangeEmployeeUseCase<T> where T : ChangeEmployeeRequest
+    {
+        public ChangeToAbstractPaymentMethodUseCase(
+                TransactionalRunner transactionalRunner,
+                EmployeeGateway employeeGateway
+                ) : base(transactionalRunner, employeeGateway)
+        {
 
-public abstract class ChangeToAbstractPaymentMethodUseCase<T extends ChangeEmployeeRequest> extends ChangeEmployeeUseCase<T> {
+        }
 
-	public ChangeToAbstractPaymentMethodUseCase(
-			TransactionalRunner transactionalRunner,
-			EmployeeGateway employeeGateway 
-			) {
-		super(transactionalRunner, employeeGateway);
-	}
 
-	@Override
-	protected void change(Employee employee, T request) {
-		employee.setPaymentMethod(getPaymentMethod(request));
-	}
+        protected override void change(Employee employee, T request)
+        {
+            employee.setPaymentMethod(getPaymentMethod(request));
+        }
 
-	protected abstract PaymentMethod getPaymentMethod(T request);
+        protected abstract PaymentMethod getPaymentMethod(T request);
+    }
 
-	
+
 }

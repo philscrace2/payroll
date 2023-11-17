@@ -1,31 +1,31 @@
-using System.Collections.Generic;
+using PayrollPorts.primaryAdminUseCase.exception.multiple;
 
 namespace PayrollInteractors.exception
 {
-    public abstract class MultipleErrorsUseCaseExceptionThrower<E extends Error>
+    public abstract class MultipleErrorsUseCaseExceptionThrower<E> where E : Error
     {
-        private List<E> errors = new ArrayList<>();
+        private List<E> errors = new List<E>();
 
-        public MultipleErrorsUseCaseExceptionThrower() throws MultipleErrorsUseCaseException
+        public MultipleErrorsUseCaseExceptionThrower()
         {
             addErrors();
-		throwIfThereAreErrors();
+            throwIfThereAreErrors();
+        }
+
+        protected abstract void addErrors();
+
+        protected void addError(E error)
+        {
+            errors.Add(error);
+        }
+
+        public void throwIfThereAreErrors()
+        {
+            if (errors.Count != 0)
+                throw new MultipleErrorsUseCaseException<E>(errors);
+        }
+
     }
-
-    protected abstract void addErrors();
-
-    protected void addError(E error)
-    {
-        errors.add(error);
-    }
-
-    public void throwIfThereAreErrors()
-    {
-        if (!errors.isEmpty())
-            throw new MultipleErrorsUseCaseException(errors);
-    }
-
-}
 
 
 

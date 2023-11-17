@@ -1,30 +1,39 @@
-package hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.usecase.usecases.hourly;
+using PayrollEntities.paymenttype;
+using PayrollPorts.primaryAdminUseCase.request.hourly;
+using PayrollPorts.secondary.database;
 
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.paymenttype.HourlyPaymentType;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.paymenttype.TimeCard;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.primary.admin.usecase.request.hourly.TimeCardNotExistsException;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.primary.admin.usecase.request.hourly.UpdateTimeCardRequest;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.database.EmployeeGateway;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.database.TransactionalRunner;
+namespace PayrollInteractors.usecases.hourly
+{
+    public class UpdateTimeCardUseCase : AbstractTimeCardUseCase<UpdateTimeCardRequest>
+    {
 
-public class UpdateTimeCardUseCase extends AbstractTimeCardUseCase<UpdateTimeCardRequest> {
 
-	public UpdateTimeCardUseCase(
-			TransactionalRunner transactionalRunner, 
-			EmployeeGateway employeeGateway 
-			) {
-		super(transactionalRunner, employeeGateway);
-	}
+        public UpdateTimeCardUseCase(
+                TransactionalRunner transactionalRunner,
+                EmployeeGateway employeeGateway
+                ) : base(transactionalRunner, employeeGateway)
+        {
 
-	@Override
-	protected void executeTimeCardOperation(UpdateTimeCardRequest request, HourlyPaymentType hourlyPaymentType) {
-		updateTimeCard(hourlyPaymentType.getTimeCard(request.date)
-				.orElseThrow(() -> new TimeCardNotExistsException())
-				, request);
-	}
+        }
 
-	private void updateTimeCard(TimeCard timeCard, UpdateTimeCardRequest request) {
-		timeCard.setWorkingHourQty(request.workingHoursQty);
-	}
-	
+
+        protected override void executeTimeCardOperation(UpdateTimeCardRequest request, HourlyPaymentType hourlyPaymentType)
+        {
+            var timeCard = hourlyPaymentType.getTimeCard(request.date);
+            if (timeCard == null)
+            {
+                throw new TimeCardNotExistsException();
+            }
+
+            updateTimeCard(timeCard, request);
+        }
+
+
+        private void updateTimeCard(TimeCard timeCard, UpdateTimeCardRequest request)
+        {
+            timeCard.setWorkingHourQty(request.workingHoursQty);
+        }
+
+    }
+
 }

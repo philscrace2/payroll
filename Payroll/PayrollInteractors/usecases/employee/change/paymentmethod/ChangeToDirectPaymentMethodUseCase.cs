@@ -1,28 +1,33 @@
-package hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.usecase.usecases.employee.change.paymentmethod;
+using PayrollEntities.paymentmethod;
+using PayrollPorts.primaryAdminUseCase.request.changemployee.paymentmethod;
+using PayrollPorts.secondary.database;
 
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.paymentmethod.PaymentMethod;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.paymentmethod.PaymentMethod.PaymentMethodFactory;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.primary.admin.usecase.request.changeemployee.paymentmethod.ChangeToDirectPaymentMethodRequest;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.database.EmployeeGateway;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.database.TransactionalRunner;
+namespace PayrollInteractors.usecases.employee.change.paymentmethod
+{
+    public class ChangeToDirectPaymentMethodUseCase : ChangeToAbstractPaymentMethodUseCase<ChangeToDirectPaymentMethodRequest>
+    {
 
-public class ChangeToDirectPaymentMethodUseCase extends ChangeToAbstractPaymentMethodUseCase<ChangeToDirectPaymentMethodRequest> {
 
-	private PaymentMethodFactory paymentMethodFactory;
+        private PaymentMethodFactory paymentMethodFactory;
 
-	public ChangeToDirectPaymentMethodUseCase(
-			TransactionalRunner transactionalRunner,
-			EmployeeGateway employeeGateway,
-			PaymentMethodFactory paymentMethodFactory
-			) {
-		super(transactionalRunner, employeeGateway);
-		this.paymentMethodFactory = paymentMethodFactory;
-	}
+        public ChangeToDirectPaymentMethodUseCase(
+                TransactionalRunner transactionalRunner,
+                EmployeeGateway employeeGateway,
+                PaymentMethodFactory paymentMethodFactory
+                ) : base(transactionalRunner, employeeGateway)
+        {
+            this.paymentMethodFactory = paymentMethodFactory;
+        }
 
-	@Override
-	protected PaymentMethod getPaymentMethod(ChangeToDirectPaymentMethodRequest request) {
-		return paymentMethodFactory.directPaymentMethod(request.accountNumber);
-	}
+
+        protected override PaymentMethod getPaymentMethod(ChangeToDirectPaymentMethodRequest request)
+        {
+            return paymentMethodFactory.directPaymentMethod(request.accountNumber);
+        }
+
+
+    }
+
 
 
 }

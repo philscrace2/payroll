@@ -1,26 +1,32 @@
-package hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.usecase.usecases.pay.fullfill.fullfillers;
+using PayrollEntities;
+using PayrollEntities.paymentmethod;
+using PayrollInteractors.pay.fullfill.fullfillers;
+using PayrollPorts.secondary.banktransfer;
 
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.PayCheck;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.paymentmethod.DirectPaymentMethod;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.banktransfer.BankTransferPort;
+namespace PayrollInteractors.usecases.pay.fullfill.fullfillers
+{
+    public class DirectPaymentFulfiller : PaymentFulfiller
+    {
+        private BankTransferPort bankTransferPort;
+        private DirectPaymentMethod directPaymentMethod;
 
-public class DirectPaymentFulfiller implements PaymentFulfiller {
+        public DirectPaymentFulfiller(
+                BankTransferPort bankTransferPort,
+                DirectPaymentMethod directPaymentMethod
+                )
+        {
+            this.bankTransferPort = bankTransferPort;
+            this.directPaymentMethod = directPaymentMethod;
+        }
 
-	private BankTransferPort bankTransferPort;
-	private DirectPaymentMethod directPaymentMethod;
 
-	public DirectPaymentFulfiller(
-			BankTransferPort bankTransferPort,
-			DirectPaymentMethod directPaymentMethod
-			) {
-		this.bankTransferPort = bankTransferPort;
-		this.directPaymentMethod = directPaymentMethod;
-	}
+        public void fulfillPayment(PayCheck payCheck)
+        {
+            bankTransferPort.pay(payCheck.getNetAmount(), directPaymentMethod.getAccountNumber());
+        }
 
-	@Override
-	public void fulfillPayment(PayCheck payCheck) {
-		bankTransferPort.pay(payCheck.getNetAmount(), directPaymentMethod.getAccountNumber());
-	}
+
+    }
 
 
 }

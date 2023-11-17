@@ -1,41 +1,47 @@
-package hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.usecase.usecases.hourly;
+using PayrollEntities;
+using PayrollEntities.paymenttype;
+using PayrollPorts.primaryAdminUseCase.exception;
+using PayrollPorts.primaryAdminUseCase.request.hourly;
+using PayrollPorts.secondary.database;
 
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.Employee;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.paymenttype.HourlyPaymentType;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.paymenttype.PaymentType;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.usecase.usecases.EmployeeGatewayCommandUseCase;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.primary.admin.usecase.exception.UseCaseException;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.primary.admin.usecase.request.hourly.AbstractTimeCardRequest;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.database.EmployeeGateway;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.database.TransactionalRunner;
+namespace PayrollInteractors.usecases.hourly
+{
+    public abstract class AbstractTimeCardUseCase<R> : EmployeeGatewayCommandUseCase<R> where R : AbstractTimeCardRequest
+    {
+        public AbstractTimeCardUseCase(
+                TransactionalRunner transactionalRunner,
+                EmployeeGateway employeeGateway
+                ) : base(transactionalRunner, employeeGateway)
+        {
 
-public abstract class AbstractTimeCardUseCase<R extends AbstractTimeCardRequest> extends EmployeeGatewayCommandUseCase<R> {
+        }
 
-	public AbstractTimeCardUseCase(
-			TransactionalRunner transactionalRunner, 
-			EmployeeGateway employeeGateway 
-			) {
-		super(transactionalRunner, employeeGateway);
-	}
+        protected override void ExecuteInTransaction(R request)
+        {
+            Employee employee = employeeGateway.findById(request.employeeId);
+            HourlyPaymentType hourlyPaymentType = castHourlyPaymentType(employee.getPaymentType());
+            executeTimeCardOperation(request, hourlyPaymentType);
+        }
 
-	@Override
-	protected void executeInTransaction(R request) {
-		Employee employee = employeeGateway.findById(request.employeeId);
-		HourlyPaymentType hourlyPaymentType = castHourlyPaymentType(employee.getPaymentType());
-		executeTimeCardOperation(request, hourlyPaymentType);
-	}
+        private HourlyPaymentType castHourlyPaymentType(PaymentType paymentType)
+        {
+            if (paymentType is HourlyPaymentType)
+            {
+                return (HourlyPaymentType)paymentType;
+            }
+            else
+            {
+                throw new NotHourlyPaymentTypeException();
+            }
+        }
 
-	private HourlyPaymentType castHourlyPaymentType(PaymentType paymentType) {
-		if(paymentType instanceof HourlyPaymentType) {
-			return (HourlyPaymentType) paymentType;
-		} else {
-			throw new NotHourlyPaymentTypeException();
-		}
-	}
-	
-	protected abstract void executeTimeCardOperation(R request, HourlyPaymentType hourlyPaymentType);
-	
-	public static class NotHourlyPaymentTypeException extends UseCaseException {
-	}
-	
+        protected abstract void executeTimeCardOperation(R request, HourlyPaymentType hourlyPaymentType);
+
+        public class NotHourlyPaymentTypeException : UseCaseException
+        {
+        }
+
+    }
+
+
 }

@@ -1,32 +1,35 @@
-package hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.usecase.usecases.pay.fullfill.fullfillers;
+using Microsoft.Extensions.Logging;
+using PayrollEntities;
+using PayrollPorts.secondary.database;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.PayCheck;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.database.TransactionalRunner;
+namespace PayrollInteractors.pay.fullfill.fullfillers
+{
+    public class PaymasterPaymentFulfiller : PaymentFulfiller
+    {
 
-/**
- * Unimplemented functionality. 
- * This may be implemented as persisting a paymaster payment record,
- * that will be processed by a future paymaster subsystem. 
- * 
- * @author Dani
- */
-public class PaymasterPaymentFulfiller implements PaymentFulfiller {
-	private Log log = LogFactory.getLog(getClass());
+        private TransactionalRunner transactionalRunner;
+        ILogger logger;
 
-	private TransactionalRunner transactionalRunner;
+        public PaymasterPaymentFulfiller(TransactionalRunner transactionalRunner)
+        {
+            this.transactionalRunner = transactionalRunner;
 
-	public PaymasterPaymentFulfiller(TransactionalRunner transactionalRunner) {
-		this.transactionalRunner = transactionalRunner;
-	}
+            using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
+            ILogger logger = factory.CreateLogger("Program");
+            logger.LogInformation("Hello World! Logging is {Description}.", "fun");
+        }
 
-	@Override
-	public void fulfillPayment(PayCheck payCheck) {
-		transactionalRunner.executeInTransaction(() -> {
-			log.info("(Fake) Paymaster payment record added for:" + payCheck);
-		});
-	}
+
+        public void fulfillPayment(PayCheck payCheck)
+        {
+            transactionalRunner.ExecuteInTransaction(() =>
+            {
+                logger.LogInformation("(Fake) Paymaster payment record added for:" + payCheck);
+            });
+        }
+
+    }
+
 
 }

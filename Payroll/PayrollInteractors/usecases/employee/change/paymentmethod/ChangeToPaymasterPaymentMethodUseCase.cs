@@ -1,28 +1,28 @@
-package hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.usecase.usecases.employee.change.paymentmethod;
+using PayrollEntities.paymentmethod;
+using PayrollPorts.primaryAdminUseCase.request.changemployee;
+using PayrollPorts.secondary.database;
 
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.paymentmethod.PaymentMethod;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.paymentmethod.PaymentMethod.PaymentMethodFactory;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.primary.admin.usecase.request.changeemployee.ChangeEmployeeRequest;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.database.EmployeeGateway;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.database.TransactionalRunner;
+namespace PayrollInteractors.usecases.employee.change.paymentmethod
+{
+    public class ChangeToPaymasterPaymentMethodUseCase : ChangeToAbstractPaymentMethodUseCase<ChangeEmployeeRequest>
+    {
+        private PaymentMethodFactory paymentMethodFactory;
 
-public class ChangeToPaymasterPaymentMethodUseCase extends ChangeToAbstractPaymentMethodUseCase<ChangeEmployeeRequest> {
+        public ChangeToPaymasterPaymentMethodUseCase(
+                TransactionalRunner transactionalRunner,
+                EmployeeGateway employeeGateway,
+                PaymentMethodFactory paymentMethodFactory
+                ) : base(transactionalRunner, employeeGateway)
+        {
 
-	private PaymentMethodFactory paymentMethodFactory;
+            this.paymentMethodFactory = paymentMethodFactory;
+        }
 
-	public ChangeToPaymasterPaymentMethodUseCase(
-			TransactionalRunner transactionalRunner,
-			EmployeeGateway employeeGateway,
-			PaymentMethodFactory paymentMethodFactory
-			) {
-		super(transactionalRunner, employeeGateway);
-		this.paymentMethodFactory = paymentMethodFactory;
-	}
+        protected override PaymentMethod getPaymentMethod(ChangeEmployeeRequest request)
+        {
+            return paymentMethodFactory.paymasterPaymentMethod();
+        }
 
-	@Override
-	protected PaymentMethod getPaymentMethod(ChangeEmployeeRequest request) {
-		return paymentMethodFactory.paymasterPaymentMethod();
-	}
-
+    }
 
 }

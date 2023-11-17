@@ -1,19 +1,21 @@
-package hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.usecase.usecases.employee;
+using PayrollPorts.primaryAdminUseCase.request;
+using PayrollPorts.secondary.database;
 
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.usecase.usecases.EmployeeGatewayCommandUseCase;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.primary.admin.usecase.request.DeleteEmployeeRequest;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.database.EmployeeGateway;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.database.TransactionalRunner;
+namespace PayrollInteractors.usecases.employee
+{
+    public class DeleteEmployeeUseCase : EmployeeGatewayCommandUseCase<DeleteEmployeeRequest>
+    {
+        public DeleteEmployeeUseCase(TransactionalRunner transactionalRunner, EmployeeGateway employeeGateway) : base(transactionalRunner, employeeGateway)
+        {
 
-public class DeleteEmployeeUseCase extends EmployeeGatewayCommandUseCase<DeleteEmployeeRequest> {
+        }
 
-	public DeleteEmployeeUseCase(TransactionalRunner transactionalRunner, EmployeeGateway employeeGateway) {
-		super(transactionalRunner, employeeGateway);
-	}
 
-	@Override
-	protected void executeInTransaction(DeleteEmployeeRequest request) {
-		employeeGateway.deleteById(request.employeeId);
-	}
+        protected override void ExecuteInTransaction(DeleteEmployeeRequest request)
+        {
+            employeeGateway.deleteById(request.employeeId);
+        }
+
+    }
 
 }

@@ -1,91 +1,105 @@
-package hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.usecase.usecases.employee.add;
+using PayrollEntities;
+using PayrollEntities.affiliation;
+using PayrollEntities.paymentmethod;
+using PayrollEntities.paymentschedule;
+using PayrollEntities.paymenttype;
+using PayrollInteractors.exception;
+using PayrollPorts.primaryAdminUseCase.request.addemployee;
+using PayrollPorts.primaryAdminUseCase.response.employee.add;
+using PayrollPorts.secondary.database;
 
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.Employee;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.Employee.EmployeeFactory;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.affiliation.Affiliation.AffiliationFactory;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.paymentmethod.PaymentMethod.PaymentMethodFactory;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.paymentschedule.PaymentSchedule;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.paymenttype.PaymentType;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.usecase.exception.multiple.MultipleErrorsUseCaseExceptionThrower;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.usecase.usecases.EmployeeGatewayCommandUseCase;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.primary.admin.usecase.request.addemployee.AddEmployeeRequest;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.primary.admin.usecase.response.employee.add.AddEmployeeError;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.primary.admin.usecase.response.employee.add.IdAlreadyExistsValidationError;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.database.EmployeeGateway;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.database.TransactionalRunner;
+namespace PayrollInteractors.usecases.employee.add
+{
 
-public abstract class AddEmployeeUseCase<R extends AddEmployeeRequest> extends EmployeeGatewayCommandUseCase<R> {
-	private EmployeeFactory employeeFactory;
-	private PaymentMethodFactory paymentMethodFactory;
-	private AffiliationFactory affiliationFactory;
-	private R request;
-	
-	public AddEmployeeUseCase(
-			TransactionalRunner transactionalRunner, 
-			EmployeeGateway employeeGateway, 
-			EmployeeFactory employeeFactory, 
-			PaymentMethodFactory paymentMethodFactory, 
-			AffiliationFactory affiliationFactory
-			) {
-		super(transactionalRunner, employeeGateway);
-		this.employeeFactory = employeeFactory;
-		this.paymentMethodFactory = paymentMethodFactory;
-		this.affiliationFactory = affiliationFactory;
-	}
-	
-	@Override
-	protected final void executeInTransaction(R request){
-		this.request = request;
-		new Validator();
+    public abstract class AddEmployeeUseCase<R> : EmployeeGatewayCommandUseCase<R> where R : AddEmployeeRequest
+    {
 
-		Employee employee = employeeFactory.employee();
-		
-		setFields(employee, request);
-		setDefaultFields(employee);
-		setEmployeeTypeSpecificFields(employee, request);
-				
-		employeeGateway.addNew(employee);
-	}
+        private EmployeeFactory employeeFactory;
+        private PaymentMethodFactory paymentMethodFactory;
+        private AffiliationFactory affiliationFactory;
+        private R request;
+
+        public AddEmployeeUseCase(TransactionalRunner transactionalRunner,
+                EmployeeGateway employeeGateway,
+                EmployeeFactory employeeFactory,
+                PaymentMethodFactory paymentMethodFactory,
+                AffiliationFactory affiliationFactory) : base(transactionalRunner, employeeGateway)
+        {
+            this.employeeFactory = employeeFactory;
+            this.paymentMethodFactory = paymentMethodFactory;
+            this.affiliationFactory = affiliationFactory;
+        }
+
+        protected override void ExecuteInTransaction(R request)
+        {
+            this.request = request;
+            Validator v = new Validator(request, employeeGateway);
+
+            Employee employee = employeeFactory.employee();
+
+            setFields(employee, request);
+            setDefaultFields(employee);
+            setEmployeeTypeSpecificFields(employee, request);
+
+            employeeGateway.addNew(employee);
+        }
 
 
-	private void setFields(Employee employee, R request) {
-		employee.setId(request.employeeId);
-		employee.setName(request.name);
-		employee.setAddress(request.address);
-	}
+        private void setFields(Employee employee, R request)
+        {
+            employee.setId(request.employeeId);
+            employee.setName(request.name);
+            employee.setAddress(request.address);
+        }
 
-	private void setDefaultFields(Employee employee) {
-		employee.setPaymentMethod(paymentMethodFactory.paymasterPaymentMethod());
-		employee.setAffiliation(affiliationFactory.noAffiliation());
-	}
+        private void setDefaultFields(Employee employee)
+        {
+            employee.setPaymentMethod(paymentMethodFactory.paymasterPaymentMethod());
+            employee.setAffiliation(affiliationFactory.noAffiliation());
+        }
 
-	private void setEmployeeTypeSpecificFields(Employee employee, R request) {
-		employee.setPaymentType(getPaymentType(request));
-		employee.setPaymentSchedule(getPaymentSchedule());
-	}
+        private void setEmployeeTypeSpecificFields(Employee employee, R request)
+        {
+            employee.setPaymentType(getPaymentType(request));
+            employee.setPaymentSchedule(getPaymentSchedule());
+        }
 
-	protected abstract PaymentType getPaymentType(R request);
-	protected abstract PaymentSchedule getPaymentSchedule();
+        protected abstract PaymentType getPaymentType(R request);
+        protected abstract PaymentSchedule getPaymentSchedule();
+    }
 
-	private final class Validator extends MultipleErrorsUseCaseExceptionThrower<AddEmployeeError> {
+    public class Validator : MultipleErrorsUseCaseExceptionThrower<IAddEmployeeError>
+    {
+        private readonly AddEmployeeRequest request;
+        private readonly EmployeeGateway employeeGateway;
 
-		@Override
-		protected void addErrors() {
-			checkIdExists();
-			checkNameExists();
-		}
-		
-		private void checkIdExists() {
-			if(employeeGateway.isExists(request.employeeId)) {
-				Employee employee = employeeGateway.findById(request.employeeId);
-				addError(new IdAlreadyExistsValidationError(employee.getName()));
-			}
-		}
-		
-		private void checkNameExists() {
-			// TODO Auto-generated method stub
-		}
-		
-	}
-	
+        public Validator(AddEmployeeRequest request, EmployeeGateway employeeGateway)
+        {
+            this.request = request;
+            this.employeeGateway = employeeGateway;
+        }
+
+        protected override void addErrors()
+        {
+            checkIdExists();
+            checkNameExists();
+        }
+
+        private void checkIdExists()
+        {
+            if (employeeGateway.isExists(request.employeeId))
+            {
+                Employee employee = employeeGateway.findById(request.employeeId);
+                addError(new IdAlreadyExistsValidationError(employee.getName()));
+            }
+        }
+
+        private void checkNameExists()
+        {
+            // TODO Auto-generated method stub
+        }
+
+    }
 }
+
+

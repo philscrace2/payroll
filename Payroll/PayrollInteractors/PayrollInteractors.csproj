@@ -7,27 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="exception\multiple\MultipleErrorsUseCaseExceptionThrower.cs" />
-    <Compile Remove="usecases\pay\fullfill\fullfillers\DirectPaymentFulfiller.cs" />
-    <Compile Remove="usecases\pay\fullfill\fullfillers\PaymasterPaymentFulfiller.cs" />
-    <Compile Remove="usecases\pay\fullfill\fullfillers\PaymentFulfiller.cs" />
-    <Compile Remove="usecases\pay\fullfill\fullfillers\PaymentFulfillerFactory.cs" />
-    <Compile Remove="usecases\pay\fullfill\PaymentFulfillUseCase.cs" />
-    <Compile Remove="usecases\pay\paylist\PayListUseCase.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="usecases\affiliationUnionMember\" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="exception\multiple\MultipleErrorsUseCaseExceptionThrower.cs" />
-    <None Include="usecases\pay\fullfill\fullfillers\DirectPaymentFulfiller.cs" />
-    <None Include="usecases\pay\fullfill\fullfillers\PaymasterPaymentFulfiller.cs" />
-    <None Include="usecases\pay\fullfill\fullfillers\PaymentFulfiller.cs" />
-    <None Include="usecases\pay\fullfill\fullfillers\PaymentFulfillerFactory.cs" />
-    <None Include="usecases\pay\fullfill\PaymentFulfillUseCase.cs" />
-    <None Include="usecases\pay\paylist\PayListUseCase.cs" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,7 +1,9 @@
-package hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.usecase.usecases.pay.fullfill.fullfillers;
+using PayrollEntities;
 
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.PayCheck;
-
-public interface PaymentFulfiller {
-	void fulfillPayment(PayCheck payCheck);
+namespace PayrollInteractors.pay.fullfill.fullfillers
+{
+    public interface PaymentFulfiller
+    {
+        void fulfillPayment(PayCheck payCheck);
+    }
 }

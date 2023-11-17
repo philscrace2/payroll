@@ -1,31 +1,37 @@
-package hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.usecase.usecases.pay.fullfill.fullfillers;
+using PayrollEntities.paymentmethod;
+using PayrollInteractors.pay.fullfill.fullfillers;
+using PayrollPorts.secondary.banktransfer;
+using PayrollPorts.secondary.database;
 
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.paymentmethod.DirectPaymentMethod;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.paymentmethod.PaymasterPaymentMethod;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.app.entity.paymentmethod.PaymentMethod.PaymentMethodVisitor;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.banktransfer.BankTransferPort;
-import hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.ports.secondary.database.TransactionalRunner;
+namespace PayrollInteractors.usecases.pay.fullfill.fullfillers
+{
+    public class PaymentFulfillerFactory : IPaymentMethodVisitor<PaymentFulfiller>
+    {
 
-public class PaymentFulfillerFactory implements PaymentMethodVisitor<PaymentFulfiller> {
-	private BankTransferPort bankTransferPort;
-	private TransactionalRunner transactionalRunner;
+        private BankTransferPort bankTransferPort;
+        private TransactionalRunner transactionalRunner;
 
-	public PaymentFulfillerFactory(
-			BankTransferPort bankTransferPort,
-			TransactionalRunner transactionalRunner
-			) {
-		this.bankTransferPort = bankTransferPort;
-		this.transactionalRunner = transactionalRunner;
-	}
+        public PaymentFulfillerFactory(
+                BankTransferPort bankTransferPort,
+                TransactionalRunner transactionalRunner
+                )
+        {
+            this.bankTransferPort = bankTransferPort;
+            this.transactionalRunner = transactionalRunner;
+        }
 
-	@Override
-	public PaymentFulfiller visit(PaymasterPaymentMethod paymasterPaymentMethod) {
-		return new PaymasterPaymentFulfiller(transactionalRunner);
-	}
+        public PaymentFulfiller visit(PaymasterPaymentMethod paymasterPaymentMethod)
+        {
+            return new PaymasterPaymentFulfiller(transactionalRunner);
+        }
 
-	@Override
-	public PaymentFulfiller visit(DirectPaymentMethod directPaymentMethod) {
-		return new DirectPaymentFulfiller(bankTransferPort, directPaymentMethod);
-	}
+
+        public PaymentFulfiller visit(DirectPaymentMethod directPaymentMethod)
+        {
+            return new DirectPaymentFulfiller(bankTransferPort, directPaymentMethod);
+        }
+
+    }
+
 
 }
