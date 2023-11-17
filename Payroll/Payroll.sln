@@ -5,6 +5,12 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayrollEntities", "PayrollEntities\PayrollEntities.csproj", "{076127ED-1BAC-40F4-8AC7-AACAE066DCF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayrollEntitiesTests", "PayrollEntitiesTests\PayrollEntitiesTests.csproj", "{A0C6474C-3B0C-45A9-A491-9042789185FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayrollInteractors", "PayrollInteractors\PayrollInteractors.csproj", "{7CE5F4C4-1249-4F31-B45E-21517F6A6475}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayrollPorts", "PayrollPorts\PayrollPorts.csproj", "{78C7A333-7039-41AB-974C-0A1252E36181}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{076127ED-1BAC-40F4-8AC7-AACAE066DCF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{076127ED-1BAC-40F4-8AC7-AACAE066DCF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{076127ED-1BAC-40F4-8AC7-AACAE066DCF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0C6474C-3B0C-45A9-A491-9042789185FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0C6474C-3B0C-45A9-A491-9042789185FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0C6474C-3B0C-45A9-A491-9042789185FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0C6474C-3B0C-45A9-A491-9042789185FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CE5F4C4-1249-4F31-B45E-21517F6A6475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CE5F4C4-1249-4F31-B45E-21517F6A6475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CE5F4C4-1249-4F31-B45E-21517F6A6475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CE5F4C4-1249-4F31-B45E-21517F6A6475}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78C7A333-7039-41AB-974C-0A1252E36181}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78C7A333-7039-41AB-974C-0A1252E36181}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78C7A333-7039-41AB-974C-0A1252E36181}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78C7A333-7039-41AB-974C-0A1252E36181}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

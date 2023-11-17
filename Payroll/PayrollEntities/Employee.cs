@@ -38,10 +38,12 @@ namespace PayrollEntities
             return new PayCheck(payDate, getId(), grossAmount, deductionsAmount, netAmount);
         }
 
-        public interface EmployeeFactory
-        {
-            Employee employee();
-        }
 
+
+    }
+
+    public interface EmployeeFactory
+    {
+        Employee employee();
     }
 }

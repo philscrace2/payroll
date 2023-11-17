@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace PayrollEntities
+﻿namespace PayrollEntities
 {
     public class DateInterval
     {
         public readonly DateTime from;
-	    public readonly DateTime to;
+        public readonly DateTime to;
 
-	    private DateInterval(DateTime from, DateTime to)
+        public DateInterval(DateTime from, DateTime to)
         {
             this.from = from;
             this.to = to;

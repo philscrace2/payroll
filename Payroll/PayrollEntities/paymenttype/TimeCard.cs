@@ -9,11 +9,11 @@ namespace PayrollEntities.paymenttype
         public abstract void setDate(DateTime date);
         public abstract void setWorkingHourQty(int workingHourQty);
 
-        public interface TimeCardFactory
-        {
-            TimeCard timeCard(DateTime date, int workingHoursQty);
-        }
+    }
 
+    public interface TimeCardFactory
+    {
+        TimeCard timeCard(DateTime date, int workingHoursQty);
     }
 
 

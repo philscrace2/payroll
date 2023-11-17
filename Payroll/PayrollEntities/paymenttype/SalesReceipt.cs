@@ -9,11 +9,11 @@ namespace PayrollEntities.paymenttype
         public abstract void setAmount(int amount);
         public abstract void setDate(DateTime date);
 
-        public interface SalesReceiptFactory
-        {
-            SalesReceipt salesReceipt(DateTime date, int amount);
-        }
+    }
 
+    public interface SalesReceiptFactory
+    {
+        SalesReceipt salesReceipt(DateTime date, int amount);
     }
 
 
