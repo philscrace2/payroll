@@ -10,4 +10,8 @@
     <ProjectReference Include="..\PayrollEntities\PayrollEntities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="primaryAdminUseCase\factories\" />
+  </ItemGroup>
+
 </Project>

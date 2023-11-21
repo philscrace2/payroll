@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PayrollEntities.affiliation
-{ 
+﻿namespace PayrollEntities.affiliation
+{
     public interface Affiliation
     {
         public int calculateDeductionsAmount(DateInterval payInterval);
@@ -15,7 +9,7 @@ namespace PayrollEntities.affiliation
     public interface AffiliationFactory
     {
         NoAffiliation noAffiliation();
-        UnionMemberAffiliation unionMemberAffiliation(int unionMemberId, int weeklyDueAmount);
+        UnionMemberAffiliation unionMemberAffiliation(int? unionMemberId, int? weeklyDueAmount);
     }
 
 }

@@ -13,14 +13,13 @@ namespace PayrollPorts.primaryAdminUseCase.response
             this.employees = employees;
         }
 
-        public class EmployeeForEmployeeListResponse : EmployeeBaseForResponse
-        {
+    }
 
-            public PaymentTypeResponse paymentTypeResponse;
-            public AffiliationTypeResponse affiliationTypeResponse;
-            public DateTime nextPayDay;
-        }
-
+    public class EmployeeForEmployeeListResponse : EmployeeBaseForResponse
+    {
+        public PaymentTypeResponse paymentTypeResponse;
+        public AffiliationTypeResponse affiliationTypeResponse;
+        public DateTime nextPayDay;
     }
 
 }

@@ -10,7 +10,6 @@ using PayrollPorts.secondary.database;
 
 namespace PayrollInteractors.usecases.employee.add
 {
-
     public abstract class AddEmployeeUseCase<R> : EmployeeGatewayCommandUseCase<R> where R : AddEmployeeRequest
     {
 

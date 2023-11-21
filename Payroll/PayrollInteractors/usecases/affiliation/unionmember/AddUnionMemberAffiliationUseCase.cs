@@ -38,7 +38,7 @@ namespace PayrollInteractors.usecases.affiliation.unionmember
                 this.employeeGateway = employeeGateway;
             }
 
-            private void validateUnionMemberIdNotExists(int unionMemberId)
+            private void validateUnionMemberIdNotExists(int? unionMemberId)
             {
                 if (employeeGateway.isEmployeeExistsByUnionMemberId(unionMemberId))
                 {

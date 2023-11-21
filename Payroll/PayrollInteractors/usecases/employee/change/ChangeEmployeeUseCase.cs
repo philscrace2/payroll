@@ -4,16 +4,12 @@ using PayrollPorts.secondary.database;
 
 namespace PayrollInteractors.usecases.employee.change
 {
-
     public abstract class ChangeEmployeeUseCase<T> : EmployeeGatewayCommandUseCase<T> where T : ChangeEmployeeRequest
     {
-
-
         public ChangeEmployeeUseCase(TransactionalRunner transactionalRunner, EmployeeGateway employeeGateway) : base(transactionalRunner, employeeGateway)
         {
 
         }
-
 
         protected override void ExecuteInTransaction(T request)
         {
@@ -21,7 +17,6 @@ namespace PayrollInteractors.usecases.employee.change
         }
 
         protected abstract void change(Employee employee, T request);
-
     }
 
 }

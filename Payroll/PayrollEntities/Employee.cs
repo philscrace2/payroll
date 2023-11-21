@@ -16,7 +16,7 @@ namespace PayrollEntities
         public abstract PaymentMethod getPaymentMethod();
         public abstract Affiliation getAffiliation();
 
-        public abstract void setId(int id);
+        public abstract void setId(int? id);
         public abstract void setName(String name);
         public abstract void setAddress(String address);
         public abstract void setPaymentSchedule(PaymentSchedule paymentSchedule);

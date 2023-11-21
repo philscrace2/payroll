@@ -6,19 +6,19 @@ namespace PayrollPorts.secondary.database
     public interface EmployeeGateway
     {
 
-        bool isExists(int employeeId);
+        bool isExists(int? employeeId);
 
         /**
          * @throws NoSuchEmployeeException
          */
-        PayrollEntities.Employee findById(int employeeId);
+        PayrollEntities.Employee findById(int? employeeId);
 
         /**
          * @throws NoSuchEmployeeException
          */
-        int findEmployeeIdByUnionMemberId(int unionMemberId);
+        int findEmployeeIdByUnionMemberId(int? unionMemberId);
 
-        bool isEmployeeExistsByUnionMemberId(int unionMemberId);
+        bool isEmployeeExistsByUnionMemberId(int? unionMemberId);
 
         Collection<Employee> findAll();
 

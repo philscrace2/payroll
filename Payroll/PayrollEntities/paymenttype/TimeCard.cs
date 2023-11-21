@@ -13,7 +13,7 @@ namespace PayrollEntities.paymenttype
 
     public interface TimeCardFactory
     {
-        TimeCard timeCard(DateTime date, int workingHoursQty);
+        TimeCard timeCard(DateTime date, int? workingHoursQty);
     }
 
 
