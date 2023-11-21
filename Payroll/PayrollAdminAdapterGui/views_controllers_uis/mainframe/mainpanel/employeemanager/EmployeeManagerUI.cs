@@ -1,14 +1,17 @@
+using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.affiliationbutton;
+using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.table;
+
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager
 {
-    public abstract class EmployeeManagerUI<V> : UI<V, EmployeeManagerController> where V : EmployeeManagerView
+    public abstract class EmployeeManagerUI<V, EmployeeManagerController> : UI<V, EmployeeManagerController> where V : EmployeeManagerView
     {
-        private EmployeeListUI employeeListUI;
+        private EmployeeListUI<EmployeeListView> employeeListUI;
 
         public EmployeeManagerUI(
                 EmployeeManagerController controller,
                 V view,
-                EmployeeListUI employeeListUI,
-                AffiliationButtonUI affiliationButtonUI
+                EmployeeListUI<EmployeeListView> employeeListUI,
+                AffiliationButtonUI<AffiliationButtonView> affiliationButtonUI
                 ) : base(controller, view)
         {
 

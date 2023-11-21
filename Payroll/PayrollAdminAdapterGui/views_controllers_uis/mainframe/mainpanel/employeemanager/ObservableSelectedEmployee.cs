@@ -4,6 +4,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 {
     public interface ObservableSelectedEmployee : Observable<EmployeeForEmployeeListResponse>
     {
+        void addChangeListener(Action value);
     }
 
 }

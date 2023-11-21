@@ -67,7 +67,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
         }
 
 
-        public void OnDeleteEmployeeAction()
+        public void onDeleteEmployeeAction()
         {
             var employee = this.observableSelectedEployee.get; // Assuming observableSelectedEmployee is a property of type Observable<EmployeeForEmployeeListResponse>
             var confirmDialog = confirmDialogUIProvider; // Assuming confirmDialogUIProvider is a provider or factory for ConfirmDialogUI
