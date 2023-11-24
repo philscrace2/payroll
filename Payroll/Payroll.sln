@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayrollPorts", "PayrollPort
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayrollAdminAdapterGui", "PayrollAdminAdapterGui\PayrollAdminAdapterGui.csproj", "{D84FAFAE-7213-4BAA-8F7B-D4533EAC1807}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayrollMain", "PayrollMain\PayrollMain.csproj", "{5FB00523-B510-4983-883C-AE93A75080EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D84FAFAE-7213-4BAA-8F7B-D4533EAC1807}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D84FAFAE-7213-4BAA-8F7B-D4533EAC1807}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D84FAFAE-7213-4BAA-8F7B-D4533EAC1807}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FB00523-B510-4983-883C-AE93A75080EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FB00523-B510-4983-883C-AE93A75080EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FB00523-B510-4983-883C-AE93A75080EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FB00523-B510-4983-883C-AE93A75080EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

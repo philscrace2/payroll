@@ -1,5 +1,5 @@
 using PayrollAdminAdapterGui.events;
-using PayrollAdminAdapterGui.formatters.controller;
+using PayrollAdminAdapterGui.formatters.controller.msg;
 
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.statusbar

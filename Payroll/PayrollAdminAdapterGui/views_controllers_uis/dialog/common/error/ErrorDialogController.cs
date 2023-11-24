@@ -1,10 +1,10 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.common.error
 {
-    public class ErrorDialogController : AbstractDialogViewController<ErrorDialogView, CloseableViewListener>
+    public class ErrorDialogController<V> : AbstractDialogViewController<V, CloseableViewListener> where V : ErrorDialogView
     {
         public void SetThrowable(Exception throwable)
         {
-            GetView().setView(new Presenter().ToViewModel(throwable));
+            GetView().setModel(new Presenter().ToViewModel(throwable));
         }
 
         protected override bool OnCloseActionShouldCloseAutomatically()

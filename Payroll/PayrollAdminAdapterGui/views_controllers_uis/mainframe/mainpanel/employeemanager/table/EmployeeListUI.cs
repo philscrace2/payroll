@@ -1,9 +1,9 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.table
 {
-    public abstract class EmployeeListUI<V> : UI<V, EmployeeListController> where V : EmployeeListView
+    public abstract class EmployeeListUI<V> : UI<V, C> where V : EmployeeListView where C : EmployeeListController
     {
         //@Inject
-        public EmployeeListUI(EmployeeListController controller, V view) : base(controller, view)
+        public EmployeeListUI(C controller, V view) : base(controller, view)
         {
 
         }

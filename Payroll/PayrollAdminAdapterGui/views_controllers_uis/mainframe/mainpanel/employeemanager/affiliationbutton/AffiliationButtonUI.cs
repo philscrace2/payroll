@@ -1,9 +1,9 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.affiliationbutton
 {
-    public class AffiliationButtonUI<V> : UI<V, AffiliationButtonController> where V : AffiliationButtonView
+    public abstract class AffiliationButtonUI<V, C> : UI<V, C> where V : AffiliationButtonView where C : AffiliationButtonController<V>
     {
         public AffiliationButtonUI(
-                AffiliationButtonController controller,
+                C controller,
                 V view
                 ) : base(controller, view)
         {

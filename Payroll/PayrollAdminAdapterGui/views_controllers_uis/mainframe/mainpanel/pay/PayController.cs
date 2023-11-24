@@ -1,9 +1,7 @@
-using PayrollAdminAdapterGui.events;
-using PayrollAdminAdapterGui.formatters.controller;
+using PayrollAdminAdapterGui.formatters.controller.msg;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.common.confirm;
 using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay.paylist;
 using PayrollPorts.primaryAdminUseCase.factories;
-using PayrollPorts.primaryAdminUseCase.request;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay
 {
@@ -42,20 +40,20 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay
         }
 
 
-        public override void OnFulfillPayAction()
+        public void onFulfillPayAction()
         {
-            var confirmDialog = confirmDialogUIProvider.Get();
-            confirmDialog.Show(
-                confirmMessageFormatter.FulfillPayments(observablePayListState.Value.ItemCount),
-                new ConfirmDialogListener(
-                    () =>
-                    {
-                        var response = paymentFulfillUseCaseFactory.PaymentFulfillUseCase().Execute(
-                            new PaymentFulfillRequest(observableCurrentDate.Value));
-                        eventBus.Post(new PaymentsFulfilledEvent(
-                            observableCurrentDate.Value, response.PayCheckCount, response.TotalNetAmount));
-                    }
-                ));
+            //var confirmDialog = confirmDialogUIProvider.Get();
+            //confirmDialog.Show(
+            //    confirmMessageFormatter.FulfillPayments(observablePayListState.Value.ItemCount),
+            //    new ConfirmDialogListener(
+            //        () =>
+            //        {
+            //            var response = paymentFulfillUseCaseFactory.PaymentFulfillUseCase().Execute(
+            //                new PaymentFulfillRequest(observableCurrentDate.Value));
+            //            eventBus.Post(new PaymentsFulfilledEvent(
+            //                observableCurrentDate.Value, response.PayCheckCount, response.TotalNetAmount));
+            //        }
+            //    ));
         }
 
         public void onChanged(PayListState payListState)
@@ -71,7 +69,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay
             };
         }
 
-        protected PayViewListener GetViewListener()
+        protected override PayViewListener GetViewListener()
         {
             return this;
         }

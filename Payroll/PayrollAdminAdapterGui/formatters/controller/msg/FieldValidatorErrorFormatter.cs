@@ -1,38 +1,33 @@
-namespace PayrollAdminAdapterGui.Formatters.Common
+using PayrollAdminAdapterGui.validation.field;
+
+namespace PayrollAdminAdapterGui.formatters.controller.msg
 {
     public class FieldValidatorErrorFormatter
     {
-        public static readonly Dictionary<Type, string> MessagesByFieldValidatorErrorType = new Dictionary<Type, string>
+        public static readonly Dictionary<FieldValidatorErrorType, string> MessagesByFieldValidatorErrorType = new Dictionary<FieldValidatorErrorType, string>
         {
-            { Type.Required, "{0} is missing" },
-            { Type.EmptyString, "{0} should not be empty" }
+            { FieldValidatorErrorType.REQUIRED, "{0} is missing" },
+            { FieldValidatorErrorType.EMPTY_STRING, "{0} should not be empty" }
         };
 
         public string Format(FieldValidatorError e)
         {
-            if (MessagesByFieldValidatorErrorType.TryGetValue(e.Type, out var message))
+            if (MessagesByFieldValidatorErrorType.TryGetValue(e.type, out var message))
             {
-                return string.Format(message, e.FieldName);
+                return string.Format(message, e.fieldName);
             }
 
             throw new InvalidOperationException("No formatter available for given field validator error type.");
         }
     }
 
-    // Assuming the enumeration 'Type' is defined somewhere else in your codebase.
-    public enum Type
-    {
-        Required,
-        EmptyString
-        // Other error types can be added here
-    }
+    //// Assuming the enumeration 'Type' is defined somewhere else in your codebase.
+    //public enum Type
+    //{
+    //    REQUIRED,
+    //    EMPTY_STRING
+    //    // Other error types can be added here
+    //}
 
-    // Assuming the 'FieldValidatorError' class is defined somewhere else in your codebase.
-    public class FieldValidatorError
-    {
-        public Type Type { get; set; }
-        public string FieldName { get; set; }
 
-        // Other properties and methods can be defined here
-    }
 }

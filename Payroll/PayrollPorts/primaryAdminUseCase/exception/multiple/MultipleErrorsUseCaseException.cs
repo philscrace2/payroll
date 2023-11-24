@@ -1,6 +1,6 @@
 ﻿namespace PayrollPorts.primaryAdminUseCase.exception.multiple
 {
-    public class MultipleErrorsUseCaseException<E> : UseCaseException where E : Error
+    public class MultipleErrorsUseCaseException<E> : UseCaseException
     {
         public List<E> Errors { get; }
 

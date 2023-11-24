@@ -1,5 +1,5 @@
 using PayrollAdminAdapterGui.events;
-using PayrollAdminAdapterGui.formatters.controller;
+using PayrollAdminAdapterGui.formatters.controller.msg;
 using PayrollAdminAdapterGui.validation.field;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.common.confirm;
 using PayrollPorts.primaryAdminUseCase.factories;
@@ -9,7 +9,7 @@ using PayrollPorts.primaryAdminUseCase.request.hourly;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
 {
-    public class AddTimeCardController : AbstractDialogViewController<AddTimeCardView, AddTimeCardViewListener>, AddTimeCardViewListener
+    public class AddTimeCardController<V> : AbstractDialogViewController<V, AddTimeCardViewListener>, AddTimeCardViewListener where V : AddTimeCardView
     {
         private EventBus eventBus;
         private int employeeId;
@@ -51,7 +51,6 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
 
         public void setView(AddTimeCardView view)
         {
-            base.setView(view);
             setDefaultsToView();
         }
 
@@ -95,12 +94,12 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
 
         private void OnTimeCardAlreadyExists(AddTimeCardViewOutputModel model)
         {
-            confirmDialogUIProvider.show(confirmMessageFormatter.timeCardAlreadyExists, new ConfirmDialogListener(() =>
-            {
-                updateTimeCardUseCaseFactory.UpdateTimeCardUseCase().Execute(ToUpdateRequest(model));
-                OnUpdated(model);
+            //confirmDialogUIProvider.show(confirmMessageFormatter.timeCardAlreadyExists, new ConfirmDialogListener(() =>
+            //{
+            //    updateTimeCardUseCaseFactory.UpdateTimeCardUseCase().Execute(ToUpdateRequest(model));
+            //    OnUpdated(model);
 
-            }));
+            //}));
 
         }
         public void onAdd()
@@ -138,10 +137,12 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
                 throw new FieldValidatorException(fieldValidatorErrors);
         }
 
+        public interface AddTimeCardControllerFactory
+        {
+            AddTimeCardController<V> create(int employeeId);
+        }
+
     }
 
-    public interface AddTimeCardControllerFactory
-    {
-        AddTimeCardController create(int employeeId);
-    }
+
 }

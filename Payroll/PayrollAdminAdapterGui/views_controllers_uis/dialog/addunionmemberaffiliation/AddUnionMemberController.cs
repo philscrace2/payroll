@@ -10,7 +10,7 @@ using static PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmembera
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffiliation
 {
-    public class AddUnionMemberController : AbstractDialogViewController<AddUnionMemberView, AddUnionMemberViewListener>, AddUnionMemberViewListener
+    public class AddUnionMemberController<V> : AbstractDialogViewController<V, AddUnionMemberViewListener>, AddUnionMemberViewListener where V : AddUnionMemberView
     {
 
         private EventBus eventBus;
@@ -120,11 +120,13 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffi
             return this;
         }
 
-        public interface AddUnionMemberControllerFactory
-        {
-            AddUnionMemberController create(int employeeId);
-        }
 
+
+    }
+
+    public interface AddUnionMemberControllerFactory
+    {
+        AddUnionMemberController create(int employeeId);
     }
 
 

@@ -9,7 +9,7 @@ using PayrollPorts.primaryAdminUseCase.response.employee;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.affiliationbutton
 {
-    public class AffiliationButtonController : AbstractController<AffiliationButtonView, AffiliationButtonViewListener>, AffiliationButtonViewListener, ChangeListener<EmployeeForEmployeeListResponse>
+    public class AffiliationButtonController<V> : AbstractController<V, AffiliationButtonViewListener>, AffiliationButtonViewListener, ChangeListener<EmployeeForEmployeeListResponse> where V : AffiliationButtonView
     {
 
         private EventBus eventBus;
@@ -82,7 +82,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
             switch (affiliationType)
             {
                 case AffiliationTypeResponse.UNION_MEMBER:
-                    return new RemoveUnionMemberAction();
+                    return new RemoveUnionMemberAction(addUnionMemberUIFactory);
                 case AffiliationTypeResponse.NO:
                     return new ChangeToUnionMemberAction();
                 default:
@@ -128,9 +128,15 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 
     public class ChangeToUnionMemberAction : Action
     {
+        private AddUnionMemberUIFactory addUnionMemberUIFactory = null;
+
+        public ChangeToUnionMemberAction(AddUnionMemberUIFactory addUnionMemberUIFactory)
+        {
+            this.addUnionMemberUIFactory = addUnionMemberUIFactory;
+        }
         public void execute(EmployeeForEmployeeListResponse e)
         {
-            addUnionMemberUIFactory.create(e.id).show();
+            addUnionMemberUIFactory.Create(e.id).show();
         }
 
         public String getButtonText()

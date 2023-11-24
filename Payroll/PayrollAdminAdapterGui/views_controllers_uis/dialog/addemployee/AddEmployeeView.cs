@@ -1,7 +1,7 @@
 using PayrollAdminAdapterGui.validation;
-using PayrollAdminAdapterGui.views_controllers_uis.dialog;
+using PayrollEntities.paymentmethod;
 
-namespace PayrollAdminAdapterGui.views_controllers_uis
+namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 {
     public class SalariedEmployeeViewModel : EmployeeViewModel
     {
@@ -10,6 +10,11 @@ namespace PayrollAdminAdapterGui.views_controllers_uis
         public void accept(EmployeeViewModelVisitor visitor)
         {
             visitor.visit(this);
+        }
+
+        public override void Accept(IEmployeeViewModelVisitor visitor)
+        {
+            throw new NotImplementedException();
         }
     }
     public interface EmployeeViewModelVisitor
@@ -26,11 +31,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis
         public abstract void accept(EmployeeViewModelVisitor visitor);
 
     }
-    public interface PaymentMethod
-    {
-        T accept<T>(PaymentMethodVisitor<T> visitor);
 
-    }
     public class HourlyEmployeeViewModel : EmployeeViewModel
     {
         public int hourlyWage;
@@ -39,9 +40,14 @@ namespace PayrollAdminAdapterGui.views_controllers_uis
         {
             visitor.visit(this);
         }
+
+        public override void Accept(IEmployeeViewModelVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
     }
 
-    public class DirectPaymentMethod : PaymentMethod
+    public class DirectPaymentMethod : EmployeeViewModel.IPaymentMethod
     {
 
         public String accountNumber;
@@ -53,6 +59,27 @@ namespace PayrollAdminAdapterGui.views_controllers_uis
         public T accept<T>(PaymentMethodVisitor<T> visitor)
         {
             return visitor.visit(this);
+        }
+
+        public T Accept<T>(EmployeeViewModel.IPaymentMethodVisitor<T> visitor)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class CommissionedEmployeeViewModel : EmployeeViewModel
+    {
+        public int biWeeklyBaseSalary;
+        public int commissionRatePercentage;
+
+        public void accept(EmployeeViewModelVisitor visitor)
+        {
+            visitor.visit(this);
+        }
+
+        public override void Accept(IEmployeeViewModelVisitor visitor)
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -70,31 +97,74 @@ namespace PayrollAdminAdapterGui.views_controllers_uis
 
     public abstract class EmployeeViewModel
     {
-        public int? employeeId;
-        public String name;
-        public String address;
-        public PaymentMethod paymentMethod;
+        public int? EmployeeId { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public IPaymentMethod PaymentMethod { get; set; }
 
-    }
-
-    public class PaymasterPaymentMethod : PaymentMethod
-    {
-
-        public T accept<T>(PaymentMethodVisitor<T> visitor)
+        public interface IPaymentMethod
         {
-            return visitor.visit(this);
+            T Accept<T>(IPaymentMethodVisitor<T> visitor);
+        }
+
+        public interface IPaymentMethodVisitor<T>
+        {
+            T Visit(PaymasterPaymentMethod paymentMethod);
+            T Visit(DirectPaymentMethod paymentMethod);
+        }
+
+        public class PaymasterPaymentMethod : IPaymentMethod
+        {
+            public T Accept<T>(IPaymentMethodVisitor<T> visitor) => visitor.Visit(this);
+        }
+
+        public class DirectPaymentMethod : IPaymentMethod
+        {
+            public string AccountNumber { get; set; }
+
+            public DirectPaymentMethod(string accountNumber)
+            {
+                AccountNumber = accountNumber;
+            }
+
+            public T Accept<T>(IPaymentMethodVisitor<T> visitor) => visitor.Visit(this);
+        }
+
+        public abstract void Accept(IEmployeeViewModelVisitor visitor);
+
+        public interface IEmployeeViewModelVisitor
+        {
+            void Visit(SalariedEmployeeViewModel salariedEmployeeViewModel);
+            void Visit(HourlyEmployeeViewModel hourlyEmployeeViewModel);
+            void Visit(CommissionedEmployeeViewModel commissionedEmployeeViewModel);
         }
     }
 
-    public class CommissionedEmployeeViewModel : EmployeeViewModel
-    {
-        public int biWeeklyBaseSalary;
-        public int commissionRatePercentage;
 
-        public void accept(EmployeeViewModelVisitor visitor)
-        {
-            visitor.visit(this);
-        }
-    }
+    //public interface PaymentMethod
+    //{
+    //    T accept<T>(PaymentMethodVisitor<T> visitor);
+
+    //}
+
+    //public class PaymasterPaymentMethod : PaymentMethod
+    //{
+
+    //    public T accept<T>(PaymentMethodVisitor<T> visitor)
+    //    {
+    //        return visitor.visit(this);
+    //    }
+    //}
+
+    //public class CommissionedEmployeeViewModel : EmployeeViewModel
+    //{
+    //    public int biWeeklyBaseSalary;
+    //    public int commissionRatePercentage;
+
+    //    public void accept(EmployeeViewModelVisitor visitor)
+    //    {
+    //        visitor.visit(this);
+    //    }
+    //}
 }
 

@@ -1,12 +1,16 @@
+using PayrollAdminAdapterGui.events;
 using PayrollAdminAdapterGui.formatters.usecase.error;
+using PayrollAdminAdapterGui.validation;
 using PayrollAdminAdapterGui.validation.field;
-using PayrollEntities.paymentmethod;
+using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee.requestcreator;
+using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee.validator;
+using PayrollPorts.primaryAdminUseCase.exception.multiple;
 using PayrollPorts.primaryAdminUseCase.factories;
 using PayrollPorts.primaryAdminUseCase.request.changemployee.paymentmethod;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 {
-    public class AddEmployeeController : AbstractDialogViewController<AddEmployeeView, AddEmployeeViewListener>, AddEmployeeViewListener
+    public class AddEmployeeController<V> : AbstractDialogViewController<V, AddEmployeeViewListener>, AddEmployeeViewListener where V : AddEmployeeView
     {
         private AddEmployeeUseCaseFactory addEmployeeUseCaseFactory;
         private ChangeToAbstractPaymentMethodUseCaseFactory changePaymentMethodUseCaseFactory;
@@ -41,7 +45,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
         public void onAddEmployee()
         {
-            GetView().getModel().accept(new OnAddEmployeeHandlerExecutor(this));
+            GetView().getModel().Accept(new OnAddEmployeeHandlerExecutor(this));
         }
 
         public void onCancel()
@@ -49,48 +53,90 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
             Close();
         }
 
-        public class OnAddEmployeeHandlerExecutor : EmployeeViewModelVisitor
+        public class OnAddEmployeeHandlerExecutor : EmployeeViewModel.IEmployeeViewModelVisitor
         {
-            private AddEmployeeController controller;
-            public OnAddEmployeeHandlerExecutor(AddEmployeeController controller)
+            private readonly AddEmployeeController<V> addEmployeeController;
+
+            public OnAddEmployeeHandlerExecutor(AddEmployeeController<V> addEmployeeController)
             {
-                this.controller = controller;
+                this.addEmployeeController = addEmployeeController;
             }
-            public void visit(SalariedEmployeeViewModel salariedEmployeeViewModel)
+            public void Visit(SalariedEmployeeViewModel salariedEmployeeViewModel)
             {
-                new OnAddSalariedEmployeeHandler().OnAddEmployee(salariedEmployeeViewModel);
+                new OnAddSalariedEmployeeHandler(addEmployeeController).OnAddEmployee(salariedEmployeeViewModel);
             }
 
-            public void visit(HourlyEmployeeViewModel hourlyEmployeeViewModel)
+            public void Visit(HourlyEmployeeViewModel hourlyEmployeeViewModel)
             {
-                new OnAddHourlyEmployeeHandler().OnAddEmployee(hourlyEmployeeViewModel);
+                new OnAddHourlyEmployeeHandler(addEmployeeController).OnAddEmployee(hourlyEmployeeViewModel);
             }
 
-            public void visit(CommissionedEmployeeViewModel commissionedEmployeeViewModel)
+            public void Visit(CommissionedEmployeeViewModel commissionedEmployeeViewModel)
             {
-                new OnAddCommissionedEmployeeHandler().OnAddEmployee(commissionedEmployeeViewModel);
+                new OnAddCommissionedEmployeeHandler(addEmployeeController).OnAddEmployee(commissionedEmployeeViewModel);
             }
         }
 
+        public class ExecuteChangePaymentMethodUseCaseExecutor : EmployeeViewModel.IPaymentMethodVisitor<object>
+        {
+            private readonly AddEmployeeController<V> controller;
+            private int? employeeId;
+
+            public ExecuteChangePaymentMethodUseCaseExecutor(AddEmployeeController<V> controller, int? employeeId)
+            {
+                this.controller = controller;
+                this.employeeId = employeeId;
+            }
+
+            //public object Visit(PayrollEntities.paymentmethod.PaymasterPaymentMethod paymasterPaymentMethod)
+            //{
+            //    return this.controller.changePaymentMethodUseCaseFactory.changeToPaymasterPaymentMethodUseCase();
+            //}
+
+            //public object Visit(PayrollEntities.paymentmethod.DirectPaymentMethod directPaymentMethod)
+            //{
+            //    this.controller.changePaymentMethodUseCaseFactory.changeToDirectPaymentMethodUseCase().Execute(
+            //        new ChangeToDirectPaymentMethodRequest(this.employeeId, directPaymentMethod.getAccountNumber()));
+            //    return new object();
+            //}
+
+            public object Visit(EmployeeViewModel.PaymasterPaymentMethod paymentMethod)
+            {
+                return this.controller.changePaymentMethodUseCaseFactory.changeToPaymasterPaymentMethodUseCase();
+            }
+
+            public object Visit(EmployeeViewModel.DirectPaymentMethod directPaymentMethod)
+            {
+                this.controller.changePaymentMethodUseCaseFactory.changeToDirectPaymentMethodUseCase().Execute(
+                    new ChangeToDirectPaymentMethodRequest(this.employeeId, directPaymentMethod.AccountNumber));
+                return new object();
+            }
+        }
         public abstract class OnAddEmployeeHandler<T> where T : EmployeeViewModel
         {
+            private readonly AddEmployeeController<V> addEmployeeController;
+
+            public OnAddEmployeeHandler(AddEmployeeController<V> addEmployeeController)
+            {
+                this.addEmployeeController = addEmployeeController;
+            }
             public void OnAddEmployee(T model)
             {
                 try
                 {
                     Validate(model);
                     ExecuteAddEmployeeUseCase(model);
-                    model.paymentMethod.accept(new ExecuteChangePaymentMethodUseCaseExecutor(model.employeeId.Value));
-                    eventBus.Post(new AddedEmployeeEvent(model.employeeId.Value, model.name));
-                    Close();
+                    model.PaymentMethod.Accept((new ExecuteChangePaymentMethodUseCaseExecutor(addEmployeeController, model.EmployeeId)));
+                    addEmployeeController.eventBus.Post(new AddedEmployeeEvent(model.EmployeeId.Value, model.Name));
+                    addEmployeeController.Close();
                 }
                 catch (FieldValidatorException e)
                 {
-                    View.SetModel(fieldValidationErrorPresenter.Present(e));
+                    addEmployeeController.GetView().setModel(addEmployeeController.fieldValidationErrorPresenter.Present(e));
                 }
-                catch (MultipleErrorsUseCaseException e)
+                catch (MultipleErrorsUseCaseException<Exception> e)
                 {
-                    View.SetModel(new ValidationErrorMessagesModel(addEmployeeUseCaseErrorFormatter.FormatAll(e.Errors)));
+                    addEmployeeController.GetView().setModel(new ValidationErrorMessagesModel(addEmployeeController.addEmployeeUseCaseErrorFormatter.FormatAll(e.Errors)));
                 }
             }
 
@@ -105,33 +151,19 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
             protected abstract void ExecuteAddEmployeeUseCase(T model);
         }
 
-        private class ExecuteChangePaymentMethodUseCaseExecutor : IPaymentMethodVisitor<Void>
-        {
-            private int employeeId;
 
-            public ExecuteChangePaymentMethodUseCaseExecutor(int employeeId)
-            {
-                this.employeeId = employeeId;
-            }
 
-            public void visit(PaymasterPaymentMethod paymentMethod)
-            {
-                changePaymentMethodUseCaseFactory.ChangeToPaymasterPaymentMethodUseCase();
-            }
 
-            public void visit(DirectPaymentMethod paymentMethod)
-            {
-                changePaymentMethodUseCaseFactory.ChangeToDirectPaymentMethodUseCase().Execute(
-                    new ChangeToDirectPaymentMethodRequest(employeeId, paymentMethod.AccountNumber));
-
-            }
-        }
 
         // ...
 
         public class OnAddSalariedEmployeeHandler : OnAddEmployeeHandler<SalariedEmployeeViewModel>
         {
-            public OnAddSalariedEmployeeHandler() { }
+            private readonly AddEmployeeController<V> addEmployeeController;
+            public OnAddSalariedEmployeeHandler(AddEmployeeController<V> addEmployeeController) : base(addEmployeeController)
+            {
+                this.addEmployeeController = addEmployeeController;
+            }
 
             protected override List<FieldValidatorError> GetValidationErrors(SalariedEmployeeViewModel model)
             {
@@ -142,14 +174,18 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
             protected override void ExecuteAddEmployeeUseCase(SalariedEmployeeViewModel model)
             {
                 // Assuming SalariedRequestCreator is a class that creates a request object from a salaried employee model
-                var request = new SalariedRequestCreator().ToRequest(model);
-                controller.addEmployeeUseCaseFactory.AddSalariedEmployeeUseCase().Execute(request);
+                var request = new SalariedRequestCreator().toRequest(model);
+                this.addEmployeeController.addEmployeeUseCaseFactory.addSalariedEmployeeUseCase().Execute(request);
             }
         }
 
         private class OnAddHourlyEmployeeHandler : OnAddEmployeeHandler<HourlyEmployeeViewModel>
         {
-            public OnAddHourlyEmployeeHandler() { }
+            private readonly AddEmployeeController<V> addEmployeeController;
+            public OnAddHourlyEmployeeHandler(AddEmployeeController<V> addEmployeeController) : base(addEmployeeController)
+            {
+                this.addEmployeeController = addEmployeeController;
+            }
 
             protected override List<FieldValidatorError> GetValidationErrors(HourlyEmployeeViewModel model)
             {
@@ -159,23 +195,27 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
             protected override void ExecuteAddEmployeeUseCase(HourlyEmployeeViewModel model)
             {
-                var request = new HourlyRequestCreator().ToRequest(model);
-                controller.addEmployeeUseCaseFactory.AddHourlyEmployeeUseCase().Execute(request);
+                var request = new HourlyRequestCreator().toRequest(model);
+                this.addEmployeeController.addEmployeeUseCaseFactory.addHourlyEmployeeUseCase().Execute(request);
             }
         }
 
         public class OnAddCommissionedEmployeeHandler : OnAddEmployeeHandler<CommissionedEmployeeViewModel>
         {
-            public OnAddCommissionedEmployeeHandler() { }
+            private readonly AddEmployeeController<V> addEmployeeController;
+            public OnAddCommissionedEmployeeHandler(AddEmployeeController<V> addEmployeeController) : base(addEmployeeController)
+            {
+                this.addEmployeeController = addEmployeeController;
+            }
 
             protected override List<FieldValidatorError> GetValidationErrors(CommissionedEmployeeViewModel model)
             {
-                return new AddCommissionedEmployeeFieldsValidator().getErrors(model);
+                return new AddCommissionedEmployeeFieldsValidator().GetErrors(model);
             }
 
-            protected void ExecuteAddEmployeeUseCase(CommissionedEmployeeViewModel model)
+            protected override void ExecuteAddEmployeeUseCase(CommissionedEmployeeViewModel model)
             {
-                addEmployeeUseCaseFactory.addCommissionedEmployeeUseCase().execute(new CommissionedRequestCreator().toRequest(model));
+                addEmployeeController.addEmployeeUseCaseFactory.addCommissionedEmployeeUseCase().Execute(new CommissionedRequestCreator().toRequest(model));
             }
         }
 

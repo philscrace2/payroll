@@ -6,14 +6,14 @@ using static PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.em
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.table
 {
-    public class EmployeeListController : AbstractController<EmployeeListView, EmployeeListViewListener>, ChangeListener<DateTime>
+    public class EmployeeListController : AbstractController<EmployeeListView, EmployeeListViewListener>, EmployeeListViewListener, ChangeListener<DateTime>
     {
         private EmployeeListUseCaseFactory useCaseFactory;
         private EmployeeListPresenterFactory employeeListPresenterFactory;
 
         private Observable<DateTime> observableCurrentDate;
         private List<EmployeeForEmployeeListResponse> employees;
-        private ObservableSelectedEployeeValue observableSelectedEmployee = new ObservableSelectedEployeeValue();
+        private ObservableSelectedEmployeeValue observableSelectedEmployee = new ObservableSelectedEmployeeValue();
 
         //@Inject
         public EmployeeListController(
@@ -53,9 +53,16 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         //@Override
         public void OnSelectionChanged(int? employeeIndex)
         {
-            observableSelectedEmployee = employeeIndex.Value
-                ? employees[employeeIndex.Value]
-                : null;
+            //TODO PHIL SCRACE
+            //if (employeeIndex.HasValue)
+            //{
+            //    observableSelectedEmployee.Value = employees[employeeIndex.Value];
+            //}
+            //else
+            //{
+            //    observableSelectedEmployee.Value = null; // or a default value
+            //}
+
         }
 
         private void update()
@@ -65,17 +72,27 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
             GetView().setModel(employeeListPresenterFactory.of(observableCurrentDate.get(), employeeListResponse).toViewModel());
         }
 
-        protected EmployeeListViewListener GetViewListener()
+        protected override EmployeeListViewListener GetViewListener()
         {
             return this;
         }
+
+        public void onSelectionChanged(int? employeeIndex)
+        {
+            throw new NotImplementedException();
+        }
     }
 
-    public class ObservableSelectedEployeeValue : ObservableValue<EmployeeForEmployeeListResponse>, ObservableSelectedEmployee
+    public class ObservableSelectedEmployeeValue : ObservableValue<EmployeeForEmployeeListResponse>, ObservableSelectedEmployee
     {
-        public ObservableSelectedEployeeValue() : base()
+        public ObservableSelectedEmployeeValue() : base()
         {
 
+        }
+
+        public void addChangeListener(Action value)
+        {
+            throw new NotImplementedException();
         }
     }
 

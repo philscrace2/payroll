@@ -1,3 +1,7 @@
+using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
+using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager;
+using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay;
+
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
 {
     public abstract class MainPanelUI<V> : UI<V, MainPanelController> where V : MainPanelView
@@ -7,8 +11,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
         public MainPanelUI(
                 MainPanelController controller,
                 V view,
-                EmployeeManagerUI employeeManagerUI,
-                PayUI payUI
+                EmployeeManagerUI<AddEmployeeView, object> employeeManagerUI,
+                PayUI<PayView> payUI
                 ) : base(controller, view)
         {
 

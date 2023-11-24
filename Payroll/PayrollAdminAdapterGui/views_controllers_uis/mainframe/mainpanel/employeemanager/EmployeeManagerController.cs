@@ -1,10 +1,10 @@
 using PayrollAdminAdapterGui.events;
-using PayrollAdminAdapterGui.formatters.controller;
+using PayrollAdminAdapterGui.formatters.controller.msg;
+using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.common.confirm;
 using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager;
 using PayrollPorts.primaryAdminUseCase.factories;
-using PayrollPorts.primaryAdminUseCase.request;
 using PayrollPorts.primaryAdminUseCase.response;
 using PayrollPorts.primaryAdminUseCase.response.employee;
 using PayrollPorts.primaryAdminUseCase.response.employee.paymenttype;
@@ -12,23 +12,24 @@ using static PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.Em
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
 {
-    public class EmployeeManagerController : AbstractController<EmployeeManagerView, EmployeeManagerViewListener>, EmployeeManagerViewListener
+    public class EmployeeManagerController<V> : AbstractController<EmployeeManagerView, EmployeeManagerViewListener>, EmployeeManagerViewListener where V : AddEmployeeView
     {
         private DeleteEmployeeUseCaseFactory deleteEmployeeUseCaseFactory;
         private EventBus eventBus;
 
-        private AddEmployeeUI addEmployeeUIProvider;
+        private AddEmployeeUI<AddEmployeeView> addEmployeeUIProvider;
         private ConfirmDialogUI confirmDialogUIProvider;
         private AddTimeCardUIFactory addTimeCardUIFactory;
         private ObservableSelectedEmployee observableSelectedEployee;
         private ConfirmMessageFormatter confirmMessageFormatter;
+        private ButtonEnabledStates buttonsEnabledStates;
 
         //@Inject
         public EmployeeManagerController(
         DeleteEmployeeUseCaseFactory deleteEmployeeUseCaseFactory,
         GetEmployeeUseCaseFactory getEmployeeUseCaseFactory,
         EventBus eventBus,
-        AddEmployeeUI addEmployeeUIProvider,
+        AddEmployeeUI<AddEmployeeView> addEmployeeUIProvider,
         ConfirmDialogUI confirmDialogUIProvider,
         AddTimeCardUIFactory addTimeCardUIFactory,
         ConfirmMessageFormatter confirmMessageFormatter
@@ -63,30 +64,30 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
 
         private void updateView()
         {
-            GetView().setModel(new EmployeeManagerViewPresenter().present(observableSelectedEployee.get()));
+            GetView().setModel(new EmployeeManagerViewPresenter(this.buttonsEnabledStates).present(observableSelectedEployee.get()));
         }
 
 
         public void onDeleteEmployeeAction()
         {
-            var employee = this.observableSelectedEployee.get; // Assuming observableSelectedEmployee is a property of type Observable<EmployeeForEmployeeListResponse>
-            var confirmDialog = confirmDialogUIProvider; // Assuming confirmDialogUIProvider is a provider or factory for ConfirmDialogUI
-            confirmDialog.show(
-                confirmMessageFormatter.deleteEmployee(employee),
-                new ConfirmDialogListener(
-                    () =>
-                    {
-                        deleteEmployeeUseCaseFactory.DeleteEmployeeUseCase().Execute(new DeleteEmployeeRequest(employee.Id));
-                        eventBus.Post(new DeletedEmployeeEvent(employee.Id, employee.Name));
-                    }
-                ));
+            //var employee = this.observableSelectedEployee.get; // Assuming observableSelectedEmployee is a property of type Observable<EmployeeForEmployeeListResponse>
+            //var confirmDialog = confirmDialogUIProvider; // Assuming confirmDialogUIProvider is a provider or factory for ConfirmDialogUI
+            //confirmDialog.show(
+            //    confirmMessageFormatter.deleteEmployee(employee),
+            //    new ConfirmDialogListener(
+            //        () =>
+            //        {
+            //            deleteEmployeeUseCaseFactory.DeleteEmployeeUseCase().Execute(new DeleteEmployeeRequest(employee.Id));
+            //            eventBus.Post(new DeletedEmployeeEvent(employee.Id, employee.Name));
+            //        }
+            //    ));
         }
 
 
 
         public void onAddEmployeeAction()
         {
-            addEmployeeUIProvider.get().show();
+            addEmployeeUIProvider.Show();
         }
 
 
@@ -110,25 +111,37 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
         }
     }
 
-
-
     public class EmployeeManagerViewPresenter
     {
+        private ButtonEnabledStates buttonsEnabledStates = null;
+
+        public EmployeeManagerViewPresenter(ButtonEnabledStates buttonsEnabledStates)
+        {
+            this.buttonsEnabledStates = buttonsEnabledStates;
+        }
         public EmployeeManagerViewModel present(EmployeeForEmployeeListResponse selectedEmployee)
         {
-            return new EmployeeManagerViewModel(presentButtonsEnabledStates(selectedEmployee));
+            return new EmployeeManagerViewModel(PresentButtonsEnabledStates(selectedEmployee));
         }
 
-        private ButtonEnabledStates presentButtonsEnabledStates(EmployeeForEmployeeListResponse selectedEmployee)
+        private ButtonEnabledStates PresentButtonsEnabledStates(EmployeeForEmployeeListResponse selectedEmployee)
         {
-            ButtonEnabledStates buttonsEnabledStates = new ButtonEnabledStates();
-            buttonsEnabledStates.deleteEmployee = selectedEmployee.isPresent();
-            selectedEmployee.ifPresent((e) =>
+            this.buttonsEnabledStates = new ButtonEnabledStates();
+            buttonsEnabledStates.deleteEmployee = selectedEmployee != null;
+
+            if (selectedEmployee != null)
             {
-                presentButtonsEnabledStatesForEmployee(buttonsEnabledStates, e);
-            });
+                PresentButtonsEnabledStatesForEmployee(buttonsEnabledStates, selectedEmployee);
+            }
+
             return buttonsEnabledStates;
         }
+
+        private void PresentButtonsEnabledStatesForEmployee(ButtonEnabledStates states, EmployeeForEmployeeListResponse employee)
+        {
+            // Implementation of this method...
+        }
+
 
         private void presentButtonsEnabledStatesForEmployee(ButtonEnabledStates buttonsEnabledStates, EmployeeForEmployeeListResponse employee)
         {
@@ -136,34 +149,66 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
             presentButtonsEnabledForAffiliationType(buttonsEnabledStates, employee.affiliationTypeResponse);
         }
 
+        private void PresentButtonsEnabledForPaymentType(ButtonEnabledStates buttonsEnabledStates, PaymentTypeResponse paymentType)
+        {
+            paymentType.accept(new LocalPaymentTypeResponseVisitor(buttonsEnabledStates));
+        }
+
         private void presentButtonsEnabledForPaymentType(ButtonEnabledStates buttonsEnabledStates, PaymentTypeResponse paymentType)
         {
-            paymentType.accept(new PaymentTypeResponseVisitor<PaymentTypeResponse>())
-            {
-
-            }
-
-
-        public override void visit(CommissionedPaymentTypeResponse commissionedPaymentTypeResponse)
+            paymentType.accept(new LocalPaymentTypeResponseVisitor(buttonsEnabledStates));
+        }
+        public void visit(CommissionedPaymentTypeResponse commissionedPaymentTypeResponse)
         {
             buttonsEnabledStates.addSalesReceipt = true;
-            return null;
         }
-    });
-    private void presentButtonsEnabledForAffiliationType(ButtonEnabledStates buttonsEnabledStates, AffiliationTypeResponse affiliationType)
-    {
-        switch (affiliationType)
+
+        private void presentButtonsEnabledForAffiliationType(ButtonEnabledStates buttonsEnabledStates, AffiliationTypeResponse affiliationType)
         {
-            case NO:
-                break;
-            case UNION_MEMBER:
-                buttonsEnabledStates.addServiceCharge = true;
-                break;
-            default:
-                throw new Exception("not implemented");
+            switch (affiliationType)
+            {
+                case AffiliationTypeResponse.NO:
+                    break;
+                case AffiliationTypeResponse.UNION_MEMBER:
+                    buttonsEnabledStates.addServiceCharge = true;
+                    break;
+                default:
+                    throw new Exception("not implemented");
+            }
         }
     }
+
+    public class LocalPaymentTypeResponseVisitor : PaymentTypeResponseVisitor<Object>
+    {
+        private readonly ButtonEnabledStates _buttonsEnabledStates;
+
+        public LocalPaymentTypeResponseVisitor(ButtonEnabledStates buttonsEnabledStates)
+        {
+            _buttonsEnabledStates = buttonsEnabledStates;
+        }
+
+        public object visit(SalariedPaymentTypeResponse salariedPaymentTypeResponse)
+        {
+            // Logic for SalariedPaymentTypeResponse
+            return new object();
+        }
+
+        public object visit(HourlyPaymentTypeResponse hourlyPaymentTypeResponse)
+        {
+            _buttonsEnabledStates.addTimeCard = true;
+
+            return new object();
+        }
+
+        public object visit(CommissionedPaymentTypeResponse commissionedPaymentTypeResponse)
+        {
+            _buttonsEnabledStates.addSalesReceipt = true;
+            return new object();
+        }
+    }
+
 }
+
 
 
 

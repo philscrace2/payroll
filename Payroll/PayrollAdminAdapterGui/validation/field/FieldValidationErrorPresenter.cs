@@ -1,3 +1,5 @@
+using PayrollAdminAdapterGui.formatters.controller.msg;
+
 namespace PayrollAdminAdapterGui.validation.field
 {
     using System.Linq;
@@ -13,7 +15,7 @@ namespace PayrollAdminAdapterGui.validation.field
 
         public ValidationErrorMessagesModel Present(FieldValidatorException e)
         {
-            var errorMessages = e.FieldValidatorErrors
+            var errorMessages = e.fieldValidatorErrors
                 .Select(fieldValidatorError => fieldValidatorErrorFormatter.Format(fieldValidatorError))
                 .ToList();
 

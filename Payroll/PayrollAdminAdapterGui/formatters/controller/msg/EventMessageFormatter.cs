@@ -2,7 +2,7 @@ using PayrollAdminAdapterGui.events;
 using PayrollAdminAdapterGui.formatters.common;
 
 
-namespace PayrollAdminAdapterGui.formatters.controller
+namespace PayrollAdminAdapterGui.formatters.controller.msg
 {
     public class EventMessageFormatter
     {

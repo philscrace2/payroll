@@ -1,6 +1,9 @@
-package hu.daniel.hari.exercises.cleanarchitecture.payrollcasestudy.adapters.primary.admin.gui.views_controllers_uis.mainframe;
+namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe
+{
+    public interface MainFrameUI
+    {
+        public void show();
+    }
 
-/** this has no controller */
-public interface MainFrameUI {
-	public void show();
+
 }

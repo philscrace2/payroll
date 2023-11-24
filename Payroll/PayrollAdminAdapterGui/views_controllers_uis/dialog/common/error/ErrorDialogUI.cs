@@ -1,9 +1,10 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.common.error
 {
-    public abstract class ErrorDialogUI<V> : UI<V, ErrorDialogController> where V : ErrorDialogView
+    public abstract class ErrorDialogUI<V, C> : UI<V, C> where V : ErrorDialogView where C : ErrorDialogController<V>
     {
-        public ErrorDialogUI(ErrorDialogController controller, V view) : base(controller, view)
+        public ErrorDialogUI(C controller, V view) : base(controller, view)
         {
+
         }
 
         public void Show(Exception e)

@@ -1,21 +1,22 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis
 {
-    public abstract class AbstractController<V, VL> : Controller<V>
-    where V : ControlView<VL>
-    {
-        private V view;
+    public abstract class AbstractController : IController, ViewListener
 
-        public void setView(V view)
+    {
+        private View view;
+
+        protected void setView(View view)
         {
             this.view = view;
             view.setViewListener(GetViewListener());
         }
 
-        protected V GetView()
+        protected View GetView()
         {
             return view;
         }
 
-        protected abstract VL GetViewListener();
+        protected abstract ViewListener GetViewListener();
+
     }
 }

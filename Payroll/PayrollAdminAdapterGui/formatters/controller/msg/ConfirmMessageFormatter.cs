@@ -1,4 +1,4 @@
-namespace PayrollAdminAdapterGui.formatters.controller
+namespace PayrollAdminAdapterGui.formatters.controller.msg
 {
     public class ConfirmMessageFormatter
     {

@@ -1,14 +1,14 @@
-using static PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffiliation.AddUnionMemberController;
+
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffiliation
 {
-    public class AddUnionMemberUI<V> : UI<V, AddUnionMemberController> where V : AddUnionMemberView
+    public class AddUnionMemberUI<V, C> : UI<V, C> where V : AddUnionMemberView where C : AddUnionMemberController<V>
     {
         public AddUnionMemberUI(
-                AddUnionMemberControllerFactory controllerFactory,
+                C controllerFactory,
                 V view,
                 int employeeId
-                ) : base(controllerFactory.create(employeeId), view)
+                ) : base(controllerFactory.Create(employeeId), view)
         {
 
         }
@@ -22,7 +22,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffi
     }
     public interface AddUnionMemberUIFactory
     {
-        AddUnionMemberUI<AddUnionMemberView> create(int employeeId);
+        AddUnionMemberUI<AddUnionMemberView, AddUnionMemberController> create(int employeeId);
     }
 
 
