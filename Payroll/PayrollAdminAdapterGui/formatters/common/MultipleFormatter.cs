@@ -1,9 +1,9 @@
 namespace PayrollAdminAdapterGui.formatters.common
 {
-    public abstract class MultipleFormatter<T>
+    public abstract class MultipleFormatter
     {
-        protected abstract String format(T element);
-        public List<string> FormatAll<T>(List<T> elements)
+        protected abstract String format(string element);
+        public List<string> FormatAll(List<string> elements)
         {
             return elements.Select(element => format(element)).ToList();
         }

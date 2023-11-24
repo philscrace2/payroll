@@ -8,7 +8,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
 
     }
 
-    public interface MainPanelViewListener
+    public interface MainPanelViewListener : ViewListener
     {
         void onChangedCurrentDate();
     }

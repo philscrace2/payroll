@@ -4,7 +4,7 @@ using PayrollAdminAdapterGui.formatters.controller.msg;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.statusbar
 {
-    public class StatusBarController : Controller<StatusBarView>
+    public class StatusBarController : Controller
     {
         private StatusBarView view;
         private EventMessageFormatter messageFormatter;

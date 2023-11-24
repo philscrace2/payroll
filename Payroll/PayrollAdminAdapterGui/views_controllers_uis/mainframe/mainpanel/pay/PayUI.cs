@@ -2,17 +2,18 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay
 {
     using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay.paylist;
 
-    public abstract class PayUI<V> : UI<V, PayController> where V : PayView
+    public abstract class PayUI : UI
     {
-        private PayListUI<PayListView> payListUI;
+        private readonly PayController controller;
+        private PayListUI payListUI;
 
         public PayUI(
                 PayController controller,
-                V view,
-                PayListUI<PayListView> payListUI
+                PayView view,
+                PayListUI payListUI
                 ) : base(controller, view)
         {
-
+            this.controller = controller;
             this.payListUI = payListUI;
             controller.setObservablePayListState(payListUI.getObservablePayListState());
         }

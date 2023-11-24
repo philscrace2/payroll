@@ -1,13 +1,17 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
 {
-    public class MainPanelController :
-        AbstractController<MainPanelView, MainPanelViewListener>, MainPanelViewListener
+    public class MainPanelController : AbstractController, MainPanelViewListener, MainPanelView
     {
         private ObservableValue<DateTime> observableCurrentDate = new ObservableValue<DateTime>();
 
+        public MainPanelController() : base()
+        {
+        }
+
         public void setDefaultModelToView()
         {
-            GetView().setModel(new MainPanelViewModel(getDefaultDate()));
+            MainPanelView mpv = (MainPanelView)this.GetView();
+            mpv.setModel(new MainPanelViewModel(getDefaultDate()));
         }
 
         private DateTime getDefaultDate()
@@ -25,15 +29,35 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
 
         public void onChangedCurrentDate()
         {
-            observableCurrentDate.set(GetView().getModel().currentDate);
+            MainPanelView mpv = (MainPanelView)this.GetView();
+            observableCurrentDate.set(mpv.getModel().currentDate);
         }
 
 
-        protected override MainPanelViewListener GetViewListener()
+        protected override ViewListener GetViewListener()
         {
-            return this;
+            return (MainPanelViewListener)this;
         }
 
+        public void setViewListener(MainPanelViewListener listener)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void setViewListener(ViewListener getViewListener)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void setModel(MainPanelViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public MainPanelViewModel getModel()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

@@ -10,7 +10,7 @@ using static PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmembera
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffiliation
 {
-    public class AddUnionMemberController<V> : AbstractDialogViewController<V, AddUnionMemberViewListener>, AddUnionMemberViewListener where V : AddUnionMemberView
+    public class AddUnionMemberController : AbstractDialogViewController, AddUnionMemberViewListener, AddUnionMemberView
     {
 
         private EventBus eventBus;
@@ -48,7 +48,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffi
 
         private void setDefaultsToView()
         {
-            GetView().setModel(toInputModel(getEmployeeName()));
+            AddUnionMemberView um = (AddUnionMemberView)this.GetView();
+            um.setModel(toInputModel(getEmployeeName()));
         }
 
         private String getEmployeeName()
@@ -67,7 +68,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffi
 
         public void onAdd()
         {
-            AddUnionMemberViewOutputModel model = GetView().getModel();
+            AddUnionMemberView um = (AddUnionMemberView)this.GetView();
+            AddUnionMemberViewOutputModel model = um.getModel();
             try
             {
                 validate(model);
@@ -77,11 +79,11 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffi
             }
             catch (FieldValidatorException e)
             {
-                GetView().setValidationErrorMessagesModel(fieldValidationErrorPresenter.Present(e));
+                um.setValidationErrorMessagesModel(fieldValidationErrorPresenter.Present(e));
             }
             catch (UnionMemberIdAlreadyExistsException e)
             {
-                GetView().setValidationErrorMessagesModel(new ValidationSingleErrorMessageModel(useCaseExceptionsFormatter.format(e)));
+                um.setValidationErrorMessagesModel(new ValidationSingleErrorMessageModel(useCaseExceptionsFormatter.format(e)));
             }
 
         }
@@ -115,13 +117,51 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffi
         }
 
 
-        protected AddUnionMemberViewListener GetViewListener()
+        protected override ViewListener GetViewListener()
         {
-            return this;
+            return (AddUnionMemberViewListener)this;
         }
 
 
+        protected override bool OnCloseActionShouldCloseAutomatically()
+        {
+            throw new NotImplementedException();
+        }
 
+        public void setViewListener(AddUnionMemberViewListener listener)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void setViewListener(ViewListener getViewListener)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Close()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void showIt()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void setModel(AddUnionMemberViewInputModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public AddUnionMemberViewOutputModel getModel()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void setValidationErrorMessagesModel(ValidationErrorMessagesModel errorMessagesModel)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public interface AddUnionMemberControllerFactory

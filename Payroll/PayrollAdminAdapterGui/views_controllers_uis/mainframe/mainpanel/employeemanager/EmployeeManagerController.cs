@@ -1,5 +1,6 @@
 using PayrollAdminAdapterGui.events;
 using PayrollAdminAdapterGui.formatters.controller.msg;
+using PayrollAdminAdapterGui.validation;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.common.confirm;
@@ -12,12 +13,12 @@ using static PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.Em
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
 {
-    public class EmployeeManagerController<V> : AbstractController<EmployeeManagerView, EmployeeManagerViewListener>, EmployeeManagerViewListener where V : AddEmployeeView
+    public class EmployeeManagerController : AbstractController, AddEmployeeView, EmployeeManagerViewListener
     {
         private DeleteEmployeeUseCaseFactory deleteEmployeeUseCaseFactory;
         private EventBus eventBus;
 
-        private AddEmployeeUI<AddEmployeeView> addEmployeeUIProvider;
+        private AddEmployeeUI addEmployeeUIProvider;
         private ConfirmDialogUI confirmDialogUIProvider;
         private AddTimeCardUIFactory addTimeCardUIFactory;
         private ObservableSelectedEmployee observableSelectedEployee;
@@ -29,7 +30,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
         DeleteEmployeeUseCaseFactory deleteEmployeeUseCaseFactory,
         GetEmployeeUseCaseFactory getEmployeeUseCaseFactory,
         EventBus eventBus,
-        AddEmployeeUI<AddEmployeeView> addEmployeeUIProvider,
+        AddEmployeeUI addEmployeeUIProvider,
         ConfirmDialogUI confirmDialogUIProvider,
         AddTimeCardUIFactory addTimeCardUIFactory,
         ConfirmMessageFormatter confirmMessageFormatter
@@ -52,9 +53,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
             });
         }
 
-        protected override EmployeeManagerViewListener GetViewListener()
+        protected override ViewListener GetViewListener()
         {
-            return this;
+            return (ViewListener)this;
         }
 
         private void onSelectedEmployeeIdChanged()
@@ -64,7 +65,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
 
         private void updateView()
         {
-            GetView().setModel(new EmployeeManagerViewPresenter(this.buttonsEnabledStates).present(observableSelectedEployee.get()));
+            EmployeeManagerView emv = (EmployeeManagerView)this.GetView();
+            emv.setModel(new EmployeeManagerViewPresenter(this.buttonsEnabledStates).present(observableSelectedEployee.get()));
         }
 
 
@@ -108,6 +110,41 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
         public void onAddTimeCardAction()
         {
             addTimeCardUIFactory.Create(observableSelectedEployee.get().id).show();
+        }
+
+        public void setViewListener(AddEmployeeViewListener listener)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void setViewListener(ViewListener getViewListener)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Close()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void showIt()
+        {
+            throw new NotImplementedException();
+        }
+
+        public EmployeeViewModel getModel()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void setModel(ValidationErrorMessagesModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void accept(EmployeeViewModelVisitor visitor)
+        {
+            throw new NotImplementedException();
         }
     }
 

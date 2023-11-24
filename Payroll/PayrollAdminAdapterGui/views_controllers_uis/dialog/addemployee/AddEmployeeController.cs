@@ -10,7 +10,7 @@ using PayrollPorts.primaryAdminUseCase.request.changemployee.paymentmethod;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 {
-    public class AddEmployeeController<V> : AbstractDialogViewController<V, AddEmployeeViewListener>, AddEmployeeViewListener where V : AddEmployeeView
+    public class AddEmployeeController : AbstractDialogViewController, AddEmployeeView //<V, AddEmployeeViewListener>, AddEmployeeViewListener where V : AddEmployeeView
     {
         private AddEmployeeUseCaseFactory addEmployeeUseCaseFactory;
         private ChangeToAbstractPaymentMethodUseCaseFactory changePaymentMethodUseCaseFactory;
@@ -33,7 +33,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
             this.eventBus = eventBus;
         }
 
-        protected override AddEmployeeViewListener GetViewListener()
+        protected override ViewListener GetViewListener()
         {
             return this;
         }
@@ -45,7 +45,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
         public void onAddEmployee()
         {
-            GetView().getModel().Accept(new OnAddEmployeeHandlerExecutor(this));
+            AddEmployeeView v = (AddEmployeeView)this.GetView();
+            v.getModel().Accept(new OnAddEmployeeHandlerExecutor(this));
         }
 
         public void onCancel()
@@ -53,11 +54,13 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
             Close();
         }
 
+
+
         public class OnAddEmployeeHandlerExecutor : EmployeeViewModel.IEmployeeViewModelVisitor
         {
-            private readonly AddEmployeeController<V> addEmployeeController;
+            private readonly AddEmployeeController addEmployeeController;
 
-            public OnAddEmployeeHandlerExecutor(AddEmployeeController<V> addEmployeeController)
+            public OnAddEmployeeHandlerExecutor(AddEmployeeController addEmployeeController)
             {
                 this.addEmployeeController = addEmployeeController;
             }
@@ -79,10 +82,10 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
         public class ExecuteChangePaymentMethodUseCaseExecutor : EmployeeViewModel.IPaymentMethodVisitor<object>
         {
-            private readonly AddEmployeeController<V> controller;
+            private readonly AddEmployeeController controller;
             private int? employeeId;
 
-            public ExecuteChangePaymentMethodUseCaseExecutor(AddEmployeeController<V> controller, int? employeeId)
+            public ExecuteChangePaymentMethodUseCaseExecutor(AddEmployeeController controller, int? employeeId)
             {
                 this.controller = controller;
                 this.employeeId = employeeId;
@@ -114,9 +117,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
         }
         public abstract class OnAddEmployeeHandler<T> where T : EmployeeViewModel
         {
-            private readonly AddEmployeeController<V> addEmployeeController;
+            private readonly AddEmployeeController addEmployeeController;
 
-            public OnAddEmployeeHandler(AddEmployeeController<V> addEmployeeController)
+            public OnAddEmployeeHandler(AddEmployeeController addEmployeeController)
             {
                 this.addEmployeeController = addEmployeeController;
             }
@@ -132,11 +135,14 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
                 }
                 catch (FieldValidatorException e)
                 {
-                    addEmployeeController.GetView().setModel(addEmployeeController.fieldValidationErrorPresenter.Present(e));
+                    AddEmployeeView v = (AddEmployeeView)addEmployeeController.GetView();
+                    v.setModel(addEmployeeController.fieldValidationErrorPresenter.Present(e));
                 }
                 catch (MultipleErrorsUseCaseException<Exception> e)
                 {
-                    addEmployeeController.GetView().setModel(new ValidationErrorMessagesModel(addEmployeeController.addEmployeeUseCaseErrorFormatter.FormatAll(e.Errors)));
+                    AddEmployeeView v = (AddEmployeeView)addEmployeeController.GetView();
+
+                    v.setModel(new ValidationErrorMessagesModel(addEmployeeController.addEmployeeUseCaseErrorFormatter.FormatAll(new List<string>())));
                 }
             }
 
@@ -159,8 +165,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
         public class OnAddSalariedEmployeeHandler : OnAddEmployeeHandler<SalariedEmployeeViewModel>
         {
-            private readonly AddEmployeeController<V> addEmployeeController;
-            public OnAddSalariedEmployeeHandler(AddEmployeeController<V> addEmployeeController) : base(addEmployeeController)
+            private readonly AddEmployeeController addEmployeeController;
+            public OnAddSalariedEmployeeHandler(AddEmployeeController addEmployeeController) : base(addEmployeeController)
             {
                 this.addEmployeeController = addEmployeeController;
             }
@@ -181,8 +187,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
         private class OnAddHourlyEmployeeHandler : OnAddEmployeeHandler<HourlyEmployeeViewModel>
         {
-            private readonly AddEmployeeController<V> addEmployeeController;
-            public OnAddHourlyEmployeeHandler(AddEmployeeController<V> addEmployeeController) : base(addEmployeeController)
+            private readonly AddEmployeeController addEmployeeController;
+            public OnAddHourlyEmployeeHandler(AddEmployeeController addEmployeeController) : base(addEmployeeController)
             {
                 this.addEmployeeController = addEmployeeController;
             }
@@ -202,8 +208,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
         public class OnAddCommissionedEmployeeHandler : OnAddEmployeeHandler<CommissionedEmployeeViewModel>
         {
-            private readonly AddEmployeeController<V> addEmployeeController;
-            public OnAddCommissionedEmployeeHandler(AddEmployeeController<V> addEmployeeController) : base(addEmployeeController)
+            private readonly AddEmployeeController addEmployeeController;
+            public OnAddCommissionedEmployeeHandler(AddEmployeeController addEmployeeController) : base(addEmployeeController)
             {
                 this.addEmployeeController = addEmployeeController;
             }
@@ -219,6 +225,40 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
             }
         }
 
+        public void setViewListener(AddEmployeeViewListener listener)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void setViewListener(ViewListener getViewListener)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Close()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void showIt()
+        {
+
+        }
+
+        public EmployeeViewModel getModel()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void setModel(ValidationErrorMessagesModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void accept(EmployeeViewModelVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

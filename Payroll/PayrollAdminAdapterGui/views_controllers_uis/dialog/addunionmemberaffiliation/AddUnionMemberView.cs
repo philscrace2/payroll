@@ -8,7 +8,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffi
     ModelProducer<AddUnionMemberViewOutputModel>,
     ValidationErrorMessagesConsumer
     {
-        public interface AddUnionMemberViewListener : CloseableViewListener
+        public interface AddUnionMemberViewListener : CloseableViewListener, ViewListener
         {
             void onAdd();
             void onCancel();

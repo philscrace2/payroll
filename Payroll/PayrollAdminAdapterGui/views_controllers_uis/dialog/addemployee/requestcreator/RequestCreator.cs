@@ -11,9 +11,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee.reques
 
         private O fill(I model, O request)
         {
-            request.employeeId = model.employeeId;
-            request.name = model.name;
-            request.address = model.address;
+            request.employeeId = model.EmployeeId;
+            request.name = model.Name;
+            request.address = model.Address;
             return request;
         }
 

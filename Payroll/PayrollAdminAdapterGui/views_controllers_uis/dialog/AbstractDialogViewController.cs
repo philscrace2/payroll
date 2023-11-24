@@ -1,8 +1,6 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog
 {
-    public abstract class AbstractDialogViewController<T, VL> : AbstractController<T, VL>, CloseableViewListener
-        where T : DialogView<VL>
-        where VL : CloseableViewListener
+    public abstract class AbstractDialogViewController : AbstractController, CloseableViewListener  //where T : DialogView<VL> where VL : CloseableViewListener
     {
         private EventBus eventBus; // Assuming EventBus is a class defined in your C# project
 
@@ -23,7 +21,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog
 
         public void Show()
         {
-            GetView().showIt(); // Assuming the ShowIt method is defined in IDialogView
+
         }
 
         public void onCloseAction()
@@ -37,7 +35,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog
         protected void Close()
         {
             UnregisterThisFromEventBus();
-            GetView().close(); // Assuming the Close method is defined in IDialogView
+            //GetView().Close(); // Assuming the Close method is defined in IDialogView
         }
 
         private void UnregisterThisFromEventBus()

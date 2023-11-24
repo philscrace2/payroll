@@ -4,15 +4,15 @@ using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeem
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager
 {
-    public abstract class EmployeeManagerUI<V, C> : UI<V, C> where V : AddEmployeeView where C : EmployeeManagerController<V>, Controller<V>
+    public abstract class EmployeeManagerUI<V, C> : UI
     {
-        private EmployeeListUI<EmployeeListView> employeeListUI;
+        private EmployeeListUI employeeListUI;
 
         public EmployeeManagerUI(
-                C controller,
-                V view,
-                EmployeeListUI<EmployeeListView> employeeListUI,
-                AffiliationButtonUI<AffiliationButtonView, AffiliationButtonController<AffiliationButtonView>> affiliationButtonUI
+                EmployeeManagerController controller,
+                AddEmployeeView view,
+                EmployeeListUI employeeListUI,
+                AffiliationButtonUI affiliationButtonUI
                 ) : base(controller, view)
         {
 

@@ -9,7 +9,7 @@ using PayrollPorts.primaryAdminUseCase.request.hourly;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
 {
-    public class AddTimeCardController<V> : AbstractDialogViewController<V, AddTimeCardViewListener>, AddTimeCardViewListener where V : AddTimeCardView
+    public class AddTimeCardController : AbstractDialogViewController, AddTimeCardViewListener
     {
         private EventBus eventBus;
         private int employeeId;
@@ -56,7 +56,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
 
         private void setDefaultsToView()
         {
-            GetView().setModel(toInputModel(getEmployeeName(), getDefaultDate()));
+            AddTimeCardView v = (AddTimeCardView)this.GetView();
+            v.setModel(toInputModel(getEmployeeName(), getDefaultDate()));
         }
 
         private String getEmployeeName()
@@ -87,9 +88,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
             throwIfThereAreErrors(new AddTimeCardFieldsValidator().GetErrors(model));
         }
 
-        protected override AddTimeCardViewListener GetViewListener()
+        protected override ViewListener GetViewListener()
         {
-            return this;
+            return (ViewListener)this;
         }
 
         private void OnTimeCardAlreadyExists(AddTimeCardViewOutputModel model)
@@ -104,7 +105,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
         }
         public void onAdd()
         {
-            AddTimeCardViewOutputModel model = GetView().getModel();
+            AddTimeCardView v = (AddTimeCardView)this.GetView();
+            AddTimeCardViewOutputModel model = v.getModel();
             try
             {
                 validate(model);
@@ -113,7 +115,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
             }
             catch (FieldValidatorException e)
             {
-                GetView().setValidationErrorMessagesModel(fieldValidationErrorPresenter.Present(e));
+                AddTimeCardView addTimeCardView = (AddTimeCardView)this.GetView();
+                addTimeCardView.setValidationErrorMessagesModel(fieldValidationErrorPresenter.Present(e));
             }
             catch (TimeCardAlreadyExistsException e)
             {
@@ -139,7 +142,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
 
         public interface AddTimeCardControllerFactory
         {
-            AddTimeCardController<V> create(int employeeId);
+            AddTimeCardController create(int employeeId);
         }
 
     }

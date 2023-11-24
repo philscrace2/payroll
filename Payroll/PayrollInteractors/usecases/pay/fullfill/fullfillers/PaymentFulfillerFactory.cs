@@ -5,7 +5,7 @@ using PayrollPorts.secondary.database;
 
 namespace PayrollInteractors.usecases.pay.fullfill.fullfillers
 {
-    public class PaymentFulfillerFactory : IPaymentMethodVisitor<PaymentFulfiller>
+    public class PaymentFulfillerFactory : PaymentMethod.IPaymentMethodVisitor<PaymentFulfiller>
     {
 
         private BankTransferPort bankTransferPort;

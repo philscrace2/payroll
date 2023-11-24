@@ -1,10 +1,11 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.common.error
 {
-    public class ErrorDialogController<V> : AbstractDialogViewController<V, CloseableViewListener> where V : ErrorDialogView
+    public class ErrorDialogController : AbstractDialogViewController
     {
         public void SetThrowable(Exception throwable)
         {
-            GetView().setModel(new Presenter().ToViewModel(throwable));
+            ErrorDialogView edv = (ErrorDialogView)this.GetView();
+            edv.setModel(new Presenter().ToViewModel(throwable));
         }
 
         protected override bool OnCloseActionShouldCloseAutomatically()
@@ -12,10 +13,11 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.common.error
             return true;
         }
 
-        protected override CloseableViewListener GetViewListener()
-        {
-            return this;
-        }
+        //protected override ViewListener GetViewListener()
+        //{
+        //    //return (CloseableViewListener)this;
+
+        //}
 
         private class Presenter
         {
@@ -38,6 +40,11 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.common.error
                     return new ErrorViewModel(stringWriter.ToString());
                 }
             }
+        }
+
+        protected override ViewListener GetViewListener()
+        {
+            throw new NotImplementedException();
         }
     }
 

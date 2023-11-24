@@ -9,9 +9,8 @@ using PayrollPorts.primaryAdminUseCase.response.employee;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.affiliationbutton
 {
-    public class AffiliationButtonController<V> : AbstractController<V, AffiliationButtonViewListener>, AffiliationButtonViewListener, ChangeListener<EmployeeForEmployeeListResponse> where V : AffiliationButtonView
+    public class AffiliationButtonController : AbstractController, AffiliationButtonViewListener, ChangeListener<EmployeeForEmployeeListResponse>
     {
-
         private EventBus eventBus;
         private ObservableSelectedEmployee observableSelectedEmployee;
         private GetUnionMemberAffiliationUseCaseFactory getUnionMemberAffiliationUseCaseFactory;
@@ -33,9 +32,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         }
 
 
-        protected override AffiliationButtonViewListener GetViewListener()
+        protected override ViewListener GetViewListener()
         {
-            return this;
+            return (ViewListener)this;
         }
 
 
@@ -61,7 +60,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 
         private void update()
         {
-            GetView().setModel(Present(observableSelectedEmployee.get()));
+            AffiliationButtonView bv = (AffiliationButtonView)this.GetView();
+            bv.setModel(Present(observableSelectedEmployee.get()));
         }
 
         private AffiliationButtonViewModel Present(EmployeeForEmployeeListResponse employee)
@@ -82,43 +82,47 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
             switch (affiliationType)
             {
                 case AffiliationTypeResponse.UNION_MEMBER:
-                    return new RemoveUnionMemberAction(addUnionMemberUIFactory);
+                    return new RemoveUnionMemberAction(this.removeUnionMemberAffiliationUseCaseFactory, getUnionMemberAffiliationUseCaseFactory, eventBus);
                 case AffiliationTypeResponse.NO:
-                    return new ChangeToUnionMemberAction();
+                    return new ChangeToUnionMemberAction(this.addUnionMemberUIFactory);
                 default:
                     throw new Exception("not implemented");
             }
         }
-    }
 
-    public class RemoveUnionMemberAction : Action
-    {
-        private readonly RemoveUnionMemberAffiliationUseCaseFactory removeUnionMemberAffiliationUseCaseFactory;
-        private readonly EventBus eventBus;
+        public class RemoveUnionMemberAction : Action
+        {
+            private readonly RemoveUnionMemberAffiliationUseCaseFactory removeUnionMemberAffiliationUseCaseFactory;
+            private readonly GetUnionMemberAffiliationUseCaseFactory getUnionMemberAffiliationUseCaseFactory;
+            private readonly EventBus eventBus;
 
-        public RemoveUnionMemberAction(RemoveUnionMemberAffiliationUseCaseFactory removeUnionMemberAffiliationUseCaseFactory, EventBus eventBus)
-        {
-            this.removeUnionMemberAffiliationUseCaseFactory = removeUnionMemberAffiliationUseCaseFactory;
-            this.eventBus = eventBus;
-        }
-        public void execute(EmployeeForEmployeeListResponse e)
-        {
-            removeUnionMemberAffiliationUseCaseFactory.removeUnionMemberAffiliationUseCase().Execute(
+            public RemoveUnionMemberAction(RemoveUnionMemberAffiliationUseCaseFactory removeUnionMemberAffiliationUseCaseFactory, GetUnionMemberAffiliationUseCaseFactory getUnionMemberAffiliationUseCaseFactory, EventBus eventBus)
+            {
+                this.removeUnionMemberAffiliationUseCaseFactory = removeUnionMemberAffiliationUseCaseFactory;
+                this.getUnionMemberAffiliationUseCaseFactory = getUnionMemberAffiliationUseCaseFactory;
+                this.eventBus = eventBus;
+            }
+            public void execute(EmployeeForEmployeeListResponse e)
+            {
+                removeUnionMemberAffiliationUseCaseFactory.removeUnionMemberAffiliationUseCase().Execute(
                     new RemoveUnionMemberAffiliationRequest(getUnionMemberAffiliation(e).unionMemberId));
-            eventBus.Post(new AffiliationChangedEvent());
-        }
-        private GetUnionMemberAffiliationResponse getUnionMemberAffiliation(EmployeeForEmployeeListResponse e)
-        {
-            return getUnionMemberAffiliationUseCaseFactory.getUnionMemberAffiliationUseCase()
-                    .execute(new GetUnionMemberAffiliationRequest(e.id));
-        }
+                eventBus.Post(new AffiliationChangedEvent());
+            }
+            private GetUnionMemberAffiliationResponse getUnionMemberAffiliation(EmployeeForEmployeeListResponse e)
+            {
+                return getUnionMemberAffiliationUseCaseFactory.getUnionMemberAffiliationUseCase()
+                    .Execute(new GetUnionMemberAffiliationRequest(e.id));
+            }
 
-        public String getButtonText()
-        {
-            return "Remove Affiliation";
-        }
+            public String getButtonText()
+            {
+                return "Remove Affiliation";
+            }
 
+        }
     }
+
+
 
     public interface Action
     {
@@ -136,7 +140,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         }
         public void execute(EmployeeForEmployeeListResponse e)
         {
-            addUnionMemberUIFactory.Create(e.id).show();
+            addUnionMemberUIFactory.create(e.id).show();
         }
 
         public String getButtonText()

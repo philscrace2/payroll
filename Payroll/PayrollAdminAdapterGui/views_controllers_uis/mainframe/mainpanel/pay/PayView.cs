@@ -5,7 +5,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay
 
     }
 
-    public interface PayViewListener
+    public interface PayViewListener : ViewListener
     {
         void onFulfillPayAction();
     }

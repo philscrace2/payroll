@@ -5,7 +5,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 
     }
 
-    public interface EmployeeListViewListener
+    public interface EmployeeListViewListener : ViewListener
     {
         void onSelectionChanged(int? employeeIndex);
     }

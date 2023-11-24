@@ -9,7 +9,7 @@ namespace PayrollPorts.primaryAdminUseCase.response.employee.add
             this.idOfExistingUser = idOfExistingUser;
         }
 
-        public R Accept<R>(IAddEmployeeErrorVisitor visitor)
+        public R Accept<R>(IAddEmployeeError.IAddEmployeeErrorVisitor visitor)
         {
             return visitor.Visit<R>(this);
         }

@@ -14,10 +14,13 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
     //}
 
-    public abstract class AddEmployeeUI<V> : UI
+    public abstract class AddEmployeeUI : UI
     {
-        public AddEmployeeUI(AddEmployeeController<V> controller, V view) : base(controller, view)
+        private readonly AddEmployeeController controller;
+
+        public AddEmployeeUI(AddEmployeeController controller, AddEmployeeView view) : base(controller, view)
         {
+            this.controller = controller;
         }
 
         public void Show()

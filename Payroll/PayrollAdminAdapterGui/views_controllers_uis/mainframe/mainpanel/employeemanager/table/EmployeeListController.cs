@@ -6,7 +6,7 @@ using static PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.em
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.table
 {
-    public class EmployeeListController : AbstractController<EmployeeListView, EmployeeListViewListener>, EmployeeListViewListener, ChangeListener<DateTime>
+    public class EmployeeListController : AbstractController, EmployeeListViewListener, ChangeListener<DateTime>
     {
         private EmployeeListUseCaseFactory useCaseFactory;
         private EmployeeListPresenterFactory employeeListPresenterFactory;
@@ -69,12 +69,13 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         {
             EmployeeListResponse employeeListResponse = useCaseFactory.employeeListUseCase().Execute(new EmployeeListRequest(observableCurrentDate.get()));
             employees = employeeListResponse.employees;
-            GetView().setModel(employeeListPresenterFactory.of(observableCurrentDate.get(), employeeListResponse).toViewModel());
+            EmployeeListView elv = (EmployeeListView)this.GetView();
+            elv.setModel(employeeListPresenterFactory.of(observableCurrentDate.get(), employeeListResponse).toViewModel());
         }
 
-        protected override EmployeeListViewListener GetViewListener()
+        protected override ViewListener GetViewListener()
         {
-            return this;
+            return (EmployeeListViewListener)this;
         }
 
         public void onSelectionChanged(int? employeeIndex)

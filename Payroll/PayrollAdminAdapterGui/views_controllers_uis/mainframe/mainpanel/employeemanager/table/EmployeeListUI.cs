@@ -1,11 +1,13 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.table
 {
-    public abstract class EmployeeListUI<V> : UI<V, C> where V : EmployeeListView where C : EmployeeListController
+    public abstract class EmployeeListUI : UI, EmployeeListView
     {
-        //@Inject
-        public EmployeeListUI(C controller, V view) : base(controller, view)
-        {
+        private readonly EmployeeListController controller;
 
+        //@Inject
+        public EmployeeListUI(EmployeeListController controller, EmployeeListView view) : base(controller, view)
+        {
+            this.controller = controller;
         }
 
         public void setObservableCurrentDate(Observable<DateTime> observableCurrentDate)
@@ -16,6 +18,21 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         public ObservableSelectedEmployee getObservableSelectedEployee()
         {
             return controller.getObservableSelectedEployee();
+        }
+
+        public void setViewListener(EmployeeListViewListener listener)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void setViewListener(ViewListener getViewListener)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void setModel(EmployeeListViewModel viewModel)
+        {
+            throw new NotImplementedException();
         }
     }
 

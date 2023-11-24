@@ -3,24 +3,35 @@ using PayrollPorts.primaryAdminUseCase.response.employee.add;
 
 namespace PayrollAdminAdapterGui.formatters.usecase.error
 {
-    public class AddEmployeeUseCaseErrorFormatter : MultipleFormatter<IAddEmployeeError>, IAddEmployeeErrorVisitor
+    public class AddEmployeeUseCaseErrorFormatter : MultipleFormatter, IAddEmployeeError.IAddEmployeeErrorVisitor
     {
-        protected override string format(IAddEmployeeError error)
-        {
-            return error.Accept<string>(this);
-        }
 
-        public R Visit<R>(IdAlreadyExistsValidationError idAlreadyExistsValidationError)
+
+        public String Visit<R>(IdAlreadyExistsValidationError idAlreadyExistsValidationError)
         {
             return String.Format("%s already owns this id!", idAlreadyExistsValidationError.nameOfExistingUser);
         }
 
-        public R Visit<R>(NameAlreadyExistsValidationError nameAlreadyExistsValidationError)
+        R IAddEmployeeError.IAddEmployeeErrorVisitor.Visit<R>(NameAlreadyExistsValidationError nameAlreadyExistsValidationError)
+        {
+            throw new NotImplementedException();
+        }
+
+        R IAddEmployeeError.IAddEmployeeErrorVisitor.Visit<R>(IdAlreadyExistsValidationError idAlreadyExistsValidationError)
+        {
+            throw new NotImplementedException();
+        }
+
+        public String Visit<R>(NameAlreadyExistsValidationError nameAlreadyExistsValidationError)
         {
             return String.Format("Name already exists with id: %s", nameAlreadyExistsValidationError.idOfExistingUser);
         }
 
 
+        protected override string format(string element)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

@@ -9,7 +9,7 @@ namespace PayrollPorts.primaryAdminUseCase.response.employee
     }
 
 
-    public class PaymentMethodTypeResponseFactory : IPaymentMethodVisitor<PaymentMethodTypeResponse>
+    public class PaymentMethodTypeResponseFactory : PaymentMethod.IPaymentMethodVisitor<PaymentMethodTypeResponse>
     {
         public PaymentMethodTypeResponse visit(PaymasterPaymentMethod paymasterPaymentMethod)
         {

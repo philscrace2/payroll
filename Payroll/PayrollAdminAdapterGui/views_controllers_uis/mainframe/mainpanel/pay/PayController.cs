@@ -5,7 +5,7 @@ using PayrollPorts.primaryAdminUseCase.factories;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay
 {
-    public class PayController : AbstractController<PayView, PayViewListener>, PayViewListener, ChangeListener<PayListState>
+    public class PayController : AbstractController, PayViewListener, ChangeListener<PayListState>
     {
         private PaymentFulfillUseCaseFactory paymentFulfillUseCaseFactory;
         private Observable<DateTime> observableCurrentDate;
@@ -58,7 +58,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay
 
         public void onChanged(PayListState payListState)
         {
-            GetView().setModel(present(observablePayListState.get()));
+            PayView pv = (PayView)this.GetView();
+            pv.setModel(present(observablePayListState.get()));
         }
 
         private PayViewModel present(PayListState payListState)
@@ -69,9 +70,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay
             };
         }
 
-        protected override PayViewListener GetViewListener()
+        protected override ViewListener GetViewListener()
         {
-            return this;
+            return (PayViewListener)this;
         }
     }
 
