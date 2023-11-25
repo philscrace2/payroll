@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayrollInteractors", "Payro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayrollPorts", "PayrollPorts\PayrollPorts.csproj", "{78C7A333-7039-41AB-974C-0A1252E36181}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayrollAdminAdapterGui", "PayrollAdminAdapterGui\PayrollAdminAdapterGui.csproj", "{D84FAFAE-7213-4BAA-8F7B-D4533EAC1807}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayrollAdminAdapterGui", "PayrollAdminAdapterGui\PayrollAdminAdapterGui.csproj", "{D84FAFAE-7213-4BAA-8F7B-D4533EAC1807}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayrollMain", "PayrollMain\PayrollMain.csproj", "{5FB00523-B510-4983-883C-AE93A75080EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayrollMain", "PayrollMain\PayrollMain.csproj", "{5FB00523-B510-4983-883C-AE93A75080EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiWinformsModule", "GuiWinformsModule\GuiWinformsModule.csproj", "{14C9AF46-6782-4ADB-9804-92BD5C63467D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{5FB00523-B510-4983-883C-AE93A75080EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FB00523-B510-4983-883C-AE93A75080EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FB00523-B510-4983-883C-AE93A75080EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14C9AF46-6782-4ADB-9804-92BD5C63467D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14C9AF46-6782-4ADB-9804-92BD5C63467D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14C9AF46-6782-4ADB-9804-92BD5C63467D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14C9AF46-6782-4ADB-9804-92BD5C63467D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
