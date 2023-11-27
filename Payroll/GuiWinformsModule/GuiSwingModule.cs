@@ -1,7 +1,6 @@
 ﻿using Ninject.Activation;
 using Ninject.Modules;
 using PayrollPorts.primaryAdminUseCase;
-
 namespace GuiWinformsModule
 {
     public class GuiSwingModule : NinjectModule
@@ -9,9 +8,9 @@ namespace GuiWinformsModule
 
         private Provider<UseCaseFactories> useCaseFactories;
 
-        public GuiSwingModule(UseCaseFactories useCaseFactories)
+        public GuiSwingModule(Provider<UseCaseFactories> useCaseFactories)
         {
-            this.useCaseFactories = Providers.of(useCaseFactories);
+            this.useCaseFactories = useCaseFactories;
         }
 
 

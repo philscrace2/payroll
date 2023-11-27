@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayrollAdminAdapterGui", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayrollMain", "PayrollMain\PayrollMain.csproj", "{5FB00523-B510-4983-883C-AE93A75080EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiWinformsModule", "GuiWinformsModule\GuiWinformsModule.csproj", "{14C9AF46-6782-4ADB-9804-92BD5C63467D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayrollGuiWinformsImpl", "GuiWinformsModule\PayrollGuiWinformsImpl.csproj", "{14C9AF46-6782-4ADB-9804-92BD5C63467D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

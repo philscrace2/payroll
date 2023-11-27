@@ -1,5 +1,6 @@
 ﻿using GuiWinformsModule;
 using PayrollMain.adapters.secondary.banktransfer;
+using PayrollMain.main.testdataloader;
 using PayrollPorts.primaryAdminUseCase;
 using PayrollPorts.secondary.banktransfer;
 using PayrollPorts.secondary.database;
@@ -17,41 +18,40 @@ namespace PayrollMain
 
     public class Payroll
     {
-
         public static ConcreteBuilder builder()
         {
             return new ConcreteBuilder();
         }
 
 
-        public abstract class Builder<T>
+        public abstract class Builder
         {
             private Database database;
             private BankTransferPort bankTransferPort;
             private bool loadTestData;
 
-            public T withDatabase(Database database)
+            public Builder withDatabase(Database database)
             {
                 this.database = database;
-                return (T)this;
+                return this;
             }
 
-            public T withBankTransferPort(BankTransferPort bankTransferPort)
+            public Builder withBankTransferPort(BankTransferPort bankTransferPort)
             {
                 this.bankTransferPort = bankTransferPort;
-                return (T)this;
+                return this;
             }
 
-            public T withLoadedTestData()
+            public Builder withLoadedTestData()
             {
                 loadTestData = true;
-                return (T)this;
+                return this;
             }
 
             public UseCaseFactories buildUseCaseFactories()
             {
                 checkBuildability();
-                UseCaseFactories useCaseFactories = new PayrollModule(database, bankTransferPort).getUseCaseFactories();
+                UseCaseFactories useCaseFactories = new PayrollNinjectModule(database, bankTransferPort).getUseCaseFactories();
                 loadTestDataIfRequested(useCaseFactories);
                 return useCaseFactories;
             }
@@ -65,10 +65,10 @@ namespace PayrollMain
             private void loadTestDataIfRequested(UseCaseFactories useCaseFactories)
             {
                 if (loadTestData)
-                    loadTestData(useCaseFactories);
+                    LoadTestData(useCaseFactories);
             }
 
-            private void loadTestData(UseCaseFactories useCaseFactories)
+            private void LoadTestData(UseCaseFactories useCaseFactories)
             {
                 new TestDataLoader().clearDatabaseAndInsertTestData(database, useCaseFactories);
             }
@@ -77,7 +77,7 @@ namespace PayrollMain
             {
                 if (o == null)
                 {
-                    throw new NullPointerException(message);
+                    throw new NullReferenceException(message);
                 }
             }
 
@@ -89,7 +89,7 @@ namespace PayrollMain
         }
 
 
-        public class ConcreteBuilder : Payroll.Builder<ConcreteBuilder>
+        public class ConcreteBuilder : Payroll.Builder
         {
             public ConcreteBuilder withDatabaseInMemory()
             {
