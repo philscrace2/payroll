@@ -2,7 +2,7 @@ namespace PayrollEntities.paymenttype
 {
     public abstract class StrictIntervalPaymentType : PaymentType
     {
-        public override int calculateAmount(DateInterval dateInterval)
+        public override int? calculateAmount(DateInterval dateInterval)
         {
             validate(dateInterval);
             return calculateAmountOnValidatedInterval(dateInterval);

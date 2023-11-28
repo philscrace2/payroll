@@ -1,18 +1,14 @@
-using System.Collections.ObjectModel;
-
 namespace PayrollEntities.paymenttype
 {
-
     public abstract class CommissionedPaymentType : StrictIntervalPaymentType
     {
-
         private static readonly int TWO_WEEK_DAYS = 14;
 
         public abstract int getBiWeeklyBaseSalary();
         public abstract double getCommissionRate();
 
         public abstract void addSalesReceipt(SalesReceipt salesReceipt);
-        public abstract Collection<SalesReceipt> getSalesReceiptsIn(DateInterval dateInterval);
+        public abstract List<SalesReceipt> getSalesReceiptsIn(DateInterval dateInterval);
 
 
         public override T accept<T>(PaymentTypeVisitor<T> visitor)
@@ -56,9 +52,6 @@ namespace PayrollEntities.paymenttype
             long daysTotal = daysBetween + 1; // Adding 1 because the interval is inclusive
             return daysTotal == TWO_WEEK_DAYS;
         }
-
-
-
     }
 
 }

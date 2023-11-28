@@ -20,12 +20,12 @@ namespace PayrollMain
 
         private UseCaseFactories createUseCaseFactories()
         {
-            return Guice.createInjector(this).getInstance(UseCaseFactories);
+            return Guice.createInjector(this).getInstance(useCaseFactories);
         }
 
         public UseCaseFactories getUseCaseFactories()
         {
-            return UseCaseFactories;
+            return useCaseFactories;
         }
 
         public override void Load()

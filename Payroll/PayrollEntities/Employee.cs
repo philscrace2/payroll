@@ -8,7 +8,7 @@ namespace PayrollEntities
     public abstract class Employee
     {
 
-        public abstract int getId();
+        public abstract int? getId();
         public abstract String getName();
         public abstract String getAddress();
         public abstract PaymentSchedule getPaymentSchedule();
@@ -32,9 +32,9 @@ namespace PayrollEntities
         public PayCheck createPayCheck(DateTime payDate)
         {
             DateInterval payInterval = getPaymentSchedule().getPayInterval(payDate);
-            int grossAmount = getPaymentType().calculateAmount(payInterval);
-            int deductionsAmount = getAffiliation().calculateDeductionsAmount(payInterval);
-            int netAmount = grossAmount - deductionsAmount;
+            int? grossAmount = getPaymentType().calculateAmount(payInterval);
+            int? deductionsAmount = getAffiliation().calculateDeductionsAmount(payInterval);
+            int? netAmount = grossAmount - deductionsAmount;
             return new PayCheck(payDate, getId(), grossAmount, deductionsAmount, netAmount);
         }
 

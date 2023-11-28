@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PayrollEntities
+﻿namespace PayrollEntities
 {
     public class PayCheck
     {
 
         private DateTime date;
-        private int employeeId;
-        private int grossAmount;
-        private int deductionsAmount;
-        private int netAmount;
+        private int? employeeId;
+        private int? grossAmount;
+        private int? deductionsAmount;
+        private int? netAmount;
 
-        public PayCheck(DateTime payDate, int employeeId, int grossAmount, int deductionsAmount, int netAmount)
+        public PayCheck(DateTime payDate, int? employeeId, int? grossAmount, int? deductionsAmount, int? netAmount)
         {
             this.date = payDate;
             this.employeeId = employeeId;
@@ -29,27 +23,27 @@ namespace PayrollEntities
             return date;
         }
 
-        public int getEmployeeId()
+        public int? getEmployeeId()
         {
             return employeeId;
         }
 
-        public int getGrossAmount()
+        public int? getGrossAmount()
         {
             return grossAmount;
         }
 
-        public int getDeductionsAmount()
+        public int? getDeductionsAmount()
         {
             return deductionsAmount;
         }
 
-        public int getNetAmount()
+        public int? getNetAmount()
         {
             return netAmount;
         }
 
-        
+
         public override String ToString()
         {
             return "PayCheck [date=" + date + ", employeeId=" + employeeId + ", grossAmount=" + grossAmount

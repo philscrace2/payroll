@@ -2,7 +2,7 @@
 {
     public interface Affiliation
     {
-        public int calculateDeductionsAmount(DateInterval payInterval);
+        public int? calculateDeductionsAmount(DateInterval payInterval);
 
     }
 

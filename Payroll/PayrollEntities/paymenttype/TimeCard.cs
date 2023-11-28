@@ -4,7 +4,7 @@ namespace PayrollEntities.paymenttype
     {
 
         public abstract DateTime getDate();
-        public abstract int getWorkingHourQty();
+        public abstract int? getWorkingHourQty();
 
         public abstract void setDate(DateTime date);
         public abstract void setWorkingHourQty(int workingHourQty);

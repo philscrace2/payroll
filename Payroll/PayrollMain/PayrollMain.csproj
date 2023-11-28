@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GuiWinformsModule\PayrollGuiWinformsImpl.csproj" />
+    <ProjectReference Include="..\PayrollDBAdapterInMemory\PayrollDBAdapterInMemory.csproj" />
     <ProjectReference Include="..\PayrollInteractors\PayrollInteractors.csproj" />
     <ProjectReference Include="..\PayrollPorts\PayrollPorts.csproj" />
   </ItemGroup>

@@ -2,7 +2,7 @@ namespace PayrollEntities.paymenttype
 {
     public abstract class PaymentType
     {
-        public abstract int calculateAmount(DateInterval payInterval);
+        public abstract int? calculateAmount(DateInterval payInterval);
 
         public abstract T accept<T>(PaymentTypeVisitor<T> visitor);
     }

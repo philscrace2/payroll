@@ -1,5 +1,4 @@
 ﻿using PayrollEntities;
-using System.Collections.ObjectModel;
 
 namespace PayrollPorts.secondary.database
 {
@@ -20,11 +19,11 @@ namespace PayrollPorts.secondary.database
 
         bool isEmployeeExistsByUnionMemberId(int? unionMemberId);
 
-        Collection<Employee> findAll();
+        IEnumerable<Employee> findAll();
 
         void addNew(Employee employee);
 
-        void deleteById(int employeeId);
+        void deleteById(int? employeeId);
 
         void deleteAll();
 
