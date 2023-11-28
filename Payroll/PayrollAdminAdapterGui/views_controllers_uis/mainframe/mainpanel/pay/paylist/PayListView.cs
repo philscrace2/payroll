@@ -17,12 +17,12 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay.p
 
     public class PayListViewItem
     {
-        public int id;
+        public int? id;
         public String name;
         public String waging;
-        public int grossAmount;
-        public int deductionsAmount;
-        public int netAmount;
+        public int? grossAmount;
+        public int? deductionsAmount;
+        public int? netAmount;
         public String paymentMethod;
     }
 

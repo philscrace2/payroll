@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 //case1();
 
+using PayrollDBAdapterJPA;
 using PayrollMain;
 
 case2();
@@ -17,5 +18,10 @@ void case2()
 
 void case1()
 {
-    throw new NotImplementedException();
+    Payroll.builder()
+        .withDatabaseInMemory()
+        .withBankTransferPortFake()
+        .withLoadedTestData()
+        .buildGuiAdminSwing()
+        .run();
 }

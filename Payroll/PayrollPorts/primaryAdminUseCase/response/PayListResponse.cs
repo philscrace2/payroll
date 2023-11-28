@@ -16,10 +16,10 @@ namespace PayrollPorts.primaryAdminUseCase.response
 
     public class PayListResponseItem
     {
-        public int employeeId;
-        public int grossAmount;
-        public int deductionsAmount;
-        public int netAmount;
+        public int? employeeId;
+        public int? grossAmount;
+        public int? deductionsAmount;
+        public int? netAmount;
         public String name;
         public PaymentTypeResponse paymentTypeResponse;
         public PaymentMethodTypeResponse paymentMethodTypeResponse;

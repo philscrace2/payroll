@@ -11,5 +11,9 @@ namespace PayrollMain.adapters.secondary.banktransfer
             //log.info(String.Format("(Fake) Amount %s transferred to account %s", amount, accountNumber));
         }
 
+        public void pay(int? amount, string accountNumber)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

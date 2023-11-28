@@ -2,7 +2,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 {
     public class EmployeeViewItem
     {
-        public int id;
+        public int? id;
         public String name;
         public String address;
         public String waging;

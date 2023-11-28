@@ -19,12 +19,11 @@
 
     private void InitUI()
     {
-
-        this.Layout = new FlowLayoutPanel
-        {
-            FlowDirection = FlowDirection.RightToLeft,
-            AutoSize = true
-        };
+        //this.Layout += new FlowLayoutPanel()
+        //{
+        //    FlowDirection = FlowDirection.RightToLeft,
+        //    AutoSize = true
+        //};
 
         OkButton = new Button
         {

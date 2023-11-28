@@ -1,4 +1,5 @@
-﻿using Ninject.Modules;
+﻿using Ninject;
+using Ninject.Modules;
 using PayrollPorts.primaryAdminUseCase;
 using PayrollPorts.secondary.banktransfer;
 using PayrollPorts.secondary.database;
@@ -20,7 +21,8 @@ namespace PayrollMain
 
         private UseCaseFactories createUseCaseFactories()
         {
-            return Guice.createInjector(this).getInstance(useCaseFactories);
+            IKernel kernel = new StandardKernel(this);
+            return kernel.Get<UseCaseFactories>();
         }
 
         public UseCaseFactories getUseCaseFactories()
@@ -30,7 +32,12 @@ namespace PayrollMain
 
         public override void Load()
         {
-            throw new NotImplementedException();
+            // Bind your services here. For example:
+            Bind<Database>().ToConstant(database);
+            Bind<BankTransferPort>().ToConstant(bankTransferPort);
+
+            // Assuming UseCaseFactories needs to be injected with Database and BankTransferPort
+            Bind<UseCaseFactories>().ToSelf().WithConstructorArgument("database", database);
         }
     }
 }

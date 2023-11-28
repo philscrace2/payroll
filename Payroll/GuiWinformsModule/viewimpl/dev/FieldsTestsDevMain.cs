@@ -76,6 +76,11 @@
             contentPane.AutoSize = true;
         }
 
+        private void OnChanged()
+        {
+            throw new NotImplementedException();
+        }
+
         private void SetValues()
         {
             formattedTextField.Text = new DateTime(2016, 4, 18).ToString("yyyy-MM-dd");

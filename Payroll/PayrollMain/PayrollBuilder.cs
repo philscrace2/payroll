@@ -1,5 +1,6 @@
 ﻿using GuiWinformsModule;
 using PayrollDBAdapterInMemory;
+using PayrollDBAdapterJPA;
 using PayrollMain.adapters.secondary.banktransfer;
 using PayrollMain.main.testdataloader;
 using PayrollPorts.primaryAdminUseCase;
@@ -89,7 +90,6 @@ namespace PayrollMain
 
         }
 
-
         public class ConcreteBuilder : Payroll.Builder
         {
             public ConcreteBuilder withDatabaseInMemory()
@@ -100,7 +100,7 @@ namespace PayrollMain
 
             public ConcreteBuilder withDatabaseJPA(JPAPersistenceUnit jpaPersistenceUnit)
             {
-                withDatabase(JPADatabaseModule.createAndStart(jpaPersistenceUnit).getDatabase());
+                withDatabase(PayrollDBAdapterJPA.JPADatabaseModule.createAndStart(jpaPersistenceUnit).getDatabase());
                 return this;
             }
 
@@ -114,7 +114,12 @@ namespace PayrollMain
         }
 
 
+
+
+
     }
+
+
 
 }
 

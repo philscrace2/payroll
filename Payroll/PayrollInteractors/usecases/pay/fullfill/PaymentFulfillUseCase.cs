@@ -44,7 +44,7 @@ namespace PayrollInteractors.pay.fullfill
             return new PaymentFulfillResponse(payChecks.Count, CalcTotalNetAmount(payChecks));
         }
 
-        private int CalcTotalNetAmount(List<PayCheck> payChecks)
+        private int? CalcTotalNetAmount(List<PayCheck> payChecks)
         {
             return payChecks.Sum(payCheck => payCheck.getNetAmount());
         }
@@ -54,7 +54,7 @@ namespace PayrollInteractors.pay.fullfill
             getEmployee(payCheck.getEmployeeId()).getPaymentMethod().Accept(paymentFulfillerFactory).fulfillPayment(payCheck);
         }
 
-        private Employee getEmployee(int employeeId)
+        private Employee getEmployee(int? employeeId)
         {
             return employeeGateway.findById(employeeId);
         }

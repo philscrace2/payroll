@@ -20,6 +20,6 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
 
     public interface AddTimeCardUIFactory
     {
-        PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard.AddTimeCardUI Create(int employeeId);
+        PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard.AddTimeCardUI Create(int? employeeId);
     }
 }

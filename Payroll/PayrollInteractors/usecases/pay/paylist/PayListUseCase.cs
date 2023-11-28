@@ -4,7 +4,6 @@ using PayrollPorts.primaryAdminUseCase.response;
 using PayrollPorts.primaryAdminUseCase.response.employee;
 using PayrollPorts.secondary.database;
 using static PayrollPorts.primaryAdminUseCase.response.employee.paymenttype.PaymentTypeResponse;
-using static PayrollPorts.primaryAdminUseCase.response.PayListResponse;
 
 namespace PayrollInteractors.usecases.pay.paylist
 {

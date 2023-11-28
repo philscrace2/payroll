@@ -21,7 +21,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffi
     }
     public interface AddUnionMemberUIFactory
     {
-        AddUnionMemberUI create(int employeeId);
+        AddUnionMemberUI create(int? employeeId);
     }
 
 
