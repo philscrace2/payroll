@@ -2,12 +2,12 @@
 
 namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
 {
-    public class AddEmployeeUIImpl : AddEmployeeUI<AddEmployeeDialog>
+    public class AddEmployeeUIImpl : AddEmployeeUI
     {
         public AddEmployeeUIImpl(
             AddEmployeeController controller,
             MainFrameUIImpl mainFrameUIImpl
-        ) : base(controller, new AddEmployeeDialog(mainFrameUIImpl))
+        ) : base(controller, new AddEmployeeDialog(new Form()))
         {
 
         }

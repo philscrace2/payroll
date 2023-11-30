@@ -1,14 +1,16 @@
 ﻿using PayrollGuiWinformsImpl.viewimpl.mainframe;
+using PayrollWinformsPrototype;
 
-namespace PayrollGuiWinformsImpl.viewimpl
+namespace PayrollGuiWinformsImpl
 {
-    using global::GuiWinformsModule;
+
     using System.Windows.Forms;
 
-    public class MainFrameWindow : Form
+    public partial class MainFrameWindow : Form
     {
         private Panel mainPanelHolder;
         private Panel statusBarHolder;
+
 
         public MainFrameWindow(MainPanel mainPanel, StatusBarPanel statusBarPanel)
         {

@@ -1,19 +1,18 @@
 using PayrollAdminAdapterGui.events;
-using PayrollAdminAdapterGui.formatters.common;
 
 
 namespace PayrollAdminAdapterGui.formatters.controller.msg
 {
     public class EventMessageFormatter
     {
-        private SmartDateFormatter smartDateFormatter;
+        //private SmartDateFormatter smartDateFormatter;
 
         //@Inject
         public EventMessageFormatter(
-                SmartDateFormatterFactory smartDateFormatterFactory
+
                 )
         {
-            this.smartDateFormatter = smartDateFormatterFactory.ofCurrentDate();
+            //this.smartDateFormatter = smartDateFormatterFactory.ofCurrentDate();
         }
 
         public String format(AddedEmployeeEvent ev)
@@ -40,7 +39,7 @@ namespace PayrollAdminAdapterGui.formatters.controller.msg
         {
             return String.Format("Payments has been fulfilled for %s employee for pay-day %s as a total net of %s.",
 
-                ev.employeeCount, smartDateFormatter.format(ev.payDate), ev.totalNetAmount);
+                ev.employeeCount, "", ev.totalNetAmount);
         }
 
         public String format(CalledNotImplementedFunctionEvent ev)

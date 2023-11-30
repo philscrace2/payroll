@@ -1,8 +1,5 @@
-using PayrollAdminAdapterGui.formatters.common;
 using PayrollAdminAdapterGui.formatters.usecase.response;
 using PayrollPorts.primaryAdminUseCase.response;
-using static PayrollAdminAdapterGui.formatters.common.SmartDateFormatter;
-using static PayrollPorts.primaryAdminUseCase.response.EmployeeListResponse;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.table
 {
@@ -11,19 +8,19 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 
         private EmployeeListResponse response;
         private PaymentTypeResponseToStringFormatter paymentTypeResponseToStringFormatter;
-        private SmartDateFormatter smartDateFormatter;
+        //private SmartDateFormatter smartDateFormatter;
 
         //@Inject
         public EmployeeListPresenter(
                 DateTime currentDate,
                 EmployeeListResponse response,
-                PaymentTypeResponseToStringFormatter paymentTypeResponseToStringFormatter,
-                SmartDateFormatterFactory smartDateFormatterFactory
+                PaymentTypeResponseToStringFormatter paymentTypeResponseToStringFormatter
+
                 )
         {
             this.response = response;
             this.paymentTypeResponseToStringFormatter = paymentTypeResponseToStringFormatter;
-            this.smartDateFormatter = smartDateFormatterFactory.of(currentDate);
+            //this.smartDateFormatter = smartDateFormatterFactory.of(currentDate);
         }
 
         public EmployeeListViewModel toViewModel()
@@ -44,7 +41,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
             employeeViewItem.name = employeeItem.name;
             employeeViewItem.address = employeeItem.address;
             employeeViewItem.waging = employeeItem.paymentTypeResponse.accept(paymentTypeResponseToStringFormatter);
-            employeeViewItem.nextPayDay = smartDateFormatter.format(employeeItem.nextPayDay);
+            employeeViewItem.nextPayDay = "Next pay day";//smartDateFormatter.format(employeeItem.nextPayDay)
             return employeeViewItem;
         }
 

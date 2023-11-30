@@ -8,14 +8,14 @@ namespace PayrollGuiWinformsImpl.viewimpl
 {
     public class MainFrameUIImpl : MainFrameUI
     {
-        public readonly MainFrameWindow mainFrameWindow;
+        public readonly PayrollGuiWinformsImpl.MainFrameWindow mainFrameWindow;
         public MainFrameUIImpl(MainPanelUIImpl mainPanelUiImpl, StatusBarUIImpl statusBarUiImpl)
         {
-            mainFrameWindow = new MainFrameWindow(new MainPanel(new EmployeeManagerPanel(new EmployeeListPanel(), new AffiliationButtonViewImpl()), new PayPanel()), new StatusBarPanel());
+            mainFrameWindow = new PayrollGuiWinformsImpl.MainFrameWindow(new MainPanel(new EmployeeManagerPanel(new EmployeeListPanel(), new AffiliationButtonViewImpl()), new PayPanel()), new StatusBarPanel());
         }
         public void show()
         {
-            throw new NotImplementedException();
+            mainFrameWindow.ShowDialog();
         }
     }
 }

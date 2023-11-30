@@ -1,16 +1,16 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis
 {
-    public abstract class AbstractController : Controller, ViewListener
+    public abstract class AbstractController<V, VL> : Controller<V>, ViewListener where V : ControlView<VL> //where VL : CloseableViewListener
     {
-        private View view;
+        private V view;
 
-        public override void SetView(View view)
+        public void setView(V view)
         {
             this.view = view;
             view.setViewListener(GetViewListener());
         }
 
-        public virtual View GetView()
+        public V GetView()
         {
             return view;
         }

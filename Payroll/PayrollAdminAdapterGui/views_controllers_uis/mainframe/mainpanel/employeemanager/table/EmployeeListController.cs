@@ -6,7 +6,7 @@ using static PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.em
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.table
 {
-    public class EmployeeListController : AbstractController, EmployeeListViewListener, ChangeListener<DateTime>
+    public class EmployeeListController : AbstractController<EmployeeListView, EmployeeListViewListener>, ChangeListener<DateTime>
     {
         private EmployeeListUseCaseFactory useCaseFactory;
         private EmployeeListPresenterFactory employeeListPresenterFactory;

@@ -9,7 +9,7 @@ using PayrollPorts.primaryAdminUseCase.response.employee;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.affiliationbutton
 {
-    public class AffiliationButtonController : AbstractController, AffiliationButtonViewListener, ChangeListener<EmployeeForEmployeeListResponse>
+    public class AffiliationButtonController : AbstractController<AffiliationButtonView, AffiliationButtonViewListener>, ChangeListener<EmployeeForEmployeeListResponse>
     {
         private EventBus eventBus;
         private ObservableSelectedEmployee observableSelectedEmployee;

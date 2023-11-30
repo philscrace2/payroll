@@ -1,4 +1,4 @@
-﻿namespace PayrollWinformsPrototype
+﻿namespace GuiWinformsModule
 {
     public interface GuiConstants
     {

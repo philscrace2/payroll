@@ -1,7 +1,5 @@
 ﻿namespace PayrollGuiWinformsImpl.util
 {
-
-
     public class EventQueueAsyncEventBus
     {
         private SynchronizationContext _context;

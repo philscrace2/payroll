@@ -2,6 +2,7 @@
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
 using PayrollAdminAdapterGui.views_controllers_uis.mainframe;
 using PayrollGuiWinformsImpl.viewimpl;
+using PayrollGuiWinformsImpl.viewimpl.dialog.addemployee;
 using PayrollPorts.primaryAdminUseCase;
 using PayrollPorts.primaryAdminUseCase.factories;
 
@@ -35,8 +36,7 @@ namespace PayrollGuiWinformsImpl
 
         private void bindUIs()
         {
-
-            Bind(AddEmployeeUI).To(AddEmployeeUIImpl);
+            Bind<AddEmployeeUI>().To<AddEmployeeUIImpl>();
             //bind(new TypeLiteral<ErrorDialogUI<?>>() { }).to(ErrorDialogUIImpl.class);
             //bind(ConfirmDialogUI.class).to(ConfirmDialogUIImpl.class);
             Kernel.Bind<MainFrameUI>().To<MainFrameUIImpl>();
@@ -44,13 +44,13 @@ namespace PayrollGuiWinformsImpl
 
         private void bindEagerSingletons()
         {
-            //    bind(EventBus.class).to(EventQueueAsyncEventBus.class).asEagerSingleton();
+            //Bind<EventBus>().To<EventQueueAsyncEventBus>();
             //bind(UncaugthExceptionHandler.class).asEagerSingleton();
         }
 
         private void installAssistedFactories()
         {
-            //            install(new FactoryModuleBuilder().implement(new TypeLiteral<AddTimeCardUI<? extends AddTimeCardView>>() { }, AddTimeCardUIImpl.class).build(AddTimeCardUIFactory.class));
+            //install(new FactoryModuleBuilder().implement(new TypeLiteral<AddTimeCardUI<? extends AddTimeCardView>>() { }, AddTimeCardUIImpl.class).build(AddTimeCardUIFactory.class));
             //install(new FactoryModuleBuilder().implement(new TypeLiteral<AddUnionMemberUI<? extends AddUnionMemberView>>() { }, AddUnionMemberUIImpl.class).build(AddUnionMemberUIFactory.class));
             //install(new FactoryModuleBuilder().build(AddTimeCardControllerFactory.class));
             //install(new FactoryModuleBuilder().build(AddUnionMemberControllerFactory.class));

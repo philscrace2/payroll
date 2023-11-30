@@ -4,15 +4,15 @@ using PayrollAdminAdapterGui.validation;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.common.confirm;
-using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager;
 using PayrollPorts.primaryAdminUseCase.factories;
 using PayrollPorts.primaryAdminUseCase.response;
 using PayrollPorts.primaryAdminUseCase.response.employee;
 using PayrollPorts.primaryAdminUseCase.response.employee.paymenttype;
+using static PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.EmployeeManagerView;
 
-namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
+namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager
 {
-    public class EmployeeManagerController : AbstractController, AddEmployeeView, EmployeeManagerView.EmployeeManagerViewListener
+    public class EmployeeManagerController : AbstractController<EmployeeManagerView, EmployeeManagerViewListener>
     {
         private DeleteEmployeeUseCaseFactory deleteEmployeeUseCaseFactory;
         private EventBus eventBus;

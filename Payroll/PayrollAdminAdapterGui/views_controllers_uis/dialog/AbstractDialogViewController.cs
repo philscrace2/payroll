@@ -1,6 +1,6 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog
 {
-    public abstract class AbstractDialogViewController : AbstractController, CloseableViewListener  //where T : DialogView<VL> where VL : CloseableViewListener
+    public abstract class AbstractDialogViewController<T, VL> : AbstractController<T, VL> where T : DialogView<VL> where VL : CloseableViewListener
     {
         private EventBus eventBus; // Assuming EventBus is a class defined in your C# project
 
@@ -16,12 +16,12 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog
 
         private void RegisterThisToEventbus()
         {
-            eventBus?.Register(this);
+            //eventBus?.Register(this);
         }
 
         public void Show()
         {
-
+            GetView().showIt();
         }
 
         public void onCloseAction()

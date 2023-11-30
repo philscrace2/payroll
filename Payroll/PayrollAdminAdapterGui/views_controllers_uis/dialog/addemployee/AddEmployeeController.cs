@@ -10,7 +10,7 @@ using PayrollPorts.primaryAdminUseCase.request.changemployee.paymentmethod;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 {
-    public class AddEmployeeController : AbstractDialogViewController, AddEmployeeView //<V, AddEmployeeViewListener>, AddEmployeeViewListener where V : AddEmployeeView
+    public class AddEmployeeController : AbstractDialogViewController<AddEmployeeView, AddEmployeeViewListener>
     {
         private AddEmployeeUseCaseFactory addEmployeeUseCaseFactory;
         private ChangeToAbstractPaymentMethodUseCaseFactory changePaymentMethodUseCaseFactory;
@@ -53,8 +53,6 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
         {
             Close();
         }
-
-
 
         public class OnAddEmployeeHandlerExecutor : EmployeeViewModel.IEmployeeViewModelVisitor
         {

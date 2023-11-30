@@ -6,7 +6,7 @@ using PayrollPorts.primaryAdminUseCase.response;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay.paylist
 {
-    public class PayListController : AbstractController, ChangeListener<DateTime>
+    public class PayListController : Controller<PayListView>, ChangeListener<DateTime>
     {
 
         private PayListUseCaseFactory payListUseCaseFactory;
@@ -116,7 +116,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay.p
 
         }
 
-        protected override ViewListener GetViewListener()
+        protected ViewListener GetViewListener()
         {
             throw new NotImplementedException();
         }

@@ -5,7 +5,7 @@ using PayrollPorts.primaryAdminUseCase.factories;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay
 {
-    public class PayController : AbstractController, PayViewListener, ChangeListener<PayListState>
+    public class PayController : AbstractController<PayView, PayViewListener>, ChangeListener<PayListState>
     {
         private PaymentFulfillUseCaseFactory paymentFulfillUseCaseFactory;
         private Observable<DateTime> observableCurrentDate;
