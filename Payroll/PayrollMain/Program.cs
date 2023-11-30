@@ -4,7 +4,7 @@
 using PayrollDBAdapterJPA;
 using PayrollMain;
 
-case2();
+case1();
 
 void case2()
 {

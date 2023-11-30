@@ -1,4 +1,4 @@
-﻿namespace PayrollGuiWinformsImpl.viewimpl.dev
+﻿namespace PayrollGuiWinformsImpl.viewimpl.component.dev
 {
     public class FieldTestsDevMain : Form
     {
@@ -23,16 +23,16 @@
         private void InitializeComponents()
         {
             // Form settings
-            this.Text = "Field Test";
-            this.ClientSize = new System.Drawing.Size(450, 300);
-            this.FormClosing += (sender, args) => Application.Exit();
+            Text = "Field Test";
+            ClientSize = new Size(450, 300);
+            FormClosing += (sender, args) => Application.Exit();
 
             // Panel setup
             contentPane = new Panel
             {
                 Dock = DockStyle.Fill
             };
-            this.Controls.Add(contentPane);
+            Controls.Add(contentPane);
 
             // DateField setup
             dateField = new DateTimePicker

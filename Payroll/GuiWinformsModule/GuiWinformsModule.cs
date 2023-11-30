@@ -1,30 +1,25 @@
-﻿using Ninject.Activation;
-using Ninject.Modules;
+﻿using Ninject.Modules;
+using PayrollAdminAdapterGui.views_controllers_uis.mainframe;
+using PayrollGuiWinformsImpl.viewimpl;
 using PayrollPorts.primaryAdminUseCase;
-namespace GuiWinformsModule
+using PayrollPorts.primaryAdminUseCase.factories;
+
+namespace PayrollGuiWinformsImpl
 {
-    public class GuiSwingModule : NinjectModule
+    public class GuiWinformsModule : NinjectModule
     {
 
-        private Provider<UseCaseFactories> useCaseFactories;
+        private UseCaseFactories useCaseFactories;
 
-        public GuiSwingModule(Provider<UseCaseFactories> useCaseFactories)
+        public GuiWinformsModule(UseCaseFactories useCaseFactories)
         {
             this.useCaseFactories = useCaseFactories;
         }
 
-
-        protected void configure()
-        {
-            bindUseCaseFactories();
-            bindUIs();
-            bindEagerSingletons();
-            installAssistedFactories();
-        }
-
         private void bindUseCaseFactories()
         {
-            //    bind(DeleteEmployeeUseCaseFactory.class).toProvider(useCaseFactories);
+            Bind<DeleteEmployeeUseCaseFactory>().ToConstant(useCaseFactories);
+            Bind<DeleteEmployeeUseCaseFactory>().ToConstant(useCaseFactories);
             //bind(GetEmployeeUseCaseFactory.class).toProvider(useCaseFactories);
             //bind(EmployeeListUseCaseFactory.class).toProvider(useCaseFactories);
             //bind(PaymentFulfillUseCaseFactory.class).toProvider(useCaseFactories);
@@ -33,6 +28,7 @@ namespace GuiWinformsModule
             //bind(AddTimeCardUseCaseFactory.class).toProvider(useCaseFactories);
             //bind(UpdateTimeCardUseCaseFactory.class).toProvider(useCaseFactories);
             //bind(ChangeToAbstractPaymentMethodUseCaseFactory.class).toProvider(useCaseFactories);
+            //bind(ChangeToAbstractPaymentMethodUseCaseFactory.class).toProvider(useCaseFactories);
             //bind(GetUnionMemberAffiliationUseCaseFactory.class).toProvider(useCaseFactories);
             //bind(AddUnionMemberAffiliationUseCaseFactory.class).toProvider(useCaseFactories);
             //bind(RemoveUnionMemberAffiliationUseCaseFactory.class).toProvider(useCaseFactories);
@@ -40,10 +36,11 @@ namespace GuiWinformsModule
 
         private void bindUIs()
         {
-            //        bind(new TypeLiteral<AddEmployeeUI<?>>() { }).to(AddEmployeeUIImpl.class);
+
+            //Kernel.Bind(new TypeLiteral<AddEmployeeUI<?>>() { })to(AddEmployeeUIImpl.class);
             //bind(new TypeLiteral<ErrorDialogUI<?>>() { }).to(ErrorDialogUIImpl.class);
             //bind(ConfirmDialogUI.class).to(ConfirmDialogUIImpl.class);
-            //bind(MainFrameUI.class).to(MainFrameUIImpl.class);
+            Kernel.Bind<MainFrameUI>().To<MainFrameUIImpl>();
         }
 
         private void bindEagerSingletons()
@@ -64,7 +61,10 @@ namespace GuiWinformsModule
 
         public override void Load()
         {
-            throw new NotImplementedException();
+            bindUseCaseFactories();
+            bindUIs();
+            bindEagerSingletons();
+            installAssistedFactories();
         }
     }
 }

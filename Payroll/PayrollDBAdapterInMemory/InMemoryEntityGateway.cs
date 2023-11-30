@@ -11,7 +11,10 @@ namespace PayrollDBAdapterInMemory
 
         public Employee findById(int? employeeId)
         {
-            throw new NotImplementedException();
+            Employee employee;
+            _employeesById.TryGetValue(employeeId, out employee);
+            AssertNotNull(employee);
+            return employee;
         }
 
         public int findEmployeeIdByUnionMemberId(int? unionMemberId)

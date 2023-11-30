@@ -1,5 +1,6 @@
 ﻿using Ninject;
 using Ninject.Modules;
+using PayrollMain.main.factories.usecase;
 using PayrollPorts.primaryAdminUseCase;
 using PayrollPorts.secondary.banktransfer;
 using PayrollPorts.secondary.database;
@@ -36,8 +37,10 @@ namespace PayrollMain
             Bind<Database>().ToConstant(database);
             Bind<BankTransferPort>().ToConstant(bankTransferPort);
 
+            //Bind<UseCaseFactories>().To<UseCaseFactoriesImpl>();
+
             // Assuming UseCaseFactories needs to be injected with Database and BankTransferPort
-            Bind<UseCaseFactories>().ToSelf().WithConstructorArgument("database", database);
+            Bind<UseCaseFactories>().To<UseCaseFactoriesImpl>().WithConstructorArgument("database", database);
         }
     }
 }

@@ -1,20 +1,19 @@
-﻿using PayrollAdminAdapterGui.views_controllers_uis.mainframe;
+﻿using Ninject;
+using PayrollAdminAdapterGui.views_controllers_uis.mainframe;
 using PayrollPorts.primaryAdminUseCase;
 using PayrollPorts.secondary.database;
 
-namespace GuiWinformsModule
+namespace PayrollGuiWinformsImpl
 {
     public class GuiWinformsImpl : Executable
     {
-
         private MainFrameUI mainFrameUI;
 
         public GuiWinformsImpl(UseCaseFactories useCaseFactories)
         {
-            //mainFrameUI = Guice.createInjector(new GuiWinformsModule()).getInstance(MainFrameUI);
+            IKernel kernel = new StandardKernel(new GuiWinformsModule(useCaseFactories));
+            mainFrameUI = kernel.Get<MainFrameUI>();
         }
-
-
         public void run()
         {
             mainFrameUI.show();

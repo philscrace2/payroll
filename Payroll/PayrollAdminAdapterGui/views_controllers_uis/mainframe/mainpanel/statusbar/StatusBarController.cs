@@ -69,12 +69,12 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.statu
 
         private void infoMessage(String message)
         {
-            view.setModel(new StatusBarViewModel(message, MessageType.INFO));
+            view.SetModel(new StatusBarViewModel(message, MessageType.INFO));
         }
 
         private void confirmMessage(String message)
         {
-            view.setModel(new StatusBarViewModel(message, MessageType.CONFIRM));
+            view.SetModel(new StatusBarViewModel(message, MessageType.CONFIRM));
         }
 
     }

@@ -1,17 +1,17 @@
-namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
+namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager
 {
-    public interface EmployeeManagerView : ControlView<EmployeeManagerViewListener>, ModelConsumer<EmployeeManagerViewModel>
+    public interface EmployeeManagerView : ControlView<EmployeeManagerView.EmployeeManagerViewListener>, ModelConsumer<EmployeeManagerViewModel>
     {
+        public interface EmployeeManagerViewListener
+        {
+            void onDeleteEmployeeAction();
+            void onAddEmployeeAction();
+            void onAddTimeCardAction();
+            void onAddSalesReceiptAction();
+            void onAddServiceChargeAction();
+        }
+    }
 
-    }
-    public interface EmployeeManagerViewListener
-    {
-        void onDeleteEmployeeAction();
-        void onAddEmployeeAction();
-        void onAddTimeCardAction();
-        void onAddSalesReceiptAction();
-        void onAddServiceChargeAction();
-    }
 
     public class EmployeeManagerViewModel
     {

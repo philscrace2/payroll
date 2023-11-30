@@ -35,9 +35,10 @@ namespace PayrollMain.main.factories.usecase
         //@Inject
         private AffiliationTypeResponseFactory affiliationTypeResponseFactory;
 
+
         /** use {@link PayrollModule} to instantiate **/
         //@Inject
-        private UseCaseFactoriesImpl(
+        public UseCaseFactoriesImpl(
             Database database,
             BankTransferPort bankTransferPort
             )

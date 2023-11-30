@@ -1,10 +1,10 @@
-﻿namespace PayrollGuiWinformsImpl.viewimpl.field
+﻿namespace PayrollGuiWinformsImpl.viewimpl.component.field
 {
     public class IntegerField : TextBox
     {
         public IntegerField()
         {
-            this.KeyPress += IntegerField_KeyPress;
+            KeyPress += IntegerField_KeyPress;
         }
 
         private void IntegerField_KeyPress(object sender, KeyPressEventArgs e)
@@ -18,7 +18,7 @@
 
         public int? GetInteger()
         {
-            if (int.TryParse(this.Text, out int result))
+            if (int.TryParse(Text, out int result))
             {
                 return result;
             }

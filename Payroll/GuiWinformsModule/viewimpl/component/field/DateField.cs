@@ -1,4 +1,4 @@
-﻿namespace PayrollGuiWinformsImpl.viewimpl.field
+﻿namespace PayrollGuiWinformsImpl.viewimpl.component.field
 {
     public class DateField : DateTimePicker
     {

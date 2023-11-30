@@ -9,11 +9,10 @@ using PayrollPorts.primaryAdminUseCase.factories;
 using PayrollPorts.primaryAdminUseCase.response;
 using PayrollPorts.primaryAdminUseCase.response.employee;
 using PayrollPorts.primaryAdminUseCase.response.employee.paymenttype;
-using static PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.EmployeeManagerViewModel;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
 {
-    public class EmployeeManagerController : AbstractController, AddEmployeeView, EmployeeManagerViewListener
+    public class EmployeeManagerController : AbstractController, AddEmployeeView, EmployeeManagerView.EmployeeManagerViewListener
     {
         private DeleteEmployeeUseCaseFactory deleteEmployeeUseCaseFactory;
         private EventBus eventBus;
@@ -23,7 +22,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
         private AddTimeCardUIFactory addTimeCardUIFactory;
         private ObservableSelectedEmployee observableSelectedEployee;
         private ConfirmMessageFormatter confirmMessageFormatter;
-        private ButtonEnabledStates buttonsEnabledStates;
+        private EmployeeManagerViewModel.ButtonEnabledStates buttonsEnabledStates;
 
         //@Inject
         public EmployeeManagerController(
@@ -150,9 +149,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
 
     public class EmployeeManagerViewPresenter
     {
-        private ButtonEnabledStates buttonsEnabledStates = null;
+        private EmployeeManagerViewModel.ButtonEnabledStates buttonsEnabledStates = null;
 
-        public EmployeeManagerViewPresenter(ButtonEnabledStates buttonsEnabledStates)
+        public EmployeeManagerViewPresenter(EmployeeManagerViewModel.ButtonEnabledStates buttonsEnabledStates)
         {
             this.buttonsEnabledStates = buttonsEnabledStates;
         }
@@ -161,9 +160,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
             return new EmployeeManagerViewModel(PresentButtonsEnabledStates(selectedEmployee));
         }
 
-        private ButtonEnabledStates PresentButtonsEnabledStates(EmployeeForEmployeeListResponse selectedEmployee)
+        private EmployeeManagerViewModel.ButtonEnabledStates PresentButtonsEnabledStates(EmployeeForEmployeeListResponse selectedEmployee)
         {
-            this.buttonsEnabledStates = new ButtonEnabledStates();
+            this.buttonsEnabledStates = new EmployeeManagerViewModel.ButtonEnabledStates();
             buttonsEnabledStates.deleteEmployee = selectedEmployee != null;
 
             if (selectedEmployee != null)
@@ -174,24 +173,24 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
             return buttonsEnabledStates;
         }
 
-        private void PresentButtonsEnabledStatesForEmployee(ButtonEnabledStates states, EmployeeForEmployeeListResponse employee)
+        private void PresentButtonsEnabledStatesForEmployee(EmployeeManagerViewModel.ButtonEnabledStates states, EmployeeForEmployeeListResponse employee)
         {
             // Implementation of this method...
         }
 
 
-        private void presentButtonsEnabledStatesForEmployee(ButtonEnabledStates buttonsEnabledStates, EmployeeForEmployeeListResponse employee)
+        private void presentButtonsEnabledStatesForEmployee(EmployeeManagerViewModel.ButtonEnabledStates buttonsEnabledStates, EmployeeForEmployeeListResponse employee)
         {
             presentButtonsEnabledForPaymentType(buttonsEnabledStates, employee.paymentTypeResponse);
             presentButtonsEnabledForAffiliationType(buttonsEnabledStates, employee.affiliationTypeResponse);
         }
 
-        private void PresentButtonsEnabledForPaymentType(ButtonEnabledStates buttonsEnabledStates, PaymentTypeResponse paymentType)
+        private void PresentButtonsEnabledForPaymentType(EmployeeManagerViewModel.ButtonEnabledStates buttonsEnabledStates, PaymentTypeResponse paymentType)
         {
             paymentType.accept(new LocalPaymentTypeResponseVisitor(buttonsEnabledStates));
         }
 
-        private void presentButtonsEnabledForPaymentType(ButtonEnabledStates buttonsEnabledStates, PaymentTypeResponse paymentType)
+        private void presentButtonsEnabledForPaymentType(EmployeeManagerViewModel.ButtonEnabledStates buttonsEnabledStates, PaymentTypeResponse paymentType)
         {
             paymentType.accept(new LocalPaymentTypeResponseVisitor(buttonsEnabledStates));
         }
@@ -200,7 +199,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
             buttonsEnabledStates.addSalesReceipt = true;
         }
 
-        private void presentButtonsEnabledForAffiliationType(ButtonEnabledStates buttonsEnabledStates, AffiliationTypeResponse affiliationType)
+        private void presentButtonsEnabledForAffiliationType(EmployeeManagerViewModel.ButtonEnabledStates buttonsEnabledStates, AffiliationTypeResponse affiliationType)
         {
             switch (affiliationType)
             {
@@ -217,9 +216,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
 
     public class LocalPaymentTypeResponseVisitor : PaymentTypeResponseVisitor<Object>
     {
-        private readonly ButtonEnabledStates _buttonsEnabledStates;
+        private readonly EmployeeManagerViewModel.ButtonEnabledStates _buttonsEnabledStates;
 
-        public LocalPaymentTypeResponseVisitor(ButtonEnabledStates buttonsEnabledStates)
+        public LocalPaymentTypeResponseVisitor(EmployeeManagerViewModel.ButtonEnabledStates buttonsEnabledStates)
         {
             _buttonsEnabledStates = buttonsEnabledStates;
         }

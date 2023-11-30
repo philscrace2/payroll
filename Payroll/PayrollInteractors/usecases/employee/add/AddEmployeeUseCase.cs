@@ -32,7 +32,7 @@ namespace PayrollInteractors.usecases.employee.add
         protected override void ExecuteInTransaction(R request)
         {
             this.request = request;
-            Validator v = new Validator(request, employeeGateway);
+            //Validator v = new Validator(request, employeeGateway);
 
             Employee employee = employeeFactory.employee();
 
