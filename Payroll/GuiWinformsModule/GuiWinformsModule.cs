@@ -1,4 +1,5 @@
 ﻿using Ninject.Modules;
+using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
 using PayrollAdminAdapterGui.views_controllers_uis.mainframe;
 using PayrollGuiWinformsImpl.viewimpl;
 using PayrollPorts.primaryAdminUseCase;
@@ -19,25 +20,23 @@ namespace PayrollGuiWinformsImpl
         private void bindUseCaseFactories()
         {
             Bind<DeleteEmployeeUseCaseFactory>().ToConstant(useCaseFactories);
-            Bind<DeleteEmployeeUseCaseFactory>().ToConstant(useCaseFactories);
-            //bind(GetEmployeeUseCaseFactory.class).toProvider(useCaseFactories);
-            //bind(EmployeeListUseCaseFactory.class).toProvider(useCaseFactories);
-            //bind(PaymentFulfillUseCaseFactory.class).toProvider(useCaseFactories);
-            //bind(PayListUseCaseFactory.class).toProvider(useCaseFactories);
-            //bind(AddEmployeeUseCaseFactory.class).toProvider(useCaseFactories);
-            //bind(AddTimeCardUseCaseFactory.class).toProvider(useCaseFactories);
-            //bind(UpdateTimeCardUseCaseFactory.class).toProvider(useCaseFactories);
-            //bind(ChangeToAbstractPaymentMethodUseCaseFactory.class).toProvider(useCaseFactories);
-            //bind(ChangeToAbstractPaymentMethodUseCaseFactory.class).toProvider(useCaseFactories);
-            //bind(GetUnionMemberAffiliationUseCaseFactory.class).toProvider(useCaseFactories);
-            //bind(AddUnionMemberAffiliationUseCaseFactory.class).toProvider(useCaseFactories);
-            //bind(RemoveUnionMemberAffiliationUseCaseFactory.class).toProvider(useCaseFactories);
+            Bind<GetEmployeeUseCaseFactory>().ToConstant(useCaseFactories);
+            Bind<EmployeeListUseCaseFactory>().ToConstant(useCaseFactories);
+            Bind<PaymentFulfillUseCaseFactory>().ToConstant(useCaseFactories);
+            Bind<PayListUseCaseFactory>().ToConstant(useCaseFactories);
+            Bind<AddEmployeeUseCaseFactory>().ToConstant(useCaseFactories);
+            Bind<AddTimeCardUseCaseFactory>().ToConstant(useCaseFactories);
+            Bind<UpdateTimeCardUseCaseFactory>().ToConstant(useCaseFactories);
+            Bind<ChangeToAbstractPaymentMethodUseCaseFactory>().ToConstant(useCaseFactories);
+            Bind<GetUnionMemberAffiliationUseCaseFactory>().ToConstant(useCaseFactories);
+            Bind<AddUnionMemberAffiliationUseCaseFactory>().ToConstant(useCaseFactories);
+            Bind<RemoveUnionMemberAffiliationUseCaseFactory>().ToConstant(useCaseFactories);
         }
 
         private void bindUIs()
         {
 
-            //Kernel.Bind(new TypeLiteral<AddEmployeeUI<?>>() { })to(AddEmployeeUIImpl.class);
+            Bind(AddEmployeeUI).To(AddEmployeeUIImpl);
             //bind(new TypeLiteral<ErrorDialogUI<?>>() { }).to(ErrorDialogUIImpl.class);
             //bind(ConfirmDialogUI.class).to(ConfirmDialogUIImpl.class);
             Kernel.Bind<MainFrameUI>().To<MainFrameUIImpl>();
