@@ -17,7 +17,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         private DeleteEmployeeUseCaseFactory deleteEmployeeUseCaseFactory;
         private EventBus eventBus;
 
-        private IAddEmployeeUI addEmployeeUIProvider;
+        private AddEmployeeUI<AddEmployeeView> addEmployeeUIProvider;
         private ConfirmDialogUI confirmDialogUIProvider;
         private AddTimeCardUI<AddTimeCardView>.AddTimeCardUIFactory addTimeCardUIFactory;
         private ObservableSelectedEmployee observableSelectedEployee;
@@ -29,7 +29,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         DeleteEmployeeUseCaseFactory deleteEmployeeUseCaseFactory,
         GetEmployeeUseCaseFactory getEmployeeUseCaseFactory,
         EventBus eventBus,
-        IAddEmployeeUI addEmployeeUIProvider,
+        AddEmployeeUI<AddEmployeeView> addEmployeeUIProvider,
         ConfirmDialogUI confirmDialogUIProvider,
         AddTimeCardUI<AddTimeCardView>.AddTimeCardUIFactory addTimeCardUIFactory,
         ConfirmMessageFormatter confirmMessageFormatter

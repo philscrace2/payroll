@@ -5,7 +5,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
         void Show();
     }
 
-    public abstract class AddEmployeeUI<V> : UI<V, AddEmployeeController<V>>, IAddEmployeeUI where V : AddEmployeeView
+    public abstract class AddEmployeeUI<V> : UI<V, AddEmployeeController<V>> where V : AddEmployeeView
     {
         private readonly AddEmployeeController<V> controller;
 
