@@ -6,7 +6,7 @@ using PayrollPorts.primaryAdminUseCase.response;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay.paylist
 {
-    public class PayListController : Controller<PayListView>, ChangeListener<DateTime>
+    public class PayListController<V> : Controller<V>, ChangeListener<DateTime> where V : PayListView
     {
 
         private PayListUseCaseFactory payListUseCaseFactory;
@@ -27,7 +27,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay.p
             eventBus.Register(this);
         }
 
-        public void setView(PayListView view)
+        public void setView(V view)
         {
             this.view = view;
         }

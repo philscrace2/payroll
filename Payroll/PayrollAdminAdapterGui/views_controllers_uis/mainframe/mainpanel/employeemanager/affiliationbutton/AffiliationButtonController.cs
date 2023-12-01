@@ -9,19 +9,19 @@ using PayrollPorts.primaryAdminUseCase.response.employee;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.affiliationbutton
 {
-    public class AffiliationButtonController : AbstractController<AffiliationButtonView, AffiliationButtonViewListener>, ChangeListener<EmployeeForEmployeeListResponse>
+    public class AffiliationButtonController<V> : AbstractController<V, AffiliationButtonViewListener>, ChangeListener<EmployeeForEmployeeListResponse> where V : AffiliationButtonView
     {
         private EventBus eventBus;
         private ObservableSelectedEmployee observableSelectedEmployee;
         private GetUnionMemberAffiliationUseCaseFactory getUnionMemberAffiliationUseCaseFactory;
         private RemoveUnionMemberAffiliationUseCaseFactory removeUnionMemberAffiliationUseCaseFactory;
-        private AddUnionMemberUIFactory addUnionMemberUIFactory;
+        private AddUnionMemberUI<AddUnionMemberView>.AddUnionMemberUIFactory addUnionMemberUIFactory;
 
         //@Inject
         public AffiliationButtonController(
                 GetUnionMemberAffiliationUseCaseFactory getUnionMemberAffiliationUseCaseFactory,
                 RemoveUnionMemberAffiliationUseCaseFactory removeUnionMemberAffiliationUseCaseFactory,
-                AddUnionMemberUIFactory addUnionMemberUIFactory,
+                AddUnionMemberUI<AddUnionMemberView>.AddUnionMemberUIFactory addUnionMemberUIFactory,
                 EventBus eventBus
                 )
         {
@@ -132,9 +132,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 
     public class ChangeToUnionMemberAction : Action
     {
-        private AddUnionMemberUIFactory addUnionMemberUIFactory = null;
+        private AddUnionMemberUI<AddUnionMemberView>.AddUnionMemberUIFactory addUnionMemberUIFactory = null;
 
-        public ChangeToUnionMemberAction(AddUnionMemberUIFactory addUnionMemberUIFactory)
+        public ChangeToUnionMemberAction(AddUnionMemberUI<AddUnionMemberView>.AddUnionMemberUIFactory addUnionMemberUIFactory)
         {
             this.addUnionMemberUIFactory = addUnionMemberUIFactory;
         }

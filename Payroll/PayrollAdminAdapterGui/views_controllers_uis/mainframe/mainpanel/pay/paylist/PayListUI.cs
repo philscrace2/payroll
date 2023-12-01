@@ -1,12 +1,18 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay.paylist
 {
-    public abstract class PayListUI : UI
+    public interface IPayListUI
     {
-        private readonly PayListController controller;
+        void setObservableCurrentDate(Observable<DateTime> observableCurrentDate);
+        Observable<PayListState> getObservablePayListState();
+    }
+
+    public abstract class PayListUI<V> : UI<V, PayListController<V>>, IPayListUI where V : PayListView
+    {
+        private readonly PayListController<V> controller;
 
         public PayListUI(
-                PayListController controller,
-                PayListView view
+                PayListController<V> controller,
+                V view
                 ) : base(controller, view)
         {
             this.controller = controller;

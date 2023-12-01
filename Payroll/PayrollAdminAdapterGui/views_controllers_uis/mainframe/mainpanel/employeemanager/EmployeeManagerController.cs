@@ -12,14 +12,14 @@ using static PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.em
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager
 {
-    public class EmployeeManagerController : AbstractController<EmployeeManagerView, EmployeeManagerViewListener>
+    public class EmployeeManagerController<V> : AbstractController<V, EmployeeManagerViewListener> where V : EmployeeManagerView
     {
         private DeleteEmployeeUseCaseFactory deleteEmployeeUseCaseFactory;
         private EventBus eventBus;
 
-        private AddEmployeeUI addEmployeeUIProvider;
+        private IAddEmployeeUI addEmployeeUIProvider;
         private ConfirmDialogUI confirmDialogUIProvider;
-        private AddTimeCardUIFactory addTimeCardUIFactory;
+        private AddTimeCardUI<AddTimeCardView>.AddTimeCardUIFactory addTimeCardUIFactory;
         private ObservableSelectedEmployee observableSelectedEployee;
         private ConfirmMessageFormatter confirmMessageFormatter;
         private EmployeeManagerViewModel.ButtonEnabledStates buttonsEnabledStates;
@@ -29,9 +29,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         DeleteEmployeeUseCaseFactory deleteEmployeeUseCaseFactory,
         GetEmployeeUseCaseFactory getEmployeeUseCaseFactory,
         EventBus eventBus,
-        AddEmployeeUI addEmployeeUIProvider,
+        IAddEmployeeUI addEmployeeUIProvider,
         ConfirmDialogUI confirmDialogUIProvider,
-        AddTimeCardUIFactory addTimeCardUIFactory,
+        AddTimeCardUI<AddTimeCardView>.AddTimeCardUIFactory addTimeCardUIFactory,
         ConfirmMessageFormatter confirmMessageFormatter
         )
         {

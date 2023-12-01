@@ -1,12 +1,17 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.affiliationbutton
 {
-    public abstract class AffiliationButtonUI : UI
+    public interface IAffiliationButtonUI
     {
-        private readonly AffiliationButtonController controller;
+        void setObservableSelectedEmployee(ObservableSelectedEmployee observableSelectedEmployee);
+    }
+
+    public abstract class AffiliationButtonUI<V> : UI<V, AffiliationButtonController<V>>, IAffiliationButtonUI where V : AffiliationButtonView
+    {
+        private readonly AffiliationButtonController<V> controller;
 
         public AffiliationButtonUI(
-                AffiliationButtonController controller,
-                AffiliationButtonView view
+                AffiliationButtonController<V> controller,
+                V view
                 ) : base(controller, view)
         {
             this.controller = controller;

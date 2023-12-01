@@ -3,25 +3,17 @@ using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
 {
-    public abstract class MainPanelUI<MainPanel> : UI
+    public abstract class MainPanelUI<V> : UI<V, MainPanelController<V>> where V : MainPanelView
     {
-        private readonly MainPanelController controller;
-        private readonly MainPanelView view;
-        private readonly EmployeeManagerUI employeeManagerUi;
-        private readonly PayUI payUi;
-
         //@Inject
         public MainPanelUI(
-                MainPanelController controller,
-                MainPanelView view,
-                EmployeeManagerUI employeeManagerUI,
-                PayUI payUI
+                MainPanelController<V> controller,
+                V view,
+                IEmployeeManagerUI employeeManagerUI,
+                IPayUI payUI
                 ) : base(controller, view)
         {
-            this.controller = controller;
-            this.view = view;
-            employeeManagerUi = employeeManagerUI;
-            payUi = payUI;
+
 
             employeeManagerUI.setObservableCurrentDate(controller.getObservableCurrentDate());
             payUI.setObservableCurrentDate(controller.getObservableCurrentDate());

@@ -2,11 +2,16 @@
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffiliation
 {
-    public class AddUnionMemberUI : UI //where V : AddUnionMemberView where C : AddUnionMemberController<V>
+    public interface IAddUnionMemberUI
+    {
+        void show();
+    }
+
+    public class AddUnionMemberUI<V> : UI<V, AddUnionMemberController<V>>, IAddUnionMemberUI where V : AddUnionMemberView
     {
         public AddUnionMemberUI(
-                AddUnionMemberControllerFactory controllerFactory,
-                AddUnionMemberView view,
+                AddUnionMemberController<V>.AddUnionMemberControllerFactory controllerFactory,
+                V view,
                 int employeeId) : base(controllerFactory.create(employeeId), view)
         {
 
@@ -14,15 +19,17 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffi
 
         public void show()
         {
-            //this.controller.
+            controller.showIt();
+        }
+
+        public interface AddUnionMemberUIFactory
+        {
+            AddUnionMemberUI<V> create(int? employeeId);
         }
 
 
     }
-    public interface AddUnionMemberUIFactory
-    {
-        AddUnionMemberUI create(int? employeeId);
-    }
+
 
 
 

@@ -9,7 +9,7 @@ using PayrollPorts.primaryAdminUseCase.request.hourly;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
 {
-    public class AddTimeCardController : AbstractDialogViewController<AddTimeCardView, AddTimeCardViewListener>
+    public class AddTimeCardController<V> : AbstractDialogViewController<V, AddTimeCardViewListener> where V : AddTimeCardView
     {
         private EventBus eventBus;
         private int employeeId;
@@ -142,7 +142,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
 
         public interface AddTimeCardControllerFactory
         {
-            AddTimeCardController create(int employeeId);
+            AddTimeCardController<V> create(int employeeId);
         }
 
     }

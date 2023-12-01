@@ -1,11 +1,17 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.table
 {
-    public abstract class EmployeeListUI : UI, EmployeeListView
+    public interface IEmployeeListUI
     {
-        private readonly EmployeeListController controller;
+        void setObservableCurrentDate(Observable<DateTime> observableCurrentDate);
+        ObservableSelectedEmployee getObservableSelectedEployee();
+    }
+
+    public abstract class EmployeeListUI<V> : UI<V, EmployeeListController<V>>, IEmployeeListUI where V : EmployeeListView
+    {
+        private readonly EmployeeListController<V> controller;
 
         //@Inject
-        public EmployeeListUI(EmployeeListController controller, EmployeeListView view) : base(controller, view)
+        public EmployeeListUI(EmployeeListController<V> controller, V view) : base(controller, view)
         {
             this.controller = controller;
         }

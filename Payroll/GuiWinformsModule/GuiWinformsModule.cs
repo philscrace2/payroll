@@ -36,7 +36,7 @@ namespace PayrollGuiWinformsImpl
 
         private void bindUIs()
         {
-            Bind<AddEmployeeUI>().To<AddEmployeeUIImpl>();
+            Bind(typeof(AddEmployeeUI<>)).To(typeof(AddEmployeeUIImpl));
             //bind(new TypeLiteral<ErrorDialogUI<?>>() { }).to(ErrorDialogUIImpl.class);
             //bind(ConfirmDialogUI.class).to(ConfirmDialogUIImpl.class);
             Kernel.Bind<MainFrameUI>().To<MainFrameUIImpl>();

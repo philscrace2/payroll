@@ -1,10 +1,10 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.common.error
 {
-    public abstract class ErrorDialogUI : UI
+    public abstract class ErrorDialogUI<V> : UI<V, ErrorDialogController<V>> where V : ErrorDialogView
     {
-        private readonly ErrorDialogController controller;
+        private readonly ErrorDialogController<V> controller;
 
-        public ErrorDialogUI(ErrorDialogController controller, ErrorDialogView view) : base(controller, view)
+        public ErrorDialogUI(ErrorDialogController<V> controller, V view) : base(controller, view)
         {
             this.controller = controller;
         }

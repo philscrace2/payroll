@@ -3,19 +3,24 @@ using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeem
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager
 {
-    public abstract class EmployeeManagerUI : UI
+    public interface IEmployeeManagerUI
     {
-        private EmployeeListUI employeeListUI;
+        void setObservableCurrentDate(Observable<DateTime> observableCurrentDate);
+    }
+
+    public abstract class EmployeeManagerUI<V> : UI<V, EmployeeManagerController<V>>, IEmployeeManagerUI where V : EmployeeManagerView
+    {
+        private readonly IEmployeeListUI employeeListUi;
 
         public EmployeeManagerUI(
-                EmployeeManagerController controller,
-                View view,
-                EmployeeListUI employeeListUI,
-                AffiliationButtonUI affiliationButtonUI
+                EmployeeManagerController<V> controller,
+                V view,
+                IEmployeeListUI employeeListUI,
+                IAffiliationButtonUI affiliationButtonUI
                 ) : base(controller, view)
         {
+            this.employeeListUi = employeeListUI;
 
-            this.employeeListUI = employeeListUI;
 
             controller.setObservableSelectedEmployee(employeeListUI.getObservableSelectedEployee());
             affiliationButtonUI.setObservableSelectedEmployee(employeeListUI.getObservableSelectedEployee());
@@ -23,7 +28,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 
         public void setObservableCurrentDate(Observable<DateTime> observableCurrentDate)
         {
-            employeeListUI.setObservableCurrentDate(observableCurrentDate);
+            employeeListUi.setObservableCurrentDate(observableCurrentDate);
         }
 
     }

@@ -1,10 +1,15 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
 {
-    public abstract class AddTimeCardUI : UI
+    public interface IAddTimeCardUI
+    {
+        void show();
+    }
+
+    public abstract class AddTimeCardUI<V> : UI<V, AddTimeCardController<V>>, IAddTimeCardUI where V : AddTimeCardView
     {
         public AddTimeCardUI(
-                AddTimeCardController.AddTimeCardControllerFactory controllerFactory,
-                AddTimeCardView view,
+                AddTimeCardController<V>.AddTimeCardControllerFactory controllerFactory,
+                V view,
                 int employeeId
                 ) : base(controllerFactory.create(employeeId), view)
         {
@@ -13,13 +18,15 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
 
         public void show()
         {
-            //controller.
+            controller.Show();
+        }
+
+        public interface AddTimeCardUIFactory
+        {
+            AddTimeCardUI<V> Create(int? employeeId);
         }
 
     }
 
-    public interface AddTimeCardUIFactory
-    {
-        PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard.AddTimeCardUI Create(int? employeeId);
-    }
+
 }

@@ -10,7 +10,7 @@ using PayrollPorts.primaryAdminUseCase.request.changemployee.paymentmethod;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 {
-    public class AddEmployeeController : AbstractDialogViewController<AddEmployeeView, AddEmployeeViewListener>
+    public class AddEmployeeController<V> : AbstractDialogViewController<V, AddEmployeeViewListener> where V : AddEmployeeView
     {
         private AddEmployeeUseCaseFactory addEmployeeUseCaseFactory;
         private ChangeToAbstractPaymentMethodUseCaseFactory changePaymentMethodUseCaseFactory;
@@ -56,9 +56,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
         public class OnAddEmployeeHandlerExecutor : EmployeeViewModel.IEmployeeViewModelVisitor
         {
-            private readonly AddEmployeeController addEmployeeController;
+            private readonly AddEmployeeController<V> addEmployeeController;
 
-            public OnAddEmployeeHandlerExecutor(AddEmployeeController addEmployeeController)
+            public OnAddEmployeeHandlerExecutor(AddEmployeeController<V> addEmployeeController)
             {
                 this.addEmployeeController = addEmployeeController;
             }
@@ -80,10 +80,10 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
         public class ExecuteChangePaymentMethodUseCaseExecutor : EmployeeViewModel.IPaymentMethodVisitor<object>
         {
-            private readonly AddEmployeeController controller;
+            private readonly AddEmployeeController<V> controller;
             private int? employeeId;
 
-            public ExecuteChangePaymentMethodUseCaseExecutor(AddEmployeeController controller, int? employeeId)
+            public ExecuteChangePaymentMethodUseCaseExecutor(AddEmployeeController<V> controller, int? employeeId)
             {
                 this.controller = controller;
                 this.employeeId = employeeId;
@@ -115,9 +115,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
         }
         public abstract class OnAddEmployeeHandler<T> where T : EmployeeViewModel
         {
-            private readonly AddEmployeeController addEmployeeController;
+            private readonly AddEmployeeController<V> addEmployeeController;
 
-            public OnAddEmployeeHandler(AddEmployeeController addEmployeeController)
+            public OnAddEmployeeHandler(AddEmployeeController<V> addEmployeeController)
             {
                 this.addEmployeeController = addEmployeeController;
             }
@@ -163,8 +163,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
         public class OnAddSalariedEmployeeHandler : OnAddEmployeeHandler<SalariedEmployeeViewModel>
         {
-            private readonly AddEmployeeController addEmployeeController;
-            public OnAddSalariedEmployeeHandler(AddEmployeeController addEmployeeController) : base(addEmployeeController)
+            private readonly AddEmployeeController<V> addEmployeeController;
+            public OnAddSalariedEmployeeHandler(AddEmployeeController<V> addEmployeeController) : base(addEmployeeController)
             {
                 this.addEmployeeController = addEmployeeController;
             }
@@ -185,8 +185,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
         private class OnAddHourlyEmployeeHandler : OnAddEmployeeHandler<HourlyEmployeeViewModel>
         {
-            private readonly AddEmployeeController addEmployeeController;
-            public OnAddHourlyEmployeeHandler(AddEmployeeController addEmployeeController) : base(addEmployeeController)
+            private readonly AddEmployeeController<V> addEmployeeController;
+            public OnAddHourlyEmployeeHandler(AddEmployeeController<V> addEmployeeController) : base(addEmployeeController)
             {
                 this.addEmployeeController = addEmployeeController;
             }
@@ -206,8 +206,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
         public class OnAddCommissionedEmployeeHandler : OnAddEmployeeHandler<CommissionedEmployeeViewModel>
         {
-            private readonly AddEmployeeController addEmployeeController;
-            public OnAddCommissionedEmployeeHandler(AddEmployeeController addEmployeeController) : base(addEmployeeController)
+            private readonly AddEmployeeController<V> addEmployeeController;
+            public OnAddCommissionedEmployeeHandler(AddEmployeeController<V> addEmployeeController) : base(addEmployeeController)
             {
                 this.addEmployeeController = addEmployeeController;
             }

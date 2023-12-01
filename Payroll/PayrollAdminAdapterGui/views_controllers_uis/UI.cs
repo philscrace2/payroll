@@ -1,12 +1,12 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis
 {
-    public abstract class UI
+    public abstract class UI<V, C> where V : View where C : Controller<V>
     {
-        protected Controller controller;
-        private View view;
+        protected C controller;
+        private V view;
 
 
-        public UI(Controller controller, View view)
+        public UI(C controller, V view)
         {
             this.controller = controller;
             this.view = view;
@@ -15,7 +15,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis
         //@Inject
         protected void init()
         {
-            controller.SetView(view);
+            controller.setView(view);
         }
 
         public View getView()
@@ -24,18 +24,4 @@ namespace PayrollAdminAdapterGui.views_controllers_uis
         }
     }
 
-    public abstract class Controller
-    {
-        private View view;
-
-        public virtual void SetView(View view)
-        {
-
-        }
-
-        public virtual View GetView()
-        {
-            return view;
-        }
-    }
 }
