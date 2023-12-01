@@ -13,7 +13,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.statu
         }
     }
 
-    public interface IStatusBarView
+    public interface IStatusBarView : View
     {
         void SetModel(StatusBarViewModel model);
     }

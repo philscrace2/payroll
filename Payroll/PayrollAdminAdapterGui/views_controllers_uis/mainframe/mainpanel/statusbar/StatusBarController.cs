@@ -4,9 +4,9 @@ using PayrollAdminAdapterGui.formatters.controller.msg;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.statusbar
 {
-    public class StatusBarController : Controller
+    public class StatusBarController<V> : Controller<V> where V : IStatusBarView
     {
-        private StatusBarView view;
+        private V view;
         private EventMessageFormatter messageFormatter;
 
         //@Inject
@@ -20,7 +20,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.statu
         }
 
         //@Override
-        public void setView(StatusBarView view)
+        public void setView(V view)
         {
             this.view = view;
         }

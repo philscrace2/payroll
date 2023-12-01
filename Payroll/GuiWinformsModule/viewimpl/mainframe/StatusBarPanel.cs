@@ -1,4 +1,5 @@
-﻿using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.statusbar;
+﻿using PayrollAdminAdapterGui.views_controllers_uis;
+using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.statusbar;
 
 namespace PayrollGuiWinformsImpl.viewimpl.mainframe
 {
@@ -9,6 +10,8 @@ namespace PayrollGuiWinformsImpl.viewimpl.mainframe
         private readonly Color ErrorColor = Color.Red;
 
         private StatusBarTextPane statusBarTextPane;
+
+        private ViewListener listener;
 
         public StatusBarPanel()
         {
@@ -48,6 +51,10 @@ namespace PayrollGuiWinformsImpl.viewimpl.mainframe
         }
 
 
+        public void setViewListener(ViewListener getViewListener)
+        {
+            this.listener = getViewListener;
+        }
     }
 
 

@@ -2,9 +2,9 @@
 
 namespace PayrollGuiWinformsImpl.viewimpl.mainframe.mainpanel.employeemanager.affiliation
 {
-    public class AffiliationButtonUIImpl : AffiliationButtonUI
+    public class AffiliationButtonUIImpl<V> : AffiliationButtonUI<V> where V : AffiliationButtonViewImpl
     {
-        public AffiliationButtonUIImpl(AffiliationButtonController controller, AffiliationButtonView view) : base(controller, view)
+        public AffiliationButtonUIImpl(AffiliationButtonController<V> controller, V view) : base(controller, view)
         {
         }
     }

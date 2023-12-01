@@ -2,11 +2,11 @@
 
 namespace PayrollGuiWinformsImpl.viewimpl.mainframe.mainpanel.employeemanager
 {
-    public class EmployeeListUIImpl : EmployeeListUI
+    public class EmployeeListUIImpl : EmployeeListUI<EmployeeListView>
     {
         public EmployeeListPanel View { get; }
 
-        public EmployeeListUIImpl(EmployeeListController controller, EmployeeListPanel view) : base(controller, view)
+        public EmployeeListUIImpl(EmployeeListController<EmployeeListView> controller, EmployeeListPanel view) : base(controller, view)
         {
             View = view;
         }

@@ -18,7 +18,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis
             controller.setView(view);
         }
 
-        public View getView()
+        public V getView()
         {
             return view;
         }

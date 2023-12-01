@@ -2,10 +2,10 @@
 
 namespace PayrollGuiWinformsImpl.viewimpl.mainframe
 {
-    public class StatusBarUIImpl : StatusBarUI
+    public class StatusBarUIImpl : StatusBarUI<StatusBarPanel>
     {
 
-        public StatusBarUIImpl(StatusBarController controller, StatusBarView view) : base(controller, view)
+        public StatusBarUIImpl(StatusBarController<StatusBarPanel> controller, StatusBarPanel view) : base(controller, view)
         {
         }
     }
