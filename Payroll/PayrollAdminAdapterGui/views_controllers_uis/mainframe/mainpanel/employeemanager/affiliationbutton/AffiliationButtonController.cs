@@ -21,7 +21,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         public AffiliationButtonController(
                 GetUnionMemberAffiliationUseCaseFactory getUnionMemberAffiliationUseCaseFactory,
                 RemoveUnionMemberAffiliationUseCaseFactory removeUnionMemberAffiliationUseCaseFactory,
-                AddUnionMemberUI<AddUnionMemberView>.AddUnionMemberUIFactory addUnionMemberUIFactory,
+                //AddUnionMemberUI<AddUnionMemberView>.AddUnionMemberUIFactory addUnionMemberUIFactory,
                 EventBus eventBus
                 )
         {

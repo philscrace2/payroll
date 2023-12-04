@@ -18,8 +18,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         //@Inject
         public EmployeeListController(
                 EmployeeListUseCaseFactory useCaseFactory,
-                EventBus eventBus,
-                EmployeeListPresenterFactory employeeListPresenterFactory
+                EventBus eventBus
+                //EmployeeListPresenterFactory employeeListPresenterFactory
                 )
         {
             this.useCaseFactory = useCaseFactory;
@@ -93,7 +93,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 
         public void addChangeListener(Action value)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 

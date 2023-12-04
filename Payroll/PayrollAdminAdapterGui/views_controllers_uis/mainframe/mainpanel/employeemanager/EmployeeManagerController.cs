@@ -2,8 +2,6 @@ using PayrollAdminAdapterGui.events;
 using PayrollAdminAdapterGui.formatters.controller.msg;
 using PayrollAdminAdapterGui.validation;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
-using PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard;
-using PayrollAdminAdapterGui.views_controllers_uis.dialog.common.confirm;
 using PayrollPorts.primaryAdminUseCase.factories;
 using PayrollPorts.primaryAdminUseCase.response;
 using PayrollPorts.primaryAdminUseCase.response.employee;
@@ -17,9 +15,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         private DeleteEmployeeUseCaseFactory deleteEmployeeUseCaseFactory;
         private EventBus eventBus;
 
-        private AddEmployeeUI<AddEmployeeView> addEmployeeUIProvider;
-        private ConfirmDialogUI confirmDialogUIProvider;
-        private AddTimeCardUI<AddTimeCardView>.AddTimeCardUIFactory addTimeCardUIFactory;
+        //private AddEmployeeUI<AddEmployeeView> addEmployeeUIProvider;
+        //private ConfirmDialogUI confirmDialogUIProvider;
+        //private AddTimeCardUI<AddTimeCardView>.AddTimeCardUIFactory addTimeCardUIFactory;
         private ObservableSelectedEmployee observableSelectedEployee;
         private ConfirmMessageFormatter confirmMessageFormatter;
         private EmployeeManagerViewModel.ButtonEnabledStates buttonsEnabledStates;
@@ -29,17 +27,17 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         DeleteEmployeeUseCaseFactory deleteEmployeeUseCaseFactory,
         GetEmployeeUseCaseFactory getEmployeeUseCaseFactory,
         EventBus eventBus,
-        AddEmployeeUI<AddEmployeeView> addEmployeeUIProvider,
-        ConfirmDialogUI confirmDialogUIProvider,
-        AddTimeCardUI<AddTimeCardView>.AddTimeCardUIFactory addTimeCardUIFactory,
+        //AddEmployeeUI<AddEmployeeView> addEmployeeUIProvider,
+        //ConfirmDialogUI confirmDialogUIProvider,
+        //AddTimeCardUI<AddTimeCardView>.AddTimeCardUIFactory addTimeCardUIFactory,
         ConfirmMessageFormatter confirmMessageFormatter
         )
         {
             this.deleteEmployeeUseCaseFactory = deleteEmployeeUseCaseFactory;
             this.eventBus = eventBus;
-            this.addEmployeeUIProvider = addEmployeeUIProvider;
-            this.confirmDialogUIProvider = confirmDialogUIProvider;
-            this.addTimeCardUIFactory = addTimeCardUIFactory;
+            //this.addEmployeeUIProvider = addEmployeeUIProvider;
+            //this.confirmDialogUIProvider = confirmDialogUIProvider;
+            //this.addTimeCardUIFactory = addTimeCardUIFactory;
             this.confirmMessageFormatter = confirmMessageFormatter;
         }
 
@@ -88,7 +86,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 
         public void onAddEmployeeAction()
         {
-            addEmployeeUIProvider.Show();
+            //addEmployeeUIProvider.Show();
         }
 
 
@@ -108,7 +106,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 
         public void onAddTimeCardAction()
         {
-            addTimeCardUIFactory.Create(observableSelectedEployee.get().id).show();
+            //addTimeCardUIFactory.Create(observableSelectedEployee.get().id).show();
         }
 
         public void setViewListener(AddEmployeeViewListener listener)

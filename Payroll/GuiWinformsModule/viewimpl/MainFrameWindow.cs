@@ -66,10 +66,12 @@ namespace PayrollGuiWinformsImpl
 
         public void ShowIt()
         {
-            this.Invoke((MethodInvoker)(() =>
-            {
-                this.Visible = true;
-            }));
+            //this.Invoke((MethodInvoker)(() =>
+            //{
+            //    this.Visible = true;
+            //}));
+
+            this.ShowDialog();
         }
     }
 
