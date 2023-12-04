@@ -8,7 +8,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.mainframe
         MainPanel getView();
     }
 
-    public class MainPanelUIImpl : MainPanelUI<MainPanel>, IMainPanelUIImpl
+    public class MainPanelUIImpl : MainPanelUI<MainPanel>
     {
         public MainPanelUIImpl(
             MainPanelController<MainPanel> controller,

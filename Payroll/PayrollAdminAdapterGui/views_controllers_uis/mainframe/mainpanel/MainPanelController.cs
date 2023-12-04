@@ -39,25 +39,6 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
             return (MainPanelViewListener)this;
         }
 
-        public void setViewListener(MainPanelViewListener listener)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void setViewListener(ViewListener getViewListener)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void setModel(MainPanelViewModel viewModel)
-        {
-            throw new NotImplementedException();
-        }
-
-        public MainPanelViewModel getModel()
-        {
-            throw new NotImplementedException();
-        }
     }
 
 }
