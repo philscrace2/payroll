@@ -10,7 +10,7 @@
             foreach (var method in listenerType.GetMethods())
             {
                 var parameters = method.GetParameters();
-                if (parameters.Length == 1)
+                if (parameters.Length == 1 && method.Name != "Equals")//(method.Name != "Equals" || method.Name != "ToString" || method.Name != "GetHashCode" || method.Name != "GetType"))
                 {
                     var eventType = parameters[0].ParameterType;
                     if (!eventHandlers.ContainsKey(eventType))

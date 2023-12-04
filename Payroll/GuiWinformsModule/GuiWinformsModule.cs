@@ -1,8 +1,12 @@
 ﻿using Ninject.Modules;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
 using PayrollAdminAdapterGui.views_controllers_uis.mainframe;
+using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel;
+using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay.paylist;
 using PayrollGuiWinformsImpl.viewimpl;
 using PayrollGuiWinformsImpl.viewimpl.dialog.addemployee;
+using PayrollGuiWinformsImpl.viewimpl.mainframe;
+using PayrollGuiWinformsImpl.viewimpl.mainframe.mainpanel.pay;
 using PayrollPorts.primaryAdminUseCase;
 using PayrollPorts.primaryAdminUseCase.factories;
 
@@ -37,9 +41,14 @@ namespace PayrollGuiWinformsImpl
         private void bindUIs()
         {
             Bind(typeof(AddEmployeeUI<>)).To(typeof(AddEmployeeUIImpl<>));
-            //bind(new TypeLiteral<ErrorDialogUI<?>>() { }).to(ErrorDialogUIImpl.class);
-            //bind(ConfirmDialogUI.class).to(ConfirmDialogUIImpl.class);
-            Kernel.Bind<MainFrameUI>().To<MainFrameUIImpl>();
+            Bind<MainFrameUI>().To<MainFrameUIImpl>();
+            Bind(typeof(MainPanelUI<>)).To(typeof(MainPanelUIImpl));
+
+            //Bind(new TypeLiteral<ErrorDialogUI<?>>() { }).to(ErrorDialogUIImpl.class);
+            //Bind<ConfirmDialogUI>().To<ConfirmDialogUIImpl>();
+            Bind(typeof(PayListUI<>)).To(typeof(PayListUIImpl<>));
+            Bind<PayListView>().To<PayListPanel>();
+
         }
 
         private void bindEagerSingletons()

@@ -3,10 +3,13 @@ using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay.payli
 
 namespace PayrollGuiWinformsImpl.viewimpl.mainframe.mainpanel
 {
+
     public class PayUIImpl<V> : PayUI<V> where V : PayView
     {
         public PayUIImpl(PayController<V> controller, V view, PayListUI<PayListView> payListUI) : base(controller, view, payListUI)
         {
         }
+
+
     }
 }

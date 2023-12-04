@@ -10,12 +10,12 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay
     public abstract class PayUI<V> : UI<V, PayController<V>>, IPayUI where V : PayView
     {
         private readonly PayController<V> controller;
-        private IPayListUI payListUI;
+        private PayListUI<PayListView> payListUI;
 
         public PayUI(
                 PayController<V> controller,
                 V view,
-                IPayListUI payListUI
+                PayListUI<PayListView> payListUI
                 ) : base(controller, view)
         {
             this.controller = controller;

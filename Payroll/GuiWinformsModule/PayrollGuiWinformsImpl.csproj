@@ -21,7 +21,6 @@
     <Folder Include="viewimpl\dialog\addemployee\paymentmethod\" />
     <Folder Include="viewimpl\dialog\addtimecard\" />
     <Folder Include="viewimpl\dialog\addunionmemberaffiliation\" />
-    <Folder Include="viewimpl\dialog\common\" />
   </ItemGroup>
 
 </Project>

@@ -17,13 +17,12 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay
         //@Inject
         public PayController(
             PaymentFulfillUseCaseFactory paymentFulfillUseCaseFactory,
-            ConfirmDialogUI confirmDialogUIProvider,
             ConfirmMessageFormatter confirmMessageFormatter,
             EventBus eventBus
             )
         {
             this.paymentFulfillUseCaseFactory = paymentFulfillUseCaseFactory;
-            this.confirmDialogUIProvider = confirmDialogUIProvider;
+            //this.confirmDialogUIProvider = confirmDialogUIProvider;
             this.confirmMessageFormatter = confirmMessageFormatter;
             this.eventBus = eventBus;
         }

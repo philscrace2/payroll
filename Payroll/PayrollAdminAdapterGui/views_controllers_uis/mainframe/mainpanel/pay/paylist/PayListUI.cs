@@ -6,7 +6,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay.p
         Observable<PayListState> getObservablePayListState();
     }
 
-    public abstract class PayListUI<V> : UI<V, PayListController<V>>, IPayListUI where V : PayListView
+    public abstract class PayListUI<V> : UI<V, PayListController<V>> where V : PayListView
     {
         private readonly PayListController<V> controller;
 

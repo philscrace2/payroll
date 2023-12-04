@@ -13,11 +13,11 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.common.error
             return true;
         }
 
-        //protected override ViewListener GetViewListener()
-        //{
-        //    //return (CloseableViewListener)this;
+        protected override ViewListener GetViewListener()
+        {
+            return this;
 
-        //}
+        }
 
         private class Presenter
         {
@@ -42,10 +42,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.common.error
             }
         }
 
-        protected override ViewListener GetViewListener()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 
 }

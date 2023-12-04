@@ -36,7 +36,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis
 
         public void addChangeListener(ChangeListener<T> changeListener)
         {
-            throw new NotImplementedException();
+            changeListeners.Add(changeListener);
         }
     }
 

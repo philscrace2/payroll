@@ -36,9 +36,6 @@ namespace PayrollMain
             // Bind your services here. For example:
             Bind<Database>().ToConstant(database);
             Bind<BankTransferPort>().ToConstant(bankTransferPort);
-
-            //Bind<UseCaseFactories>().To<UseCaseFactoriesImpl>();
-
             // Assuming UseCaseFactories needs to be injected with Database and BankTransferPort
             Bind<UseCaseFactories>().To<UseCaseFactoriesImpl>().WithConstructorArgument("database", database);
         }

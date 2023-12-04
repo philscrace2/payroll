@@ -5,14 +5,22 @@ namespace PayrollGuiWinformsImpl.viewimpl
 {
     public class MainFrameUIImpl : MainFrameUI
     {
-        public readonly PayrollGuiWinformsImpl.MainFrameWindow mainFrameWindow;
+        private readonly StatusBarUIImpl statusBarUiImpl;
+        public PayrollGuiWinformsImpl.MainFrameWindow mainFrameWindow;
+        private MainPanelUIImpl mainPanelUiImpl;
+
+
         public MainFrameUIImpl(MainPanelUIImpl mainPanelUiImpl, StatusBarUIImpl statusBarUiImpl)
         {
+            this.statusBarUiImpl = statusBarUiImpl;
+
             mainFrameWindow = new PayrollGuiWinformsImpl.MainFrameWindow(mainPanelUiImpl.getView(), statusBarUiImpl.getView());
         }
+
         public void show()
         {
             mainFrameWindow.ShowIt();
         }
+
     }
 }

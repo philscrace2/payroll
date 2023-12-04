@@ -3,7 +3,12 @@ using PayrollGuiWinformsImpl.viewimpl.mainframe.mainpanel;
 
 namespace PayrollGuiWinformsImpl.viewimpl.mainframe
 {
-    public class MainPanelUIImpl : MainPanelUI<MainPanel>
+    public interface IMainPanelUIImpl
+    {
+        MainPanel getView();
+    }
+
+    public class MainPanelUIImpl : MainPanelUI<MainPanel>, IMainPanelUIImpl
     {
         public MainPanelUIImpl(
             MainPanelController<MainPanel> controller,
@@ -11,7 +16,8 @@ namespace PayrollGuiWinformsImpl.viewimpl.mainframe
             PayUIImpl<PayPanel> payUIImpl
         ) : base(controller, new MainPanel(employeeManagerUIImpl.getView(), payUIImpl.getView()), employeeManagerUIImpl, payUIImpl)
         {
-            //super(controller, new MainPanel(employeeManagerUIImpl.getView(), payUIImpl.getView()), employeeManagerUIImpl, payUIImpl);
+
         }
+
     }
 }
