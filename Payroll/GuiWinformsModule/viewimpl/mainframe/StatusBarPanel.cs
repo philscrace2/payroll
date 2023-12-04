@@ -56,16 +56,12 @@ namespace PayrollGuiWinformsImpl.viewimpl.mainframe
             this.listener = getViewListener;
         }
     }
-
-
-
-    public class StatusBarTextPane : RichTextBox // Assuming this is a custom control
-    {
-        public void SetMessage(string message, Color backgroundColor)
-        {
-            // Implementation depends on how StatusBarTextPane is defined
-        }
-    }
-
-
 }
+
+
+
+
+
+
+
+
