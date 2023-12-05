@@ -6,7 +6,7 @@ namespace PayrollGuiWinformsImpl.viewimpl
     public class MainFrameUIImpl : MainFrameUI
     {
         private readonly StatusBarUIImpl statusBarUiImpl;
-        public PayrollGuiWinformsImpl.MainFrameWindow mainFrameWindow;
+        public MainFrameWindow mainFrameWindow;
         private MainPanelUIImpl mainPanelUiImpl;
 
 
@@ -14,7 +14,7 @@ namespace PayrollGuiWinformsImpl.viewimpl
         {
             this.statusBarUiImpl = statusBarUiImpl;
 
-            mainFrameWindow = new PayrollGuiWinformsImpl.MainFrameWindow(mainPanelUiImpl.getView(), statusBarUiImpl.getView());
+            mainFrameWindow = new MainFrameWindow(mainPanelUiImpl.getView(), statusBarUiImpl.getView());
         }
 
         public void show()

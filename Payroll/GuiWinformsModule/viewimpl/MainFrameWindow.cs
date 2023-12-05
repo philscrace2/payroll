@@ -1,31 +1,18 @@
 ﻿using PayrollGuiWinformsImpl.viewimpl.mainframe;
-using PayrollWinformsPrototype;
 
-namespace PayrollGuiWinformsImpl
+namespace PayrollGuiWinformsImpl.viewimpl
 {
-
-    using System.Windows.Forms;
-
     public partial class MainFrameWindow : Form
     {
-        private Panel mainPanelHolder;
-        private Panel statusBarHolder;
-
-
         public MainFrameWindow(MainPanel mainPanel, StatusBarPanel statusBarPanel)
         {
-            InitUI();
+            InitializeComponent();
             mainPanelHolder.Controls.Add(mainPanel);
             statusBarHolder.Controls.Add(statusBarPanel);
         }
 
         private void InitUI()
         {
-            this.FormClosing += (sender, e) => Application.Exit();
-            this.Text = GuiConstants.APP_TITLE; // Assuming GuiConstants.AppTitle is a constant for the title
-            this.Size = new System.Drawing.Size(850, 500);
-            this.StartPosition = FormStartPosition.WindowsDefaultLocation;
-
             Panel contentPane = new Panel
             {
                 Dock = DockStyle.Fill,

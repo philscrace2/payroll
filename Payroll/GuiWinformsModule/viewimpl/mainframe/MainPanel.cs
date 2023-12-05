@@ -9,17 +9,15 @@ namespace PayrollGuiWinformsImpl.viewimpl.mainframe
     using System.Drawing;
     using System.Windows.Forms;
 
-    public class MainPanel : Panel, MainPanelView
+    public partial class MainPanel : Panel, MainPanelView
     {
-        private Panel employeeManagerPanelHolder;
-        private Panel payDayPanelHolder;
         private DateTimePicker currentDateField; // Assuming DateField is a wrapper around DateTimePicker
         private IMainPanelViewListener listener;
         private string dateFormat = Constants.DATE_FORMAT; // Assuming this is a date format string
 
         public MainPanel(EmployeeManagerPanel employeeManagerPanel, PayPanel payPanel)
         {
-            InitUI();
+            InitializeComponent();
             employeeManagerPanelHolder.Controls.Add(employeeManagerPanel);
             payDayPanelHolder.Controls.Add(payPanel);
         }
