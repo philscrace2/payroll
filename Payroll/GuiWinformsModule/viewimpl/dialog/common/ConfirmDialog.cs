@@ -18,7 +18,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.common
             ConfirmDialogListener confirmDialogListener,
             string okLabelString = "Confirm",
             string cancelLabelString = "Cancel"
-        ) : base(parentFrame)
+        ) : base("confirm dialog string")
         {
             this.confirmDialogListener = confirmDialogListener;
             this.okLabelString = okLabelString;

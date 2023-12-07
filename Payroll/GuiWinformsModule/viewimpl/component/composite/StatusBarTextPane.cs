@@ -18,11 +18,12 @@ public class StatusBarTextPane : RichTextBox
 
     public StatusBarTextPane()
     {
-        Init();
+        //Init();
     }
 
     private void Init()
     {
+        //this.Dock = DockStyle.Fill;
         ReadOnly = true;
         InitDefaultStyles();
         InitTimer();

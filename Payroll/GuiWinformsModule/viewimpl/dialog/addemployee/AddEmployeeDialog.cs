@@ -6,7 +6,7 @@ using static OkCancelButtonBar;
 
 namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
 {
-    public class AddEmployeeDialog : DefaultModalDialog<AddEmployeeViewListener>, AddEmployeeView, IOkCancelButtonBarListener
+    public partial class AddEmployeeDialog : DefaultModalDialog<AddEmployeeViewListener>, AddEmployeeView, IOkCancelButtonBarListener
     {
         private Panel tableHolder;
         private IAddEmployeeViewListener listener;
@@ -20,12 +20,12 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
         //private Dictionary<EmployeeType, EmployeeFieldsPanel> employeeFieldsPanelByEmployeeType = new Dictionary<EmployeeType, EmployeeFieldsPanel>();
         //private Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel> paymentMethodFieldsPanelByPaymentMethod = new Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel>();
 
-        public AddEmployeeDialog(Form parentForm) : this(parentForm, "")
-        {
+        //public AddEmployeeDialog(Form parentForm) : this(parentForm, "")
+        //{
 
-        }
+        //}
 
-        public AddEmployeeDialog(Form parentForm, string title) : base(parentForm, "")
+        public AddEmployeeDialog(string title) : base("Add Employee")
         {
             InitializeComponent();
             InitCommonFields();

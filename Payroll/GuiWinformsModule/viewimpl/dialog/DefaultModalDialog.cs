@@ -7,11 +7,11 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog
     {
         private T listener;
 
-        public DefaultModalDialog(Form parentForm) : this(parentForm, null) { }
+        // public DefaultModalDialog() : this(parentForm, null) { }
 
-        public DefaultModalDialog(Form parentForm, string title)
+        public DefaultModalDialog(string title)
         {
-            Owner = parentForm;
+            //Owner = parentForm;
             Text = BuildTitle(title);
             //Modal = true;
             Size = new System.Drawing.Size(450, 360);

@@ -2,6 +2,7 @@ using PayrollAdminAdapterGui.events;
 using PayrollAdminAdapterGui.formatters.controller.msg;
 using PayrollAdminAdapterGui.validation;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
+using PayrollAdminAdapterGui.views_controllers_uis.dialog.common.confirm;
 using PayrollPorts.primaryAdminUseCase.factories;
 using PayrollPorts.primaryAdminUseCase.response;
 using PayrollPorts.primaryAdminUseCase.response.employee;
@@ -27,8 +28,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         DeleteEmployeeUseCaseFactory deleteEmployeeUseCaseFactory,
         GetEmployeeUseCaseFactory getEmployeeUseCaseFactory,
         EventBus eventBus,
-        //AddEmployeeUI<AddEmployeeView> addEmployeeUIProvider,
-        //ConfirmDialogUI confirmDialogUIProvider,
+        AddEmployeeUI<AddEmployeeView> addEmployeeUIProvider,
+        ConfirmDialogUI confirmDialogUIProvider,
         //AddTimeCardUI<AddTimeCardView>.AddTimeCardUIFactory addTimeCardUIFactory,
         ConfirmMessageFormatter confirmMessageFormatter
         )

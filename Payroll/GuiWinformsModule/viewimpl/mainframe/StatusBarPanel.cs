@@ -22,6 +22,14 @@ namespace PayrollGuiWinformsImpl.viewimpl.mainframe
         {
             //this.Layout = new BorderLayout();
             statusBarTextPane = new StatusBarTextPane();
+            statusBarTextPane.Dock = DockStyle.Fill;
+            statusBarTextPane.Location = new Point(200, 0);
+            statusBarTextPane.Name = "statusBarRichTextBox";
+            statusBarTextPane.Size = new System.Drawing.Size(979, 46);
+            statusBarTextPane.Text = "Hello world!";
+            this.Dock = DockStyle.Fill;
+            this.Size = new System.Drawing.Size(979, 46);
+            this.BackColor = Color.Brown;
             this.Controls.Add(statusBarTextPane);
         }
 
