@@ -35,12 +35,12 @@ namespace WindowsFormsApp1
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.txtSalary = new System.Windows.Forms.TextBox();
             this.cbEmployeeType = new System.Windows.Forms.ComboBox();
             this.cbPaymentMethod = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.lblId = new System.Windows.Forms.LinkLabel();
             this.lblName = new System.Windows.Forms.LinkLabel();
             this.lblAddress = new System.Windows.Forms.LinkLabel();
@@ -72,12 +72,12 @@ namespace WindowsFormsApp1
             this.panel1.Controls.Add(this.lblAddress);
             this.panel1.Controls.Add(this.lblName);
             this.panel1.Controls.Add(this.lblId);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnCancel);
+            this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.cbEmployeeType);
             this.panel1.Controls.Add(this.cbPaymentMethod);
-            this.panel1.Controls.Add(this.textBox4);
-            this.panel1.Controls.Add(this.textBox3);
+            this.panel1.Controls.Add(this.txtSalary);
+            this.panel1.Controls.Add(this.txtAddress);
             this.panel1.Controls.Add(this.txtName);
             this.panel1.Controls.Add(this.txtId);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -102,52 +102,52 @@ namespace WindowsFormsApp1
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(115, 65);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(439, 22);
-            this.textBox3.TabIndex = 2;
+            this.txtAddress.Location = new System.Drawing.Point(115, 65);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(439, 22);
+            this.txtAddress.TabIndex = 2;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(115, 173);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(439, 22);
-            this.textBox4.TabIndex = 3;
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.txtSalary.Location = new System.Drawing.Point(115, 173);
+            this.txtSalary.Name = "txtSalary";
+            this.txtSalary.Size = new System.Drawing.Size(439, 22);
+            this.txtSalary.TabIndex = 3;
+            this.txtSalary.TextChanged += new System.EventHandler(this.txtSalary_TextChanged);
             // 
             // comboBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(115, 91);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(439, 24);
-            this.comboBox1.TabIndex = 4;
+            this.cbEmployeeType.FormattingEnabled = true;
+            this.cbEmployeeType.Location = new System.Drawing.Point(115, 91);
+            this.cbEmployeeType.Name = "cbEmployeeType";
+            this.cbEmployeeType.Size = new System.Drawing.Size(439, 24);
+            this.cbEmployeeType.TabIndex = 4;
             // 
             // comboBox2
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(115, 240);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(439, 24);
-            this.comboBox2.TabIndex = 5;
+            this.cbPaymentMethod.FormattingEnabled = true;
+            this.cbPaymentMethod.Location = new System.Drawing.Point(115, 240);
+            this.cbPaymentMethod.Name = "cbPaymentMethod";
+            this.cbPaymentMethod.Size = new System.Drawing.Size(439, 24);
+            this.cbPaymentMethod.TabIndex = 5;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(376, 415);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 42);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAdd.Location = new System.Drawing.Point(376, 415);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(83, 42);
+            this.btnAdd.TabIndex = 6;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(471, 416);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(83, 42);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCancel.Location = new System.Drawing.Point(471, 416);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(83, 42);
+            this.btnCancel.TabIndex = 7;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // lblId
             // 
@@ -215,8 +215,8 @@ namespace WindowsFormsApp1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(601, 471);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "Form2";
-            this.Text = "Form2";
+            this.Name = "frmAddEmployee";
+            this.Text = "Add Employee";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -224,12 +224,17 @@ namespace WindowsFormsApp1
 
         }
 
+        private void txtSalary_TextChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtSalary;
+        private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.LinkLabel lblPaymentMethod;
@@ -238,8 +243,8 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.LinkLabel lblAddress;
         private System.Windows.Forms.LinkLabel lblName;
         private System.Windows.Forms.LinkLabel lblId;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ComboBox cbPaymentMethod;
         private System.Windows.Forms.ComboBox cbEmployeeType;
     }

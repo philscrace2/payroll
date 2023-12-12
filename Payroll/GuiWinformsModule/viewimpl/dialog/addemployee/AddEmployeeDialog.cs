@@ -36,8 +36,8 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
 
         private void InitDefaults()
         {
-            cbEmployeeType.SelectedIndex = 0;
-            cbPaymentMethod.SelectedIndex = 0;
+            //cbEmployeeType.SelectedIndex = 0;
+            //cbPaymentMethod.SelectedIndex = 0;
         }
 
         private void InitListeners()
