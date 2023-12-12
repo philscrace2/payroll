@@ -1,10 +1,12 @@
 ﻿using Ninject.Modules;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
+using PayrollAdminAdapterGui.views_controllers_uis.dialog.common.confirm;
 using PayrollAdminAdapterGui.views_controllers_uis.mainframe;
 using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel;
 using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay.paylist;
 using PayrollGuiWinformsImpl.viewimpl;
 using PayrollGuiWinformsImpl.viewimpl.dialog.addemployee;
+using PayrollGuiWinformsImpl.viewimpl.dialog.common;
 using PayrollGuiWinformsImpl.viewimpl.mainframe;
 using PayrollGuiWinformsImpl.viewimpl.mainframe.mainpanel.pay;
 using PayrollPorts.primaryAdminUseCase;
@@ -40,6 +42,9 @@ namespace PayrollGuiWinformsImpl
 
         private void bindUIs()
         {
+            //ConfirmDialogUIImpl: ConfirmDialogUI
+
+            Bind(typeof(ConfirmDialogUI)).To(typeof(ConfirmDialogUIImpl));
             Bind(typeof(AddEmployeeUI<>)).To(typeof(AddEmployeeUIImpl<>));
             Bind<MainFrameUI>().To<MainFrameUIImpl>();
             Bind(typeof(MainPanelUI<>)).To(typeof(MainPanelUIImpl));

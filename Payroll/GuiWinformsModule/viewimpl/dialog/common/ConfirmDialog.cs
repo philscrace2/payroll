@@ -13,7 +13,6 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.common
         private string cancelLabelString;
 
         public ConfirmDialog(
-            Form parentFrame,
             string message,
             ConfirmDialogListener confirmDialogListener,
             string okLabelString = "Confirm",
