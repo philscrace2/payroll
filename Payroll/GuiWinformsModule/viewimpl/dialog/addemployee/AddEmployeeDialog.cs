@@ -13,8 +13,6 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
         private IntegerField ifEmployeeId = new IntegerField();
         private TextBox tfName = new TextBox();
         private TextBox tfAddress = new TextBox();
-        private ComboBox cbEmployeeType = new ComboBox();
-        private ComboBox cbPaymentMethod = new ComboBox();
 
         //private Dictionary<EmployeeType, EmployeeFieldsPanel> employeeFieldsPanelByEmployeeType = new Dictionary<EmployeeType, EmployeeFieldsPanel>();
         //private Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel> paymentMethodFieldsPanelByPaymentMethod = new Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel>();

@@ -1,9 +1,9 @@
 ﻿using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
 using PayrollGuiWinformsImpl.viewimpl.dialog;
 
-namespace WindowsFoPayrollGuiWinformsImpl.viewimpl.dialog.addemployeermsApp1
+namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
 {
-    public partial class AddEmployeeDialog : Form
+    public partial class AddEmployeeDialog
     {
         /// <summary>
         /// Required designer variable.
