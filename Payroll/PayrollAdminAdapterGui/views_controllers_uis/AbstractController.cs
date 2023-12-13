@@ -15,7 +15,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis
             return view;
         }
 
-        protected abstract ViewListener GetViewListener();
+        protected abstract VL GetViewListener();
 
     }
 }

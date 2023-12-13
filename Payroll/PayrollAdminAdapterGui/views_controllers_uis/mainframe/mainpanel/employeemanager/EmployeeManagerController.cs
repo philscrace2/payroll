@@ -11,12 +11,12 @@ using static PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.em
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager
 {
-    public class EmployeeManagerController<V> : AbstractController<V, EmployeeManagerViewListener> where V : EmployeeManagerView
+    public class EmployeeManagerController<V> : AbstractController<V, EmployeeManagerView.EmployeeManagerViewListener>, EmployeeManagerViewListener where V : EmployeeManagerView
     {
         private DeleteEmployeeUseCaseFactory deleteEmployeeUseCaseFactory;
         private EventBus eventBus;
 
-        //private AddEmployeeUI<AddEmployeeView> addEmployeeUIProvider;
+        private AddEmployeeUI<AddEmployeeView> addEmployeeUIProvider;
         //private ConfirmDialogUI confirmDialogUIProvider;
         //private AddTimeCardUI<AddTimeCardView>.AddTimeCardUIFactory addTimeCardUIFactory;
         private ObservableSelectedEmployee observableSelectedEployee;
@@ -36,7 +36,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         {
             this.deleteEmployeeUseCaseFactory = deleteEmployeeUseCaseFactory;
             this.eventBus = eventBus;
-            //this.addEmployeeUIProvider = addEmployeeUIProvider;
+            this.addEmployeeUIProvider = addEmployeeUIProvider;
             //this.confirmDialogUIProvider = confirmDialogUIProvider;
             //this.addTimeCardUIFactory = addTimeCardUIFactory;
             this.confirmMessageFormatter = confirmMessageFormatter;
@@ -51,9 +51,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
             });
         }
 
-        protected override ViewListener GetViewListener()
+        protected override EmployeeManagerView.EmployeeManagerViewListener GetViewListener()
         {
-            return (ViewListener)this;
+            return (EmployeeManagerView.EmployeeManagerViewListener)this;
         }
 
         private void onSelectedEmployeeIdChanged()
@@ -87,7 +87,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 
         public void onAddEmployeeAction()
         {
-            //addEmployeeUIProvider.Show();
+            addEmployeeUIProvider.Show();
         }
 
 

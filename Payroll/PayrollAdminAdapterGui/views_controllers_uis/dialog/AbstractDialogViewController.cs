@@ -16,7 +16,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog
 
         private void RegisterThisToEventbus()
         {
-            //eventBus?.Register(this);
+            eventBus?.Register(this);
         }
 
         public void Show()
@@ -35,7 +35,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog
         protected void Close()
         {
             UnregisterThisFromEventBus();
-            //GetView().Close(); // Assuming the Close method is defined in IDialogView
+            GetView().Close(); // Assuming the Close method is defined in IDialogView
         }
 
         private void UnregisterThisFromEventBus()

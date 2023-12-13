@@ -69,7 +69,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.pay
             };
         }
 
-        protected override ViewListener GetViewListener()
+        protected override PayViewListener GetViewListener()
         {
             return (PayViewListener)this;
         }

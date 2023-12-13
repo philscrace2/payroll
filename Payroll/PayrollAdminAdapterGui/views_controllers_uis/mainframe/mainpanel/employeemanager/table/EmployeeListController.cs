@@ -73,7 +73,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
             elv.setModel(employeeListPresenterFactory.of(observableCurrentDate.get(), employeeListResponse).toViewModel());
         }
 
-        protected override ViewListener GetViewListener()
+        protected override EmployeeListViewListener GetViewListener()
         {
             return (EmployeeListViewListener)this;
         }

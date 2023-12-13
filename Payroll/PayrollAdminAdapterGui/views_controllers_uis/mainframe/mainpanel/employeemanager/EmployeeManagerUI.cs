@@ -24,6 +24,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 
             controller.setObservableSelectedEmployee(employeeListUI.getObservableSelectedEployee());
             affiliationButtonUI.setObservableSelectedEmployee(employeeListUI.getObservableSelectedEployee());
+            init();
         }
 
         public void setObservableCurrentDate(Observable<DateTime> observableCurrentDate)

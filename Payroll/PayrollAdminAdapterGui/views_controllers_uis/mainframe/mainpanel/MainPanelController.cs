@@ -34,7 +34,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
         }
 
 
-        protected override ViewListener GetViewListener()
+        protected override MainPanelViewListener GetViewListener()
         {
             return (MainPanelViewListener)this;
         }

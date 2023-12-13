@@ -16,14 +16,14 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog
             //Modal = true;
             Size = new System.Drawing.Size(450, 360);
 
-            FormClosing += (sender, e) =>
-            {
-                if (e.CloseReason == CloseReason.UserClosing)
-                {
-                    //listener.OnCloseAction();
-                    e.Cancel = true; // Prevents the dialog from closing
-                }
-            };
+            //FormClosing += (sender, e) =>
+            //{
+            //    if (e.CloseReason == CloseReason.UserClosing)
+            //    {
+            //        //listener.OnCloseAction();
+            //        e.Cancel = true; // Prevents the dialog from closing
+            //    }
+            //};
         }
 
         private string BuildTitle(string title)
@@ -31,7 +31,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog
             return GuiConstants.APP_TITLE + (title == null ? "" : " - " + title);
         }
 
-        public void SetViewListener(T viewListener)
+        protected void SetViewListener(T viewListener)
         {
             listener = viewListener;
         }
@@ -56,18 +56,19 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog
             Shown += (sender, e) => component.Focus();
         }
 
-        public void ShowIt()
+        public void showIt()
         {
             ShowDialog();
         }
 
         private void ShowDialog()
         {
-            this.Invoke((MethodInvoker)(() =>
-            {
-                CenterParent();
-                ShowDialog();
-            }));
+            //this.Invoke((MethodInvoker)(() =>
+            //{
+            //    CenterParent();
+            //    this.Show();
+            //}));
+            base.ShowDialog();
         }
     }
 

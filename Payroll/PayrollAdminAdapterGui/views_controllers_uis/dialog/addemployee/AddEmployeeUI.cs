@@ -12,6 +12,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
         public AddEmployeeUI(AddEmployeeController<V> controller, V view) : base(controller, view)
         {
             this.controller = controller;
+            init();
         }
 
         public void Show()

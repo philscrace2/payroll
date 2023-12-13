@@ -1,5 +1,4 @@
 ﻿using PayrollAdminAdapterGui.validation;
-using PayrollAdminAdapterGui.views_controllers_uis;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
 using PayrollGuiWinformsImpl.viewimpl.component.field;
 using static OkCancelButtonBar;
@@ -9,7 +8,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
     public partial class AddEmployeeDialog : DefaultModalDialog<AddEmployeeViewListener>, AddEmployeeView, IOkCancelButtonBarListener
     {
         private Panel tableHolder;
-        private IAddEmployeeViewListener listener;
+        private AddEmployeeViewListener listener;
         private Button btFulfillPayment;
         private IntegerField ifEmployeeId = new IntegerField();
         private TextBox tfName = new TextBox();
@@ -63,12 +62,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
             // Add common fields to a panel or layout
         }
 
-        private void InitializeComponent()
-        {
-            // Initialize and layout components
-        }
-
-        public void SetViewListener(IAddEmployeeViewListener viewListener)
+        protected void SetViewListener(AddEmployeeViewListener viewListener)
         {
             listener = viewListener;
         }
@@ -86,22 +80,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
 
         public void OnCancel()
         {
-            listener.OnCancel();
-        }
-
-        public void setViewListener(AddEmployeeViewListener listener)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void setViewListener(ViewListener getViewListener)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void showIt()
-        {
-            throw new NotImplementedException();
+            listener.onCancel();
         }
 
         public PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee.EmployeeViewModel getModel()
@@ -118,6 +97,16 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
         {
             throw new NotImplementedException();
         }
+
+        public void setViewListener(AddEmployeeViewListener listener)
+        {
+            this.listener = listener;
+        }
+
+        //public void showIt()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 
     public interface IAddEmployeeView

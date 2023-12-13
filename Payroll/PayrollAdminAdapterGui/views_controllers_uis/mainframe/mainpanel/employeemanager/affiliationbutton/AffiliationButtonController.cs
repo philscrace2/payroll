@@ -32,9 +32,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         }
 
 
-        protected override ViewListener GetViewListener()
+        protected override AffiliationButtonViewListener GetViewListener()
         {
-            return (ViewListener)this;
+            return (AffiliationButtonViewListener)this;
         }
 
 

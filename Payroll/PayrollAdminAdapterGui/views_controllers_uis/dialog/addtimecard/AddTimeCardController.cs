@@ -88,9 +88,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
             throwIfThereAreErrors(new AddTimeCardFieldsValidator().GetErrors(model));
         }
 
-        protected override ViewListener GetViewListener()
+        protected override AddTimeCardViewListener GetViewListener()
         {
-            return (ViewListener)this;
+            return (AddTimeCardViewListener)this;
         }
 
         private void OnTimeCardAlreadyExists(AddTimeCardViewOutputModel model)

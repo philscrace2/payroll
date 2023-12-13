@@ -13,7 +13,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.common
 
         public void show(String message, ConfirmDialogListener confirmDialogListener)
         {
-            new ConfirmDialog(message, confirmDialogListener).ShowIt();
+            new ConfirmDialog(message, confirmDialogListener).showIt();
         }
 
 

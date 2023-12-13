@@ -13,6 +13,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
     }
 
 
+
+
     public class EmployeeManagerViewModel
     {
         public ButtonEnabledStates buttonsEnabledStates;

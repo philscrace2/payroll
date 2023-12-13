@@ -117,7 +117,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffi
         }
 
 
-        protected override ViewListener GetViewListener()
+        protected override AddUnionMemberViewListener GetViewListener()
         {
             return (AddUnionMemberViewListener)this;
         }

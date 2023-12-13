@@ -31,14 +31,15 @@
             components = new System.ComponentModel.Container();
             //this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.mainPaneTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.employeeGridTableLayoutHolder = new System.Windows.Forms.TableLayoutPanel();
 
-            this.txtCurrentDate = new System.Windows.Forms.TextBox();
+            this.dateTimePickerCurrentDate = new System.Windows.Forms.DateTimePicker();
             this.dateTimeLabel = new System.Windows.Forms.Label();
             this.lblEmployees = new System.Windows.Forms.Label();
             this.centrePanelTop = new System.Windows.Forms.Panel();
             this.centrePanelBottom = new System.Windows.Forms.Panel();
             this.lblTodaysPayments = new System.Windows.Forms.Label();
-            this.employeeManagerPanelHolder = new System.Windows.Forms.Panel();
+            this.employeeManagerPanelHolder = new System.Windows.Forms.TableLayoutPanel();
             this.payDayPanelHolder = new  System.Windows.Forms.Panel();
             this.dateTimePanelHolder = new System.Windows.Forms.Panel();
             this.centrePanelTop.SuspendLayout();
@@ -60,12 +61,45 @@
             this.mainPaneTableLayoutPanel.Location = new System.Drawing.Point(1, 0);
             this.mainPaneTableLayoutPanel.Name = "mainPaneTableLayoutPanel";
             this.mainPaneTableLayoutPanel.RowCount = 3;
-            this.mainPaneTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.47382F));
-            this.mainPaneTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89.52618F));
-            this.mainPaneTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+            this.mainPaneTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.mainPaneTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55F));
+            this.mainPaneTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.mainPaneTableLayoutPanel.Size = new System.Drawing.Size(798, 595);
             this.mainPaneTableLayoutPanel.TabIndex = 0;
             this.mainPaneTableLayoutPanel.Dock = DockStyle.Fill;
+
+            //
+            // employeeManagerPanelHolder
+            //
+            this.employeeManagerPanelHolder.ColumnCount = 2;
+            this.employeeManagerPanelHolder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
+            this.employeeManagerPanelHolder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.employeeManagerPanelHolder.Controls.Add(this.employeeGridTableLayoutHolder, 0, 0);
+            //this.employeeManagerPanelHolder.Controls.Add(this.employeeManagerPanelHolder, 0, 1);
+            //this.employeeManagerPanelHolder.Controls.Add(this.payDayPanelHolder, 0, 2);
+            this.employeeManagerPanelHolder.Location = new System.Drawing.Point(1, 0);
+            this.employeeManagerPanelHolder.Name = "employeeManagerPanelHolder";
+            this.employeeManagerPanelHolder.RowCount = 1;
+            this.employeeManagerPanelHolder.Size = new System.Drawing.Size(798, 395);
+            this.employeeManagerPanelHolder.TabIndex = 0;
+            this.employeeManagerPanelHolder.Dock = DockStyle.Fill;
+            //
+            // employeeGridTableLayoutHolder
+            //
+            this.employeeGridTableLayoutHolder.ColumnCount = 1;
+            this.employeeGridTableLayoutHolder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.employeeGridTableLayoutHolder.Controls.Add(this.lblEmployees, 0, 0);
+            //this.employeeGridTableLayoutHolder.Controls.Add(this.employeeManagerPanelHolder, 0, 1);
+            //this.employeeGridTableLayoutHolder.Controls.Add(this.payDayPanelHolder, 0, 2);
+            this.employeeGridTableLayoutHolder.Location = new System.Drawing.Point(1, 0);
+            this.employeeGridTableLayoutHolder.Name = "employeeGridTableLayoutHolder";
+            this.employeeGridTableLayoutHolder.RowCount = 3;
+            this.employeeGridTableLayoutHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.47382F));
+            this.employeeGridTableLayoutHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
+            this.employeeGridTableLayoutHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.employeeGridTableLayoutHolder.Size = new System.Drawing.Size(798, 595);
+            this.employeeGridTableLayoutHolder.TabIndex = 0;
+            this.employeeGridTableLayoutHolder.Dock = DockStyle.Fill;
 
             //
             // this panel
@@ -78,7 +112,7 @@
             // dateTimePanelHolder
             // 
             this.dateTimePanelHolder.Controls.Add(this.dateTimeLabel);
-            this.dateTimePanelHolder.Controls.Add(this.txtCurrentDate);
+            this.dateTimePanelHolder.Controls.Add(this.dateTimePickerCurrentDate);
             this.dateTimePanelHolder.Location = new System.Drawing.Point(3, 3);
             this.dateTimePanelHolder.Name = "dateTimePanelHolder";
             this.dateTimePanelHolder.Size = new System.Drawing.Size(750, 51);
@@ -113,12 +147,12 @@
             this.lblEmployees.Name = "lblEmployees";
             this.lblEmployees.Size = new System.Drawing.Size(76, 16);
             this.lblEmployees.TabIndex = 0;
-            this.lblEmployees.Text = "Employees";
+            this.lblEmployees.Text = "Employees +++";
             // 
             // employeeManagerPanelHolder
             // 
             //this.centrePanelTop.Controls.Add(this.employeeManagerPanelHolder);
-            this.employeeManagerPanelHolder.Controls.Add(this.lblEmployees);
+            //this.employeeManagerPanelHolder.Controls.Add(this.lblEmployees);
             this.employeeManagerPanelHolder.Location = new System.Drawing.Point(3, 3);
             this.employeeManagerPanelHolder.Name = "employeeManagerPanelHolder";
             this.employeeManagerPanelHolder.Size = new System.Drawing.Size(1000, 254);
@@ -128,10 +162,10 @@
             // 
             // txtCurrentDate
             // 
-            this.txtCurrentDate.Location = new System.Drawing.Point(8, 4);
-            this.txtCurrentDate.Name = "txtCurrentDate";
-            this.txtCurrentDate.Size = new System.Drawing.Size(144, 22);
-            this.txtCurrentDate.TabIndex = 0;
+            this.dateTimePickerCurrentDate.Location = new System.Drawing.Point(8, 4);
+            this.dateTimePickerCurrentDate.Name = "txtCurrentDate";
+            this.dateTimePickerCurrentDate.Size = new System.Drawing.Size(144, 22);
+            this.dateTimePickerCurrentDate.TabIndex = 0;
             // 
             // dateTimeLabel
             // 
@@ -148,12 +182,13 @@
 
         private TableLayoutPanel mainPaneTableLayoutPanel;
 
-        private Panel employeeManagerPanelHolder;
+        private TableLayoutPanel employeeManagerPanelHolder;
+        private TableLayoutPanel employeeGridTableLayoutHolder;
         private Panel payDayPanelHolder;
         private Panel dateTimePanelHolder;
 
         private System.Windows.Forms.Label dateTimeLabel;
-        private System.Windows.Forms.TextBox txtCurrentDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerCurrentDate;
         private System.Windows.Forms.Label lblEmployees;
         private System.Windows.Forms.Panel centrePanelTop;
         private System.Windows.Forms.Panel centrePanelBottom;

@@ -13,9 +13,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.common.error
             return true;
         }
 
-        protected override ViewListener GetViewListener()
+        protected override CloseableViewListener GetViewListener()
         {
-            return this;
+            return (CloseableViewListener)this;
 
         }
 
