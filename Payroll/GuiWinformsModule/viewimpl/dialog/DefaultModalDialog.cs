@@ -3,7 +3,7 @@ using PayrollWinformsPrototype;
 
 namespace PayrollGuiWinformsImpl.viewimpl.dialog
 {
-    public class DefaultModalDialog<T> : Form where T : CloseableViewListener
+    public class DefaultModalDialog<T> : Form, DialogView<T> where T : CloseableViewListener
     {
         private T listener;
 
@@ -31,7 +31,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog
             return GuiConstants.APP_TITLE + (title == null ? "" : " - " + title);
         }
 
-        protected void SetViewListener(T viewListener)
+        public void setViewListener(T viewListener)
         {
             listener = viewListener;
         }

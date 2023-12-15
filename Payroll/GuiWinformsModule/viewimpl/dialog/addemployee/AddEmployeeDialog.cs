@@ -1,6 +1,7 @@
 ﻿using PayrollAdminAdapterGui.validation;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
 using PayrollGuiWinformsImpl.viewimpl.component.field;
+using PayrollGuiWinformsImpl.viewimpl.dialog.addemployee.typespecific;
 using static OkCancelButtonBar;
 
 namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
@@ -14,7 +15,9 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
         private TextBox tfName = new TextBox();
         private TextBox tfAddress = new TextBox();
 
-        //private Dictionary<EmployeeType, EmployeeFieldsPanel> employeeFieldsPanelByEmployeeType = new Dictionary<EmployeeType, EmployeeFieldsPanel>();
+        private EmployeeFieldsPanel<EmployeeViewModel> currentEmployeeFieldsPanel;
+
+        //private Dictionary<EmployeeType, EmployeeFieldsPanel<EmployeeViewModel>> employeeFieldsPanelByEmployeeType = new Dictionary<EmployeeType, EmployeeFieldsPanel<EmployeeFieldsPanel>>();
         //private Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel> paymentMethodFieldsPanelByPaymentMethod = new Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel>();
 
         //public AddEmployeeDialog(Form parentForm) : this(parentForm, "")
@@ -41,7 +44,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
         {
             cbEmployeeType.SelectedIndexChanged += (sender, e) =>
             {
-                // Update type specific panels visibility
+                currentEmployeeFieldsPanel.Text = cbEmployeeType.SelectedItem.ToString();
             };
             cbPaymentMethod.SelectedIndexChanged += (sender, e) =>
             {
@@ -60,20 +63,20 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
             // Add common fields to a panel or layout
         }
 
-        protected void SetViewListener(AddEmployeeViewListener viewListener)
-        {
-            listener = viewListener;
-        }
-
-        public EmployeeViewModel GetModel()
-        {
-            // Fill and return model
-            return new EmployeeViewModel();
-        }
+        //public EmployeeViewModel GetModel()
+        //{
+        //    // Fill and return model
+        //    return new EmployeeViewModel();
+        //}
 
         public void OnOk()
         {
             GetViewListener().onAddEmployee();
+        }
+
+        public void OnOkTrigger(object o, EventArgs e)
+        {
+            OnOk();
         }
 
         public void OnCancel()
@@ -83,7 +86,16 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
 
         public PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee.EmployeeViewModel getModel()
         {
-            throw new NotImplementedException();
+            return fillBaseModel(currentEmployeeFieldsPanel.getModel());
+        }
+
+        private PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee.EmployeeViewModel fillBaseModel(EmployeeViewModel viewModel)
+        {
+            viewModel.EmployeeId = Convert.ToInt32(txtId.Text);
+            viewModel.Name = txtName.Text;
+            viewModel.Address = txtAddress.Text;
+            //viewModel.PaymentMethod = cbPaymentMethod.Text;
+            return viewModel;
         }
 
         public void setModel(ValidationErrorMessagesModel viewModel)
@@ -96,10 +108,10 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
             throw new NotImplementedException();
         }
 
-        public void setViewListener(AddEmployeeViewListener listener)
-        {
-            this.listener = listener;
-        }
+        //public void setViewListener(AddEmployeeViewListener listener)
+        //{
+        //    this.listener = listener;
+        //}
 
         //public void showIt()
         //{
@@ -117,11 +129,6 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
     {
         void OnAddEmployee();
         void OnCancel();
-    }
-
-    public class EmployeeViewModel
-    {
-        // ViewModel properties
     }
 
     public enum EmployeeType

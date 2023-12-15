@@ -139,6 +139,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
             this.btnAdd.TabIndex = 6;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new EventHandler(this.OnOkTrigger);
             // 
             // button2
             // 
@@ -226,7 +227,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
 
         private void txtSalary_TextChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         #endregion

@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="viewimpl\dialog\addemployee\typespecific\" />
     <Folder Include="viewimpl\dialog\addemployee\paymentmethod\" />
     <Folder Include="viewimpl\dialog\addtimecard\" />
     <Folder Include="viewimpl\dialog\addunionmemberaffiliation\" />
