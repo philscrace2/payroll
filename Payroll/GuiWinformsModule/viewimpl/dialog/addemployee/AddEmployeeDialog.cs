@@ -1,7 +1,9 @@
 ﻿using PayrollAdminAdapterGui.validation;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
+using PayrollEntities.paymentmethod;
 using PayrollGuiWinformsImpl.viewimpl.component.field;
 using PayrollGuiWinformsImpl.viewimpl.dialog.addemployee.typespecific;
+using PayrollGuiWinformsImpl.viewimpl.dialog.addemployee.paymentmethod;
 using static OkCancelButtonBar;
 
 namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
@@ -16,16 +18,29 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
         private TextBox tfAddress = new TextBox();
 
         private EmployeeFieldsPanel<EmployeeViewModel> currentEmployeeFieldsPanel;
+        private PaymentMethodFieldsPanel<PaymentMethod> currentPaymentMethodFieldsPanel;
 
-        //private Dictionary<EmployeeType, EmployeeFieldsPanel<EmployeeViewModel>> employeeFieldsPanelByEmployeeType = new Dictionary<EmployeeType, EmployeeFieldsPanel<EmployeeFieldsPanel>>();
-        //private Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel> paymentMethodFieldsPanelByPaymentMethod = new Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel>();
+        private Dictionary<EmployeeType, EmployeeFieldsPanel<EmployeeViewModel>> employeeFieldsPanelByEmployeeType = new Dictionary<EmployeeType, EmployeeFieldsPanel<EmployeeViewModel>>();
+        private Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel<PaymentMethod>> paymentMethodFieldsPanelByPaymentMethod = new Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel<PaymentMethod>>();
 
-        //public AddEmployeeDialog(Form parentForm) : this(parentForm, "")
-        //{
+        public AddEmployeeDialog() : this(null)
+        {
+            employeeFieldsPanelByEmployeeType = new Dictionary<EmployeeType, EmployeeFieldsPanel<object>>
+        {
+            { EmployeeType.SALARIED, new SalariedEmployeeFieldsPanel() as EmployeeFieldsPanel<object> },
+            { EmployeeType.HOURLY, new HourlyEmployeeFieldsPanel() as EmployeeFieldsPanel<object> },
+            { EmployeeType.COMMISSIONED, new CommissionedEmployeeFieldsPanel() as EmployeeFieldsPanel<object> }
+        };
 
-        //}
+            paymentMethodFieldsPanelByPaymentMethod = new Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel<object>>
+        {
+            { PaymentMethodEnum.PAYMASTER, new PaymasterPaymentMethodFieldsPanel() as PaymentMethodFieldsPanel<object> },
+            { PaymentMethodEnum.DIRECT_DEPOSIT, new DirectPaymentMethodFieldsPanel() as PaymentMethodFieldsPanel<object> }
+        };
 
-        public AddEmployeeDialog(string title) : base("Add Employee")
+        }
+
+        public AddEmployeeDialog(Form parentForm) : base(parentForm,"Add Employee")
         {
             InitializeComponent();
             InitCommonFields();
@@ -36,8 +51,8 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
 
         private void InitDefaults()
         {
-            //cbEmployeeType.SelectedIndex = 0;
-            //cbPaymentMethod.SelectedIndex = 0;
+            cbEmployeeType.SelectedIndex = 0;
+            cbPaymentMethod.SelectedIndex = 0;
         }
 
         private void InitListeners()
@@ -45,11 +60,31 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
             cbEmployeeType.SelectedIndexChanged += (sender, e) =>
             {
                 currentEmployeeFieldsPanel.Text = cbEmployeeType.SelectedItem.ToString();
+                updateTypeSpecificPanelsVisibility();
             };
             cbPaymentMethod.SelectedIndexChanged += (sender, e) =>
             {
+                currentPaymentMethodFieldsPanel = paymentMethodFieldsPanelByPaymentMethod //.get((PaymentMethodEnum)cbPaymentMethod.getSelectedItem());
                 // Update payment method panels visibility
+                updatePaymentMethodPanelsVisibility();
+
             };
+        }
+
+        private void updateTypeSpecificPanelsVisibility()
+        {
+            //employeeFieldsPanelByEmployeeType.Values. .forEach((it)->
+            //        it.setVisible(it == currentEmployeeFieldsPanel)
+            //    );
+        }
+
+        private void updatePaymentMethodPanelsVisibility()
+        {
+            //paymentMethodFieldsPanelByPaymentMethod.values().stream()
+            //    .forEach((it)->
+            //        it.setVisible(it == currentPaymentMethodFieldsPanel)
+            //    );
+
         }
 
         private void PopulateComboBoxes()

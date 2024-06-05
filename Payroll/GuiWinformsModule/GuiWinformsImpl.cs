@@ -17,7 +17,7 @@ namespace PayrollGuiWinformsImpl
         public void run()
         {
             mainFrameUI.show();
-            Form f = new Form();
+            //Form f = new Form();
             // f.ShowDialog();
         }
 
