@@ -23,6 +23,8 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
         private Dictionary<EmployeeType, EmployeeFieldsPanel<EmployeeViewModel>> employeeFieldsPanelByEmployeeType = new Dictionary<EmployeeType, EmployeeFieldsPanel<EmployeeViewModel>>();
         private Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel<PaymentMethod>> paymentMethodFieldsPanelByPaymentMethod = new Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel<PaymentMethod>>();
 
+
+        //Construction
         public AddEmployeeDialog() : this(null)
         {
             employeeFieldsPanelByEmployeeType = new Dictionary<EmployeeType, EmployeeFieldsPanel<object>>
