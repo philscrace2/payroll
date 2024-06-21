@@ -11,12 +11,12 @@ namespace PayrollEntities.paymentschedule
     {
 
     public static readonly DateTime PAYDAY_REFERENCE_DATE = Constants.BIWEEKLY_PAYMENT_SCHEDULE_REFERENCE_FRIDAY;
-        private static readonly DayOfWeek PAYDAY_DAY_OF_WEEK = PAYDAY_REFERENCE_DATE.DayOfWeek;	
-	
+        private static readonly DayOfWeek PAYDAY_DAY_OF_WEEK = PAYDAY_REFERENCE_DATE.DayOfWeek;
+
     public override bool isPayDate(DateTime date)
     {
         return Util.isDayOfWeek(date, PAYDAY_DAY_OF_WEEK) && Util.isOnEvenWeekBasedOnReferenceDate(date);
-    }    
+    }
     protected override DateInterval getPayIntervalForValidatedPayDate(DateTime intervalEndDate)
     {
 		return DateInterval.of(Util.GetIntervalStartDate(intervalEndDate), intervalEndDate);
@@ -34,12 +34,12 @@ namespace PayrollEntities.paymentschedule
 
     public static class Util
     {
-        private static readonly int NR_OF_WEEKDAYS = 7;
-        private static readonly int TWO_WEEK_DAYS_NR = NR_OF_WEEKDAYS * 2;
+        private static readonly int? NR_OF_WEEKDAYS = 7;
+        private static readonly int? TWO_WEEK_DAYS_NR = NR_OF_WEEKDAYS * 2;
 
         public static DateTime GetIntervalStartDate(DateTime intervalEndDate)
         {
-            return intervalEndDate.AddDays(-(TWO_WEEK_DAYS_NR - 1));
+            return intervalEndDate.AddDays(Convert.ToInt32(-(TWO_WEEK_DAYS_NR - 1)));
         }
 
 
@@ -65,14 +65,14 @@ namespace PayrollEntities.paymentschedule
 
         public static DateTime PlusWeek(DateTime sameOrNextDayOfWeek)
         {
-            return sameOrNextDayOfWeek.AddDays(NR_OF_WEEKDAYS);
+            return sameOrNextDayOfWeek.AddDays(Convert.ToInt32(NR_OF_WEEKDAYS));
         }
 
 
         public static DateTime GetSameOrNextDayOfWeek(DateTime referenceDate, DayOfWeek dayOfWeek)
         {
-            int daysToAdd = ((int)dayOfWeek - (int)referenceDate.DayOfWeek + 7) % 7;
-            return referenceDate.AddDays(daysToAdd == 0 ? 7 : daysToAdd);
+            int? daysToAdd = ((int?)dayOfWeek - (int?)referenceDate.DayOfWeek + 7) % 7;
+            return referenceDate.AddDays(Convert.ToInt32(daysToAdd == 0 ? 7 : daysToAdd));
         }
 
         }

@@ -4,10 +4,10 @@
     {
         public IntegerField()
         {
-            KeyPress += IntegerField_KeyPress;
+            KeyPress += integerField_KeyPress;
         }
 
-        private void IntegerField_KeyPress(object sender, KeyPressEventArgs e)
+        private void integerField_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Allow only digits and control characters (like backspace)
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -16,7 +16,7 @@
             }
         }
 
-        public int? GetInteger()
+        public int? Getinteger()
         {
             if (int.TryParse(Text, out int result))
             {

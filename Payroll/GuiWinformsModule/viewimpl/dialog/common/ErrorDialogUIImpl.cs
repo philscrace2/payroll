@@ -7,7 +7,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.common
         public ErrorDialogUIImpl(
             ErrorDialogController<ErrorDialog> controller,
             MainFrameUIImpl mainFrameUIImpl
-        ) : base(controller, new ErrorDialog(mainFrameUIImpl.mainFrameWindow))
+        ) : base(controller, new ErrorDialog(mainFrameUIImpl.view))
         {
 
         }

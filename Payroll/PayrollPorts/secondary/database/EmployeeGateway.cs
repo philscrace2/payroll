@@ -15,7 +15,7 @@ namespace PayrollPorts.secondary.database
         /**
          * @throws NoSuchEmployeeException
          */
-        int findEmployeeIdByUnionMemberId(int? unionMemberId);
+        int? findEmployeeIdByUnionMemberId(int? unionMemberId);
 
         bool isEmployeeExistsByUnionMemberId(int? unionMemberId);
 

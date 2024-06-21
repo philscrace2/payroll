@@ -2,9 +2,9 @@ namespace PayrollEntities.paymenttype
 {
     public abstract class CommissionedPaymentType : StrictIntervalPaymentType
     {
-        private static readonly int TWO_WEEK_DAYS = 14;
+        private static readonly int? TWO_WEEK_DAYS = 14;
 
-        public abstract int getBiWeeklyBaseSalary();
+        public abstract int? getBiWeeklyBaseSalary();
         public abstract double getCommissionRate();
 
         public abstract void addSalesReceipt(SalesReceipt salesReceipt);
@@ -17,14 +17,14 @@ namespace PayrollEntities.paymenttype
         }
 
 
-        protected override int calculateAmountOnValidatedInterval(DateInterval dateInterval)
+        protected override int? calculateAmountOnValidatedInterval(DateInterval dateInterval)
         {
             return getBiWeeklyBaseSalary() + CalculateCommissionAmount(dateInterval);
         }
 
-        private int CalculateCommissionAmount(DateInterval dateInterval)
+        private int? CalculateCommissionAmount(DateInterval dateInterval)
         {
-            int sumAmount = 0;
+            int? sumAmount = 0;
             IEnumerable<SalesReceipt> salesReceipts = getSalesReceiptsIn(dateInterval);
             foreach (SalesReceipt salesReceipt in salesReceipts)
             {
@@ -34,9 +34,9 @@ namespace PayrollEntities.paymenttype
         }
 
 
-        private int calculateCommissionAmount(SalesReceipt salesReceipt)
+        private int? calculateCommissionAmount(SalesReceipt salesReceipt)
         {
-            return (int)(salesReceipt.getAmount() * getCommissionRate());
+            return (int?)(salesReceipt.getAmount() * getCommissionRate());
         }
 
 

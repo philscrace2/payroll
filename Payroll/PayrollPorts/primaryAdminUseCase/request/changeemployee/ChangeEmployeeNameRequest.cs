@@ -5,7 +5,7 @@ namespace PayrollPorts.primaryAdminUseCase.request.changemployee
 
         public String newName;
 
-        public ChangeEmployeeNameRequest(int employeeId, String newName) : base(employeeId)
+        public ChangeEmployeeNameRequest(int? employeeId, String newName) : base(employeeId)
         {
             this.newName = newName;
         }

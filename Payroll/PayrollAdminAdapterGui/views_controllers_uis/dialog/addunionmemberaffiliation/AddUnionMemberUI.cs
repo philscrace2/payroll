@@ -12,7 +12,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffi
         public AddUnionMemberUI(
                 AddUnionMemberController<V>.AddUnionMemberControllerFactory controllerFactory,
                 V view,
-                int employeeId) : base(controllerFactory.create(employeeId), view)
+                int? employeeId) : base(controllerFactory.create(employeeId), view)
         {
 
         }

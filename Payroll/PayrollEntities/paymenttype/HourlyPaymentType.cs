@@ -3,10 +3,10 @@ namespace PayrollEntities.paymenttype
     public abstract class HourlyPaymentType : PaymentType
     {
 
-        public static readonly int DAILY_NORMAL_HOURS = Constants.HOURLY_PAYMENTTYPE_DAILY_NORMAL_HOURS;
+        public static readonly int? DAILY_NORMAL_HOURS = Constants.HOURLY_PAYMENTTYPE_DAILY_NORMAL_HOURS;
         public static readonly double OVERTIME_WAGE_MULTIPLIER = Constants.HOURLY_PAYMENTTYPE_OVERTIME_WAGE_MULTIPLIER;
 
-        public abstract void setHourlyWage(int hourlyWage);
+        public abstract void setHourlyWage(int? hourlyWage);
         public abstract int? getHourlyWage();
 
         public abstract void addTimeCard(TimeCard timeCard);
@@ -35,9 +35,9 @@ namespace PayrollEntities.paymenttype
             return normalHours * getHourlyWage();
         }
 
-        private int calculateOvertimeAmount(int? overTimeHours)
+        private int? calculateOvertimeAmount(int? overTimeHours)
         {
-            return (int)(overTimeHours * (getHourlyWage() * OVERTIME_WAGE_MULTIPLIER));
+            return (int?)(overTimeHours * (getHourlyWage() * OVERTIME_WAGE_MULTIPLIER));
         }
         //TODO: Overengineered!
         public class SeparatedHours

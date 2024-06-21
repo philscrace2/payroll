@@ -1,4 +1,5 @@
 ﻿using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
+using PayrollGuiWinformsImpl.viewimpl.component.field;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee.typespecific
 {
     public partial class SalariedEmployeeFieldsPanel : EmployeeFieldsPanel<SalariedEmployeeViewModel>
     {
+        public IntegerField monthlySalaryField = new IntegerField();
         public SalariedEmployeeFieldsPanel()
         {
             InitializeComponent();
@@ -21,10 +23,10 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee.typespecific
             AddField("Salary", monthlySalaryField);
         }
 
-        public SalariedEmployeeViewModel getModel()
+        public override SalariedEmployeeViewModel getModel()
         {
             SalariedEmployeeViewModel salariedEmployeeViewModel = new SalariedEmployeeViewModel();
-            salariedEmployeeViewModel.monthlySalary = monthlySalaryField.getInteger().orElse(null);
+            salariedEmployeeViewModel.monthlySalary = monthlySalaryField.Getinteger();
             return salariedEmployeeViewModel;
         }
     }

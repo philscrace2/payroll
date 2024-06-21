@@ -1,4 +1,5 @@
 using PayrollPorts.primaryAdminUseCase.request.addemployee;
+using System.Numerics;
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee.requestcreator
 {
@@ -8,7 +9,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee.reques
         {
             AddCommissionedEmployeeRequest request = new AddCommissionedEmployeeRequest();
             request.biWeeklyBaseSalary = model.biWeeklyBaseSalary;
-            request.commissionRate = model.commissionRatePercentage / 100d;
+            request.commissionRate = Convert.ToInt32(model.commissionRatePercentage / 100d);
             return request;
         }
     }

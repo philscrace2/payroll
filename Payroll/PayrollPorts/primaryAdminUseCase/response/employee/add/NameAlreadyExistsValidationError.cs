@@ -3,8 +3,8 @@ namespace PayrollPorts.primaryAdminUseCase.response.employee.add
     public class NameAlreadyExistsValidationError : IAddEmployeeError
     {
 
-        public int idOfExistingUser;
-        public NameAlreadyExistsValidationError(int idOfExistingUser)
+        public int? idOfExistingUser;
+        public NameAlreadyExistsValidationError(int? idOfExistingUser)
         {
             this.idOfExistingUser = idOfExistingUser;
         }

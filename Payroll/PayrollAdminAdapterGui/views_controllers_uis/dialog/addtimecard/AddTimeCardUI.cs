@@ -10,7 +10,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
         public AddTimeCardUI(
                 AddTimeCardController<V>.AddTimeCardControllerFactory controllerFactory,
                 V view,
-                int employeeId
+                int? employeeId
                 ) : base(controllerFactory.create(employeeId), view)
         {
 

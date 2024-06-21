@@ -16,7 +16,7 @@ namespace PayrollEntities.paymenttype
 
         protected abstract bool isValidInterval(DateInterval dateInterval);
 
-        protected abstract int calculateAmountOnValidatedInterval(DateInterval dateInterval);
+        protected abstract int? calculateAmountOnValidatedInterval(DateInterval dateInterval);
 
         public class InvalidIntervalException : Exception { }
     }

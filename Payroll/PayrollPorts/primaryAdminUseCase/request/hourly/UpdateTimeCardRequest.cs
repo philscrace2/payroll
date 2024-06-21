@@ -4,9 +4,9 @@ namespace PayrollPorts.primaryAdminUseCase.request.hourly
     {
 
         public readonly DateTime date;
-        public readonly int workingHoursQty;
+        public readonly int? workingHoursQty;
 
-        public UpdateTimeCardRequest(int employeeId, DateTime date, int workingHoursQty) : base(employeeId)
+        public UpdateTimeCardRequest(int? employeeId, DateTime date, int? workingHoursQty) : base(employeeId)
         {
             this.date = date;
             this.workingHoursQty = workingHoursQty;

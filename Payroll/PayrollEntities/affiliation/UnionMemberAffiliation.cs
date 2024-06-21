@@ -17,14 +17,14 @@
             return countFridaysInInterval(payInterval) * getWeeklyDueAmount();
         }
 
-        private int calculateServiceChargesAmount(DateInterval dateInterval)
+        private int? calculateServiceChargesAmount(DateInterval dateInterval)
         {
             return getServiceChargesIn(dateInterval)
                     .Sum(serviceCharge => serviceCharge.getAmount());
 
         }
 
-        private int countFridaysInInterval(DateInterval dateInterval)
+        private int? countFridaysInInterval(DateInterval dateInterval)
         {
             return dateInterval.CountWeekDayInclusive(DayOfWeek.Friday);
         }

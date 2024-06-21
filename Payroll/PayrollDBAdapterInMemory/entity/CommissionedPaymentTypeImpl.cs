@@ -5,19 +5,19 @@ namespace PayrollDBAdapterInMemory.entity
 
     public class CommissionedPaymentTypeImpl : CommissionedPaymentType
     {
-        private int biWeeklyBaseSalary;
+        private int? biWeeklyBaseSalary;
         private double commissionRate;
 
         private Dictionary<DateTime, SalesReceipt> salesReceiptsByDate = new Dictionary<DateTime, SalesReceipt>();
 
-        public CommissionedPaymentTypeImpl(int biWeeklyBaseSalary, double commissionRate)
+        public CommissionedPaymentTypeImpl(int? biWeeklyBaseSalary, double commissionRate)
         {
             this.biWeeklyBaseSalary = biWeeklyBaseSalary;
             this.commissionRate = commissionRate;
         }
 
 
-        public override int getBiWeeklyBaseSalary()
+        public override int? getBiWeeklyBaseSalary()
         {
             return biWeeklyBaseSalary;
         }

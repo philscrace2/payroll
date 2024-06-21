@@ -6,9 +6,9 @@ namespace PayrollDBAdapterInMemory.entity
     {
 
         private DateTime date;
-        private int amount;
+        private int? amount;
 
-        public SalesReceiptImpl(DateTime date, int amount)
+        public SalesReceiptImpl(DateTime date, int? amount)
         {
             this.date = date;
             this.amount = amount;
@@ -24,12 +24,12 @@ namespace PayrollDBAdapterInMemory.entity
             this.date = date;
         }
 
-        public override int getAmount()
+        public override int? getAmount()
         {
             return amount;
         }
 
-        public override void setAmount(int amount)
+        public override void setAmount(int? amount)
         {
             this.amount = amount;
         }

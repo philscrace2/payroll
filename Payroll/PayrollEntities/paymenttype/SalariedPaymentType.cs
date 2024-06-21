@@ -2,14 +2,14 @@ namespace PayrollEntities.paymenttype
 {
     public abstract class SalariedPaymentType : StrictIntervalPaymentType
     {
-        public abstract int getMonthlySalary();
-        public abstract void setMonthlySalary(int monthlySalary);
+        public abstract int? getMonthlySalary();
+        public abstract void setMonthlySalary(int? monthlySalary);
 
         public override T accept<T>(PaymentTypeVisitor<T> visitor)
         {
             return visitor.visit(this);
         }
-        protected override int calculateAmountOnValidatedInterval(DateInterval dateInterval)
+        protected override int? calculateAmountOnValidatedInterval(DateInterval dateInterval)
         {
             return getMonthlySalary();
         }

@@ -11,19 +11,19 @@ namespace PayrollDBAdapterInMemory
     public class InMemoryEntityFactory : EntityFactory
     {
 
-        public SalariedPaymentType salariedPaymentType(int monthlySalary)
+        public SalariedPaymentType salariedPaymentType(int? monthlySalary)
         {
             return new SalariedPaymentTypeImpl(monthlySalary);
         }
 
 
-        public HourlyPaymentType hourlyPaymentType(int hourlyWage)
+        public HourlyPaymentType hourlyPaymentType(int? hourlyWage)
         {
             return new HourlyPaymentTypeImpl(hourlyWage);
         }
 
 
-        public CommissionedPaymentType commissionedPaymentType(int biWeeklyBaseSalary, double commissionRate)
+        public CommissionedPaymentType commissionedPaymentType(int? biWeeklyBaseSalary, double commissionRate)
         {
             return new CommissionedPaymentTypeImpl(biWeeklyBaseSalary, commissionRate);
         }
@@ -69,7 +69,7 @@ namespace PayrollDBAdapterInMemory
         }
 
 
-        public SalesReceipt salesReceipt(DateTime date, int amount)
+        public SalesReceipt salesReceipt(DateTime date, int? amount)
         {
             return new SalesReceiptImpl(date, amount);
         }
@@ -87,7 +87,7 @@ namespace PayrollDBAdapterInMemory
         }
 
 
-        public ServiceCharge serviceCharge(DateTime date, int amount)
+        public ServiceCharge serviceCharge(DateTime date, int? amount)
         {
             return new ServiceChargeImpl(date, amount);
         }

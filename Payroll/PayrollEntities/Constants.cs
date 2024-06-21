@@ -13,7 +13,7 @@ namespace PayrollEntities
         public static readonly DateTime BIWEEKLY_PAYMENT_SCHEDULE_REFERENCE_FRIDAY = new DateTime(2015, 12, 11);
 
 
-        public static readonly int HOURLY_PAYMENTTYPE_DAILY_NORMAL_HOURS = 8;
+        public static readonly int? HOURLY_PAYMENTTYPE_DAILY_NORMAL_HOURS = 8;
         public static readonly double HOURLY_PAYMENTTYPE_OVERTIME_WAGE_MULTIPLIER = 1.5d;
 
     }

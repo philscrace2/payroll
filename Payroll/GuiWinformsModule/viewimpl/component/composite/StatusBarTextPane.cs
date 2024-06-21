@@ -4,13 +4,13 @@ public class StatusBarTextPane : RichTextBox
 {
     private static readonly Color DefaultFontColor = Color.White;
     private static readonly Color DefaultBgColor = Color.White;
-    private const int TimerPeriodMs = 1000;
+    private readonly int TimerPeriodMs = 1000;
 
     private enum Status { Stopped, Leading, ShowBig, ShowSmall }
 
-    private const int DelayLeading = 100;
-    private const int DelayShowBig = 10000;
-    private const int DelayShowSmall = 10000;
+    private readonly int DelayLeading = 100;
+    private readonly int DelayShowBig = 10000;
+    private readonly int DelayShowSmall = 10000;
 
     private Timer _timer;
     private Status _timerStatus = Status.Stopped;

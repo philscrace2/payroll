@@ -28,7 +28,7 @@ namespace PayrollDBAdapterInMemory.entity
             return workingHourQty;
         }
 
-        public override void setWorkingHourQty(int workingHourQty)
+        public override void setWorkingHourQty(int? workingHourQty)
         {
             this.workingHourQty = workingHourQty;
         }

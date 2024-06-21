@@ -25,22 +25,18 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
 
 
         //Construction
-        public AddEmployeeDialog() : this(null)
+        public AddEmployeeDialog(string name) : base(null)
         {
-            employeeFieldsPanelByEmployeeType = new Dictionary<EmployeeType, EmployeeFieldsPanel<object>>
-        {
-            { EmployeeType.SALARIED, new SalariedEmployeeFieldsPanel() as EmployeeFieldsPanel<object> },
-            { EmployeeType.HOURLY, new HourlyEmployeeFieldsPanel() as EmployeeFieldsPanel<object> },
-            { EmployeeType.COMMISSIONED, new CommissionedEmployeeFieldsPanel() as EmployeeFieldsPanel<object> }
-        };
+    //        employeeFieldsPanelByEmployeeType = new Dictionary<EmployeeType, EmployeeFieldsPanel<EmployeeViewModel>>().Add(EmployeeType.SALARIED,
+    //            new SalariedEmployeeFieldsPanel() as EmployeeFieldsPanel<EmployeeViewModel>);
 
-            paymentMethodFieldsPanelByPaymentMethod = new Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel<object>>
-        {
-            { PaymentMethodEnum.PAYMASTER, new PaymasterPaymentMethodFieldsPanel() as PaymentMethodFieldsPanel<object> },
-            { PaymentMethodEnum.DIRECT_DEPOSIT, new DirectPaymentMethodFieldsPanel() as PaymentMethodFieldsPanel<object> }
-        };
-
+    //           //        paymentMethodFieldsPanelByPaymentMethod = new Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel<object>>
+    ////{
+    ////    { PaymentMethodEnum.PAYMASTER, new PaymasterPaymentMethodFieldsPanel() as PaymentMethodFieldsPanel<object> },
+    ////    { PaymentMethodEnum.DIRECT_DEPOSIT, new DirectPaymentMethodFieldsPanel() as PaymentMethodFieldsPanel<object> }
+    ////};
         }
+
 
         public AddEmployeeDialog(Form parentForm) : base(parentForm,"Add Employee")
         {
@@ -66,7 +62,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
             };
             cbPaymentMethod.SelectedIndexChanged += (sender, e) =>
             {
-                currentPaymentMethodFieldsPanel = paymentMethodFieldsPanelByPaymentMethod //.get((PaymentMethodEnum)cbPaymentMethod.getSelectedItem());
+                currentPaymentMethodFieldsPanel = paymentMethodFieldsPanelByPaymentMethod[PaymentMethodEnum.DIRECT_DEPOSIT];
                 // Update payment method panels visibility
                 updatePaymentMethodPanelsVisibility();
 
@@ -131,7 +127,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
             viewModel.EmployeeId = Convert.ToInt32(txtId.Text);
             viewModel.Name = txtName.Text;
             viewModel.Address = txtAddress.Text;
-            //viewModel.PaymentMethod = cbPaymentMethod.Text;
+            //viewModel.PaymentMethod = currentPaymentMethodFieldsPanel.getModel();
             return viewModel;
         }
 

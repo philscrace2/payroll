@@ -11,7 +11,7 @@ namespace PayrollEntities.paymentschedule
     {
 
         private static readonly DayOfWeek PAYDAY_DAY_OF_WEEK = DayOfWeek.Friday;
-        private static readonly int NR_OF_WEEKDAYS = 7;
+        private static readonly int? NR_OF_WEEKDAYS = 7;
 
         public override bool isPayDate(DateTime date)
         {
@@ -37,18 +37,18 @@ namespace PayrollEntities.paymentschedule
 
         private static DateTime GetIntervalStartDate(DateTime intervalEndDate)
         {
-            return intervalEndDate.AddDays(-(NR_OF_WEEKDAYS - 1));
+            return intervalEndDate.AddDays(Convert.ToInt32(-(NR_OF_WEEKDAYS - 1)));
         }
 
 
         private static DateTime GetSameOrNextDayOfWeek(DateTime referenceDate, DayOfWeek dayOfWeek)
         {
-            int daysToAdd = ((int)dayOfWeek - (int)referenceDate.DayOfWeek + 7) % 7;
+            int? daysToAdd = ((int?)dayOfWeek - (int?)referenceDate.DayOfWeek + 7) % 7;
             if (daysToAdd == 0)
             {
                 return referenceDate; // The day is the same
             }
-            return referenceDate.AddDays(daysToAdd);
+            return referenceDate.AddDays(Convert.ToInt32(daysToAdd));
         }
 
 

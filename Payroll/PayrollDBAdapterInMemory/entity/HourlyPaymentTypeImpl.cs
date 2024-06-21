@@ -5,15 +5,15 @@ namespace PayrollDBAdapterInMemory.entity
 {
     public class HourlyPaymentTypeImpl : HourlyPaymentType
     {
-        private int _hourlyWage;
+        private int? _hourlyWage;
         private Dictionary<DateTime, TimeCard> _timeCardsByDate = new Dictionary<DateTime, TimeCard>();
 
-        public HourlyPaymentTypeImpl(int hourlyWage)
+        public HourlyPaymentTypeImpl(int? hourlyWage)
         {
             _hourlyWage = hourlyWage;
         }
 
-        public int HourlyWage
+        public int? HourlyWage
         {
             get => _hourlyWage;
             set => _hourlyWage = value;
@@ -38,7 +38,7 @@ namespace PayrollDBAdapterInMemory.entity
             return getTimeCardsIn(singleDateInterval).FirstOrDefault();
         }
 
-        public override void setHourlyWage(int hourlyWage)
+        public override void setHourlyWage(int? hourlyWage)
         {
             this._hourlyWage = hourlyWage;
         }

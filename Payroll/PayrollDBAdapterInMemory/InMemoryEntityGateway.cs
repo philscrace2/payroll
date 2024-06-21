@@ -17,7 +17,7 @@ namespace PayrollDBAdapterInMemory
             return employee;
         }
 
-        public int findEmployeeIdByUnionMemberId(int? unionMemberId)
+        public int? findEmployeeIdByUnionMemberId(int? unionMemberId)
         {
             throw new NotImplementedException();
         }
@@ -37,12 +37,6 @@ namespace PayrollDBAdapterInMemory
             return _employeesById.ContainsKey(employeeId);
         }
 
-        public Employee findById(int employeeId)
-        {
-            AssertNotNull(_employeesById.GetValueOrDefault(employeeId));
-            return _employeesById[employeeId];
-        }
-
         private void AssertNotNull(Employee employee)
         {
             if (employee == null)
@@ -60,13 +54,13 @@ namespace PayrollDBAdapterInMemory
         }
 
         // TODO: Test
-        public bool IsEmployeeExistsByUnionMemberId(int unionMemberId)
+        public bool IsEmployeeExistsByUnionMemberId(int? unionMemberId)
         {
             return _employeesById.Values.Any(employee => employee.getAffiliation() is UnionMemberAffiliation affiliation && affiliation.getUnionMemberId() == unionMemberId);
         }
 
         // Wrong performance, but ok for now
-        public int? FindEmployeeIdByUnionMemberId(int unionMemberId)
+        public int? FindEmployeeIdByUnionMemberId(int? unionMemberId)
         {
             var employee = _employeesById.Values.FirstOrDefault(employee => employee.getAffiliation() is UnionMemberAffiliation affiliation && affiliation.getUnionMemberId() == unionMemberId);
             if (employee == null)

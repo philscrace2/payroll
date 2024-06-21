@@ -24,7 +24,7 @@ namespace PayrollInteractors.usecases.affiliation.unionmember
             unionMemberAffiliation.addServiceCharge(createServiceCharge(request));
         }
 
-        private Employee getEmployeeByUnionMemberId(int unionMemberId)
+        private Employee getEmployeeByUnionMemberId(int? unionMemberId)
         {
             return employeeGateway.findById(employeeGateway.findEmployeeIdByUnionMemberId(unionMemberId));
         }

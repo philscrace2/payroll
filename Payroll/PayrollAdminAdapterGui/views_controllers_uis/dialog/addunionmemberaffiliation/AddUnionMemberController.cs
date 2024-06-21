@@ -14,7 +14,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffi
     {
 
         private EventBus eventBus;
-        private int employeeId;
+        private int? employeeId;
         private GetEmployeeUseCaseFactory getEmployeeUseCaseFactory;
         private AddUnionMemberAffiliationUseCaseFactory addUnionMemberAffiliationUseCaseFactory;
         private UseCaseExceptionsFormatter useCaseExceptionsFormatter;
@@ -27,7 +27,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffi
                 AddUnionMemberAffiliationUseCaseFactory addUnionMemberAffiliationUseCaseFactory,
                 UseCaseExceptionsFormatter useCaseExceptionsFormatter,
                 FieldValidationErrorPresenter fieldValidationErrorPresenter,
-                int employeeId
+                int? employeeId
                 ) : base(eventBus)
         {
 
@@ -165,7 +165,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addunionmemberaffi
 
         public interface AddUnionMemberControllerFactory
         {
-            AddUnionMemberController<V> create(int employeeId);
+            AddUnionMemberController<V> create(int? employeeId);
         }
     }
 

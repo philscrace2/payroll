@@ -17,9 +17,9 @@
         }
 
         //NOT efficient
-        public int CountWeekDayInclusive(DayOfWeek dayOfWeek)
+        public int? CountWeekDayInclusive(DayOfWeek dayOfWeek)
         {
-            int count = 0;
+            int? count = 0;
             for (DateTime date = from; date <= to; date = date.AddDays(1))
             {
                 if (date.DayOfWeek == dayOfWeek)

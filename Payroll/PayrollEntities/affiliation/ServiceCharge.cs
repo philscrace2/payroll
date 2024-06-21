@@ -3,16 +3,16 @@
     public interface ServiceCharge
     {
 
-        int getAmount();
+        int? getAmount();
         DateTime getDate();
 
-        void setAmount(int amount);
+        void setAmount(int? amount);
         void setDate(DateTime date);
 
     }
 
     public interface ServiceChargeFactory
     {
-        ServiceCharge serviceCharge(DateTime date, int amount);
+        ServiceCharge serviceCharge(DateTime date, int? amount);
     }
 }

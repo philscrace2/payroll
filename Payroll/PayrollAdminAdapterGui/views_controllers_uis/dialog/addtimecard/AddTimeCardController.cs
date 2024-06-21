@@ -12,7 +12,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
     public class AddTimeCardController<V> : AbstractDialogViewController<V, AddTimeCardViewListener> where V : AddTimeCardView
     {
         private EventBus eventBus;
-        private int employeeId;
+        private int? employeeId;
         private GetEmployeeUseCaseFactory getEmployeeUseCaseFactory;
         private AddTimeCardUseCaseFactory addTimeCardUseCaseFactory;
         private UpdateTimeCardUseCaseFactory updateTimeCardUseCaseFactory;
@@ -30,7 +30,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
                 ConfirmDialogUI confirmDialogUIProvider,
                 ConfirmMessageFormatter confirmMessageFormatter,
                 FieldValidationErrorPresenter fieldValidationErrorPresenter,
-                 int employeeId
+                 int? employeeId
                 ) : base(eventBus)
         {
 
@@ -142,7 +142,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
 
         public interface AddTimeCardControllerFactory
         {
-            AddTimeCardController<V> create(int employeeId);
+            AddTimeCardController<V> create(int? employeeId);
         }
 
     }

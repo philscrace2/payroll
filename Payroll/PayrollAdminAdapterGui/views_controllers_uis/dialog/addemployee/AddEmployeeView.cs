@@ -5,7 +5,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 {
     public class SalariedEmployeeViewModel : EmployeeViewModel
     {
-        public int monthlySalary;
+        public int? monthlySalary;
 
         public void accept(EmployeeViewModelVisitor visitor)
         {
@@ -34,7 +34,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
     public class HourlyEmployeeViewModel : EmployeeViewModel
     {
-        public int hourlyWage;
+        public int? hourlyWage;
 
         public void accept(EmployeeViewModelVisitor visitor)
         {
@@ -69,8 +69,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
     public class CommissionedEmployeeViewModel : EmployeeViewModel
     {
-        public int biWeeklyBaseSalary;
-        public int commissionRatePercentage;
+        public int? biWeeklyBaseSalary;
+        public int? commissionRatePercentage;
 
         public void accept(EmployeeViewModelVisitor visitor)
         {
@@ -141,7 +141,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
     }
 
 
-    //public interface PaymentMethod
+    //public int?erface PaymentMethod
     //{
     //    T accept<T>(PaymentMethodVisitor<T> visitor);
 
@@ -158,8 +158,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
     //public class CommissionedEmployeeViewModel : EmployeeViewModel
     //{
-    //    public int biWeeklyBaseSalary;
-    //    public int commissionRatePercentage;
+    //    public int? biWeeklyBaseSalary;
+    //    public int? commissionRatePercentage;
 
     //    public void accept(EmployeeViewModelVisitor visitor)
     //    {
