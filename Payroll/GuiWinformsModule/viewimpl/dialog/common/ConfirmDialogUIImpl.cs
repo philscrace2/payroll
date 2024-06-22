@@ -4,17 +4,17 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.common
 {
     public class ConfirmDialogUIImpl : ConfirmDialogUI
     {
-        private MainFrameUIImpl mainFrameUIImpl;
+
         //@Inject
-        public ConfirmDialogUIImpl(MainFrameUIImpl mainFrameUIImpl)
+        public ConfirmDialogUIImpl()
         {
-            this.mainFrameUIImpl = mainFrameUIImpl;
+
         }
 
 
         public void show(string message, ConfirmDialogListener confirmDialogListener)
         {
-            new ConfirmDialog(mainFrameUIImpl.view, message, confirmDialogListener).showIt();
+            new ConfirmDialog(message, confirmDialogListener).showIt();
         }
 
 

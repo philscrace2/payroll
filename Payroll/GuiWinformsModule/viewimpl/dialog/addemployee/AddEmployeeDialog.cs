@@ -38,7 +38,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
         }
 
 
-        public AddEmployeeDialog(Form parentForm) : base(parentForm,"Add Employee")
+        public AddEmployeeDialog(Form parentForm) : base("Add Employee")
         {
             InitializeComponent();
             InitCommonFields();

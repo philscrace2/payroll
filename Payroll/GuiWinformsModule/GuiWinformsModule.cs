@@ -50,7 +50,6 @@ namespace PayrollGuiWinformsImpl
             Bind(typeof(MainPanelUI<>)).To(typeof(MainPanelUIImpl));
 
             //Bind(new TypeLiteral<ErrorDialogUI<?>>() { }).to(ErrorDialogUIImpl.class);
-            //Bind<ConfirmDialogUI>().To<ConfirmDialogUIImpl>();
             Bind(typeof(PayListUI<>)).To(typeof(PayListUIImpl<>));
             Bind<PayListView>().To<PayListPanel>();
 

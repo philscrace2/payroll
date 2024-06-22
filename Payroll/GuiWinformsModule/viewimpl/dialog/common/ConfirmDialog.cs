@@ -13,12 +13,11 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.common
         private string cancelLabelString;
 
         public ConfirmDialog(
-            Form form,
             string message,
             ConfirmDialogListener confirmDialogListener,
             string okLabelString = "Confirm",
             string cancelLabelString = "Cancel"
-        ) : base(form)
+        ) : base(message)
         {
             this.confirmDialogListener = confirmDialogListener;
             this.okLabelString = okLabelString;
