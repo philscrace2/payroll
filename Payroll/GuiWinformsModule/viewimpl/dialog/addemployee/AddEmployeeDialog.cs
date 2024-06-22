@@ -25,20 +25,20 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
 
 
         //Construction
-        public AddEmployeeDialog(string name) : base(null)
-        {
-    //        employeeFieldsPanelByEmployeeType = new Dictionary<EmployeeType, EmployeeFieldsPanel<EmployeeViewModel>>().Add(EmployeeType.SALARIED,
-    //            new SalariedEmployeeFieldsPanel() as EmployeeFieldsPanel<EmployeeViewModel>);
+    //    public AddEmployeeDialog(string name) : base(null)
+    //    {
+    ////        employeeFieldsPanelByEmployeeType = new Dictionary<EmployeeType, EmployeeFieldsPanel<EmployeeViewModel>>().Add(EmployeeType.SALARIED,
+    ////            new SalariedEmployeeFieldsPanel() as EmployeeFieldsPanel<EmployeeViewModel>);
 
-    //           //        paymentMethodFieldsPanelByPaymentMethod = new Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel<object>>
-    ////{
-    ////    { PaymentMethodEnum.PAYMASTER, new PaymasterPaymentMethodFieldsPanel() as PaymentMethodFieldsPanel<object> },
-    ////    { PaymentMethodEnum.DIRECT_DEPOSIT, new DirectPaymentMethodFieldsPanel() as PaymentMethodFieldsPanel<object> }
-    ////};
-        }
+    ////           //        paymentMethodFieldsPanelByPaymentMethod = new Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel<object>>
+    //////{
+    //////    { PaymentMethodEnum.PAYMASTER, new PaymasterPaymentMethodFieldsPanel() as PaymentMethodFieldsPanel<object> },
+    //////    { PaymentMethodEnum.DIRECT_DEPOSIT, new DirectPaymentMethodFieldsPanel() as PaymentMethodFieldsPanel<object> }
+    //////};
+    //    }
 
 
-        public AddEmployeeDialog(Form parentForm) : base("Add Employee")
+        public AddEmployeeDialog(string name) : base(name)
         {
             InitializeComponent();
             InitCommonFields();
