@@ -16,6 +16,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee.typespecific
         public SalariedEmployeeFieldsPanel()
         {
             InitializeComponent();
+            initFields();
         }
 
         private void initFields()

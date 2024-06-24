@@ -14,7 +14,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
         public override void Accept(IEmployeeViewModelVisitor visitor)
         {
-            throw new NotImplementedException();
+            visitor.Visit(this);
         }
     }
     public interface EmployeeViewModelVisitor
