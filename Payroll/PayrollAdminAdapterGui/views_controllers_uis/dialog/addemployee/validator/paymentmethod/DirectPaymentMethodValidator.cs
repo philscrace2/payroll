@@ -6,7 +6,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee.valida
     {
         protected override void AddErrors(DirectPaymentMethod model)
         {
-            if (model.accountNumber == "")
+            //if (model.AccountNumber == "")
                 AddFieldValidatorError("accountNumber", FieldValidatorErrorType.EMPTY_STRING);
         }
 

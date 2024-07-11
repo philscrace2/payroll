@@ -31,11 +31,14 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
         //Construction
         public AddEmployeeDialog() : this(null)
         {
-            //        paymentMethodFieldsPanelByPaymentMethod = new Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel<object>>
+
+            //paymentMethodFieldsPanelByPaymentMethod = new Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel<object>>
             //{
             //    { PaymentMethodEnum.PAYMASTER, new PaymasterPaymentMethodFieldsPanel() as PaymentMethodFieldsPanel<object> },
             //    { PaymentMethodEnum.DIRECT_DEPOSIT, new DirectPaymentMethodFieldsPanel() as PaymentMethodFieldsPanel<object> }
             //};
+
+
         }
 
 
@@ -44,6 +47,9 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
             employeeFieldsPanelByEmployeeType = new Dictionary<EmployeeType, EmployeeFieldsPanel<SalariedEmployeeViewModel>>();
 
             employeeFieldsPanelByEmployeeType.Add(EmployeeType.SALARIED, new SalariedEmployeeFieldsPanel());
+
+            paymentMethodFieldsPanelByPaymentMethod = new Dictionary<PaymentMethodEnum, PaymentMethodFieldsPanel<PaymentMethod>>();
+            paymentMethodFieldsPanelByPaymentMethod.Add(PaymentMethodEnum.DIRECT_DEPOSIT, new PaymentMethodFieldsPanel<PaymentMethod>());
             //{
             //    { EmployeeType.SALARIED, new SalariedEmployeeFieldsPanel() as IEmployeeFieldsPanel}
             //    //{ EmployeeType.HOURLY, new HourlyEmployeeFieldsPanel() as IEmployeeFieldsPanel },
@@ -91,10 +97,10 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
 
         private void updatePaymentMethodPanelsVisibility()
         {
-            //paymentMethodFieldsPanelByPaymentMethod.values().stream()
-            //    .forEach((it)->
-            //        it.setVisible(it == currentPaymentMethodFieldsPanel)
-            //    );
+            foreach (var panel in paymentMethodFieldsPanelByPaymentMethod.Values)
+            {
+                panel.Visible = panel == currentPaymentMethodFieldsPanel;
+            }
 
         }
 

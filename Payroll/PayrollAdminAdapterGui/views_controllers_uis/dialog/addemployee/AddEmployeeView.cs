@@ -47,26 +47,6 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
         }
     }
 
-    public class DirectPaymentMethod : EmployeeViewModel.IPaymentMethod
-    {
-
-        public String accountNumber;
-        public DirectPaymentMethod(String accountNumber)
-        {
-            this.accountNumber = accountNumber;
-        }
-
-        public T accept<T>(PaymentMethodVisitor<T> visitor)
-        {
-            return visitor.visit(this);
-        }
-
-        public T Accept<T>(EmployeeViewModel.IPaymentMethodVisitor<T> visitor)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
     public class CommissionedEmployeeViewModel : EmployeeViewModel
     {
         public int? biWeeklyBaseSalary;
@@ -95,49 +75,48 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
         T visit(DirectPaymentMethod paymentMethod);
     }
 
+    public interface IPaymentMethod
+    {
+        T Accept<T>(IPaymentMethodVisitor<T> visitor);
+    }
+
+    public interface IPaymentMethodVisitor<T>
+    {
+        T Visit(PaymasterPaymentMethod paymentMethod);
+        T Visit(DirectPaymentMethod paymentMethod);
+    }
+
+    public class PaymasterPaymentMethod : IPaymentMethod
+    {
+        public T Accept<T>(IPaymentMethodVisitor<T> visitor) => visitor.Visit(this);
+    }
+
+    public class DirectPaymentMethod : IPaymentMethod
+    {
+        public string AccountNumber { get; set; }
+
+        public DirectPaymentMethod(string accountNumber)
+        {
+            AccountNumber = accountNumber;
+        }
+
+        public T Accept<T>(IPaymentMethodVisitor<T> visitor) => visitor.Visit(this);
+    }
+
+    public interface IEmployeeViewModelVisitor
+    {
+        void Visit(SalariedEmployeeViewModel salariedEmployeeViewModel);
+        void Visit(HourlyEmployeeViewModel hourlyEmployeeViewModel);
+        void Visit(CommissionedEmployeeViewModel commissionedEmployeeViewModel);
+    }
+
     public abstract class EmployeeViewModel
     {
         public int? EmployeeId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public IPaymentMethod PaymentMethod { get; set; }
-
-        public interface IPaymentMethod
-        {
-            T Accept<T>(IPaymentMethodVisitor<T> visitor);
-        }
-
-        public interface IPaymentMethodVisitor<T>
-        {
-            T Visit(PaymasterPaymentMethod paymentMethod);
-            T Visit(DirectPaymentMethod paymentMethod);
-        }
-
-        public class PaymasterPaymentMethod : IPaymentMethod
-        {
-            public T Accept<T>(IPaymentMethodVisitor<T> visitor) => visitor.Visit(this);
-        }
-
-        public class DirectPaymentMethod : IPaymentMethod
-        {
-            public string AccountNumber { get; set; }
-
-            public DirectPaymentMethod(string accountNumber)
-            {
-                AccountNumber = accountNumber;
-            }
-
-            public T Accept<T>(IPaymentMethodVisitor<T> visitor) => visitor.Visit(this);
-        }
-
         public abstract void Accept(IEmployeeViewModelVisitor visitor);
-
-        public interface IEmployeeViewModelVisitor
-        {
-            void Visit(SalariedEmployeeViewModel salariedEmployeeViewModel);
-            void Visit(HourlyEmployeeViewModel hourlyEmployeeViewModel);
-            void Visit(CommissionedEmployeeViewModel commissionedEmployeeViewModel);
-        }
     }
 
 

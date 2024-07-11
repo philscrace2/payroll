@@ -54,7 +54,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
             Close();
         }
 
-        public class OnAddEmployeeHandlerExecutor : EmployeeViewModel.IEmployeeViewModelVisitor
+        public class OnAddEmployeeHandlerExecutor : IEmployeeViewModelVisitor
         {
             private readonly AddEmployeeController<V> addEmployeeController;
 
@@ -78,7 +78,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
             }
         }
 
-        public class ExecuteChangePaymentMethodUseCaseExecutor : EmployeeViewModel.IPaymentMethodVisitor<object>
+        public class ExecuteChangePaymentMethodUseCaseExecutor : IPaymentMethodVisitor<object>
         {
             private readonly AddEmployeeController<V> controller;
             private int? employeeId;
@@ -101,12 +101,12 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
             //    return new object();
             //}
 
-            public object Visit(EmployeeViewModel.PaymasterPaymentMethod paymentMethod)
+            public object Visit(PaymasterPaymentMethod paymentMethod)
             {
                 return this.controller.changePaymentMethodUseCaseFactory.changeToPaymasterPaymentMethodUseCase();
             }
 
-            public object Visit(EmployeeViewModel.DirectPaymentMethod directPaymentMethod)
+            public object Visit(DirectPaymentMethod directPaymentMethod)
             {
                 this.controller.changePaymentMethodUseCaseFactory.changeToDirectPaymentMethodUseCase().Execute(
                     new ChangeToDirectPaymentMethodRequest(this.employeeId, directPaymentMethod.AccountNumber));
@@ -127,7 +127,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
                 {
                     Validate(model);
                     ExecuteAddEmployeeUseCase(model);
-                    model.PaymentMethod.Accept((new ExecuteChangePaymentMethodUseCaseExecutor(addEmployeeController, model.EmployeeId)));
+                    //model.PaymentMethod.Accept((new ExecuteChangePaymentMethodUseCaseExecutor(addEmployeeController, model.EmployeeId)));
                     addEmployeeController.eventBus.Post(new AddedEmployeeEvent(model.EmployeeId.Value, model.Name));
                     addEmployeeController.Close();
                 }
@@ -229,11 +229,6 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
         }
 
         public void setViewListener(ViewListener getViewListener)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Close()
         {
             throw new NotImplementedException();
         }

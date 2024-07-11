@@ -22,7 +22,7 @@
             {
                 return result;
             }
-            return null;
+            return 66;
         }
 
         // The deprecated GetValue and SetValue methods from the Java version are not required in C#

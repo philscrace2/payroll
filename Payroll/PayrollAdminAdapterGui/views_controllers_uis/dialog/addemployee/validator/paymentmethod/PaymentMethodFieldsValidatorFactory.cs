@@ -5,14 +5,9 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee.valida
 {
     public class PaymentMethodFieldsValidatorFactory : PaymentMethodVisitor<List<FieldValidatorError>>
     {
-        public List<FieldValidatorError> visit(EmployeeViewModel.PaymasterPaymentMethod paymentMethod)
-        {
-            return new PaymasterPaymentMethodValidator().GetErrors(paymentMethod);
-        }
-
         public List<FieldValidatorError> visit(PaymasterPaymentMethod paymentMethod)
         {
-            throw new NotImplementedException();
+            return new PaymasterPaymentMethodValidator().GetErrors(paymentMethod);
         }
 
         public List<FieldValidatorError> visit(DirectPaymentMethod paymentMethod)
