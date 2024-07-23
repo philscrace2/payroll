@@ -1,25 +1,34 @@
-﻿using PayrollAdminAdapterGui.views_controllers_uis;
-using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.table;
+﻿using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.table;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace PayrollGuiWinformsImpl.viewimpl.mainframe.mainpanel.employeemanager
 {
-    public class EmployeeListPanel : Panel, EmployeeListView
+    public partial class EmployeeListPanel : Panel, EmployeeListView
     {
         public EmployeeListPanel()
         {
-
-        }
-        public void setViewListener(EmployeeListViewListener listener)
-        {
-            throw new NotImplementedException();
+            InitializeComponent();
         }
 
-        public void setViewListener(ViewListener getViewListener)
+        public EmployeeListPanel(IContainer container)
         {
-            throw new NotImplementedException();
+            container.Add(this);
+
+            InitializeComponent();
         }
 
         public void setModel(EmployeeListViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void setViewListener(EmployeeListViewListener listener)
         {
             throw new NotImplementedException();
         }

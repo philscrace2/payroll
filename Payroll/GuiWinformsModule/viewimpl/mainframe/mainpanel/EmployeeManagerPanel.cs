@@ -14,7 +14,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.mainframe.mainpanel
         public EmployeeManagerPanel(EmployeeListPanel employeeListPanel, AffiliationButtonViewImpl affiliationButtonViewImpl)
         {
             InitializeComponent();
-            this.employeeListPanel = employeeListPanel;
+            this.employeeTablePanel.Controls.Add(employeeListPanel);
             this.affiliationButtonViewImpl = affiliationButtonViewImpl;
         }
 

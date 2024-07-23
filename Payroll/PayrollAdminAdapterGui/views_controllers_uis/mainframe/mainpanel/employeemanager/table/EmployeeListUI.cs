@@ -26,20 +26,20 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
             return controller.getObservableSelectedEployee();
         }
 
-        public void setViewListener(EmployeeListViewListener listener)
-        {
-            throw new NotImplementedException();
-        }
+        //public void setViewListener(EmployeeListViewListener listener)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void setViewListener(ViewListener getViewListener)
-        {
-            throw new NotImplementedException();
-        }
+        //public void setViewListener(ViewListener getViewListener)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void setModel(EmployeeListViewModel viewModel)
-        {
-            throw new NotImplementedException();
-        }
+        //public void setModel(EmployeeListViewModel viewModel)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 
 }
