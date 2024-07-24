@@ -1,6 +1,6 @@
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
 {
-    public class MainPanelController<V> : AbstractController<V, MainPanelViewListener> where V : MainPanelView
+    public class MainPanelController<V> : AbstractController<V, MainPanelViewListener> ,MainPanelViewListener where V : MainPanelView
     {
         private ObservableValue<DateTime> observableCurrentDate = new ObservableValue<DateTime>();
 

@@ -10,8 +10,8 @@ namespace PayrollGuiWinformsImpl.viewimpl.mainframe
 
     public partial class MainPanel : Panel, MainPanelView
     {
-        private DateTimePicker currentDateField; // Assuming DateField is a wrapper around DateTimePicker
-        private IMainPanelViewListener listener;
+        //private DateTimePicker currentDateField; // Assuming DateField is a wrapper around DateTimePicker
+        private MainPanelViewListener listener;
         private string dateFormat = Constants.DATE_FORMAT; // Assuming this is a date format string
 
         public MainPanel(EmployeeManagerPanel employeeManagerPanel, PayPanel payPanel)
@@ -70,32 +70,27 @@ namespace PayrollGuiWinformsImpl.viewimpl.mainframe
 
         private void OnCurrentDateChanged()
         {
-            listener?.OnChangedCurrentDate();
+            listener?.onChangedCurrentDate();
         }
 
-        public void SetViewListener(IMainPanelViewListener viewListener)
+        public void SetViewListener(MainPanelViewListener viewListener)
         {
             listener = viewListener;
         }
 
         public MainPanelViewModel GetModel()
         {
-            return new MainPanelViewModel(currentDateField.Value);
+            return new MainPanelViewModel(dateTimePickerCurrentDate.Value);
         }
 
         public void setViewListener(MainPanelViewListener listener)
         {
-            throw new NotImplementedException();
-        }
-
-        public void setViewListener(ViewListener getViewListener)
-        {
-            throw new NotImplementedException();
+            this.listener = listener;
         }
 
         public void setModel(MainPanelViewModel viewModel)
         {
-            currentDateField.Value = viewModel.currentDate;
+            dateTimePickerCurrentDate.Value = viewModel.currentDate;
         }
 
         public PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.MainPanelViewModel getModel()
@@ -103,12 +98,5 @@ namespace PayrollGuiWinformsImpl.viewimpl.mainframe
             throw new NotImplementedException();
         }
     }
-
-    public interface IMainPanelViewListener
-    {
-        void OnChangedCurrentDate();
-    }
-
-
 
 }

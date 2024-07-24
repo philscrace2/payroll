@@ -17,6 +17,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel
 
             employeeManagerUI.setObservableCurrentDate(controller.getObservableCurrentDate());
             payUI.setObservableCurrentDate(controller.getObservableCurrentDate());
+            initialize();
         }
 
         //@Inject

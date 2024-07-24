@@ -11,6 +11,9 @@ namespace PayrollGuiWinformsImpl.viewimpl.mainframe.mainpanel.employeemanager
 {
     public partial class EmployeeListPanel : Panel, EmployeeListView
     {
+        private EmployeeListViewListener listener;
+        private EmployeeListViewModel viewModel;
+
         public EmployeeListPanel()
         {
             InitializeComponent();
@@ -30,7 +33,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.mainframe.mainpanel.employeemanager
 
         public void setViewListener(EmployeeListViewListener listener)
         {
-            throw new NotImplementedException();
+            this.listener = listener;
         }
     }
 }

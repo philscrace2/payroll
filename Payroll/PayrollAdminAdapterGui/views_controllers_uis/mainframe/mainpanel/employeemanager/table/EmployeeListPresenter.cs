@@ -50,6 +50,19 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
             EmployeeListPresenter of(DateTime currentDate, EmployeeListResponse response);
         }
 
+        public class EmployeeListPresenterFactoryImpl : EmployeeListPresenterFactory
+        {
+            public EmployeeListPresenterFactoryImpl()
+            {
+
+            }
+
+            public EmployeeListPresenter of(DateTime currentDate, EmployeeListResponse response)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
     }
 
 }

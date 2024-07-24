@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            //components = new System.ComponentModel.Container();
+            this.Dock = DockStyle.Fill;
+            this.BackColor = Color.Beige;
             employeeDataGridView = new System.Windows.Forms.DataGridView();
             this.clmId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmWaging = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFollowing = new System.Windows.Forms.DataGridViewTextBoxColumn();
 
@@ -43,6 +46,7 @@
             this.employeeDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
                 this.clmId,
                 this.clmName,
+                this.clmAddress,
                 this.clmWaging,
                 this.clmFollowing});
             this.employeeDataGridView.Location = new System.Drawing.Point(4, 3);
@@ -87,6 +91,8 @@
             this.clmFollowing.MinimumWidth = 6;
             this.clmFollowing.Name = "clmFollowing";
             this.clmFollowing.Width = 125;
+
+            this.Controls.Add(employeeDataGridView);
         }
 
         #endregion

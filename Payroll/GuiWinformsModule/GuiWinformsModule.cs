@@ -11,6 +11,7 @@ using PayrollGuiWinformsImpl.viewimpl.mainframe;
 using PayrollGuiWinformsImpl.viewimpl.mainframe.mainpanel.pay;
 using PayrollPorts.primaryAdminUseCase;
 using PayrollPorts.primaryAdminUseCase.factories;
+using static PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.table.EmployeeListPresenter;
 
 namespace PayrollGuiWinformsImpl
 {
@@ -46,8 +47,9 @@ namespace PayrollGuiWinformsImpl
 
             Bind(typeof(ConfirmDialogUI)).To(typeof(ConfirmDialogUIImpl));
             Bind(typeof(AddEmployeeUI<>)).To(typeof(AddEmployeeUIImpl<>));
+            Bind(typeof(EmployeeListPresenterFactory)).To(typeof(EmployeeListPresenterFactoryImpl));
             Bind<MainFrameUI>().To<MainFrameUIImpl>();
-            Bind(typeof(MainPanelUI<>)).To(typeof(MainPanelUIImpl));
+            Bind(typeof(MainPanelUI<MainPanelView>)).To(typeof(MainPanelUIImpl));
 
             //Bind(new TypeLiteral<ErrorDialogUI<?>>() { }).to(ErrorDialogUIImpl.class);
             Bind(typeof(PayListUI<>)).To(typeof(PayListUIImpl<>));

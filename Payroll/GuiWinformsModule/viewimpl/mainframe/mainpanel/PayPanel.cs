@@ -52,12 +52,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.mainframe.mainpanel
 
         public void setViewListener(PayViewListener listener)
         {
-            throw new NotImplementedException();
-        }
-
-        public void setViewListener(ViewListener getViewListener)
-        {
-            throw new NotImplementedException();
+            this.listener = listener;
         }
 
         public void setModel(PayViewModel viewModel)

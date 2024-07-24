@@ -10,6 +10,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis
         {
             this.controller = controller;
             this.view = view;
+            init();
         }
 
         //@Inject

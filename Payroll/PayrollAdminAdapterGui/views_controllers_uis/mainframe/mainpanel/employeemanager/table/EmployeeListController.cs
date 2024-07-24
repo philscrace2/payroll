@@ -6,7 +6,7 @@ using static PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.em
 
 namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.employeemanager.table
 {
-    public class EmployeeListController<V> : AbstractController<V, EmployeeListViewListener>, ChangeListener<DateTime> where V : EmployeeListView
+    public class EmployeeListController<V> : AbstractController<V, EmployeeListViewListener>, EmployeeListViewListener, ChangeListener<DateTime> where V : EmployeeListView
     {
         private EmployeeListUseCaseFactory useCaseFactory;
         private EmployeeListPresenterFactory employeeListPresenterFactory;
@@ -18,8 +18,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         //@Inject
         public EmployeeListController(
                 EmployeeListUseCaseFactory useCaseFactory,
-                EventBus eventBus
-                //EmployeeListPresenterFactory employeeListPresenterFactory
+                EventBus eventBus,
+                EmployeeListPresenterFactory employeeListPresenterFactory
                 )
         {
             this.useCaseFactory = useCaseFactory;

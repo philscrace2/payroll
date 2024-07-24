@@ -3,11 +3,6 @@ using PayrollGuiWinformsImpl.viewimpl.mainframe.mainpanel;
 
 namespace PayrollGuiWinformsImpl.viewimpl.mainframe
 {
-    public interface IMainPanelUIImpl
-    {
-        MainPanel getView();
-    }
-
     public class MainPanelUIImpl : MainPanelUI<MainPanel>
     {
         public MainPanelUIImpl(
