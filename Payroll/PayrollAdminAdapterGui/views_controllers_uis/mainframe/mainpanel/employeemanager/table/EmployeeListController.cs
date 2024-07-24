@@ -50,21 +50,6 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
             update();
         }
 
-        //@Override
-        public void OnSelectionChanged(int? employeeIndex)
-        {
-            //TODO PHIL SCRACE
-            //if (employeeIndex.HasValue)
-            //{
-            //    observableSelectedEmployee.Value = employees[employeeIndex.Value];
-            //}
-            //else
-            //{
-            //    observableSelectedEmployee.Value = null; // or a default value
-            //}
-
-        }
-
         private void update()
         {
             EmployeeListResponse employeeListResponse = useCaseFactory.employeeListUseCase().Execute(new EmployeeListRequest(observableCurrentDate.get()));
@@ -80,7 +65,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 
         public void onSelectionChanged(int? employeeIndex)
         {
-            throw new NotImplementedException();
+            observableSelectedEmployee.Value = employeeIndex.HasValue ? employees[employeeIndex.Value] : null;
+
         }
     }
 
@@ -91,9 +77,23 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 
         }
 
+        private EmployeeForEmployeeListResponse value;
+        public EmployeeForEmployeeListResponse Value
+        {
+            get { return value; }
+            set
+            {
+                if (this.value != value)
+                {
+                    this.value = value;
+                    // Raise property changed event if needed
+                }
+            }
+        }
+
         public void addChangeListener(Action value)
         {
-            //throw new NotImplementedException();
+            value();
         }
     }
 

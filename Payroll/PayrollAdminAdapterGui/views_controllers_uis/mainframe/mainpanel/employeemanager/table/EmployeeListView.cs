@@ -12,13 +12,14 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 
     public class EmployeeListViewModel
     {
-        public List<EmployeeViewItem> employeeViewItems;
+        private List<EmployeeViewItem> employeeViewItems;
 
         public EmployeeListViewModel(List<EmployeeViewItem> employeeViewItems)
         {
-            this.employeeViewItems = employeeViewItems;
+            this.EmployeeViewItems = employeeViewItems;
         }
 
+        public List<EmployeeViewItem> EmployeeViewItems { get => employeeViewItems; set => employeeViewItems = value; }
     }
 
 }

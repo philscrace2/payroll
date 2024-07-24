@@ -21,8 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayrollDBAdapterJPA", "Payr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayrollDBAdapterInMemory", "PayrollDBAdapterInMemory\PayrollDBAdapterInMemory.csproj", "{7A25293E-D43E-4D49-BD35-8D2FF9986027}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayrollWinformsPrototype", "PayrollWinformsPrototype\PayrollWinformsPrototype.csproj", "{AC4A4470-B980-476D-8895-5B6C520D129D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,10 +63,6 @@ Global
 		{7A25293E-D43E-4D49-BD35-8D2FF9986027}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A25293E-D43E-4D49-BD35-8D2FF9986027}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A25293E-D43E-4D49-BD35-8D2FF9986027}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC4A4470-B980-476D-8895-5B6C520D129D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC4A4470-B980-476D-8895-5B6C520D129D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC4A4470-B980-476D-8895-5B6C520D129D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC4A4470-B980-476D-8895-5B6C520D129D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

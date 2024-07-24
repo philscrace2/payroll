@@ -23,7 +23,7 @@ namespace PayrollEntities.paymentschedule
     }
 
 
-    public DateTime GetSameOrNextPayDate(DateTime referenceDate)
+    public override DateTime getSameOrNextPayDate(DateTime referenceDate)
     {
         DateTime sameOrNextDayOfWeek = Util.GetSameOrNextDayOfWeek(referenceDate, PAYDAY_DAY_OF_WEEK);
             if (Util.isOnEvenWeekBasedOnReferenceDate(sameOrNextDayOfWeek))

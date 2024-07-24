@@ -57,7 +57,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.mainframe.mainpanel
 
         public void setModel(PayViewModel viewModel)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

@@ -9,6 +9,7 @@ using PayrollInteractors.usecases.employee.find;
 using PayrollInteractors.usecases.employee.list;
 using PayrollInteractors.usecases.hourly;
 using PayrollInteractors.usecases.pay.paylist;
+using PayrollMain.main.factories.response;
 using PayrollPorts.primaryAdminUseCase;
 using PayrollPorts.primaryAdminUseCase.request;
 using PayrollPorts.primaryAdminUseCase.request.addemployee;
@@ -129,7 +130,7 @@ namespace PayrollMain.main.factories.usecase
 
         public IFunctionUseCase<EmployeeListRequest, EmployeeListResponse> employeeListUseCase()
         {
-            return new EmployeeListUseCase(transactionalRunner, employeeGateway, affiliationTypeResponseFactory);
+            return new EmployeeListUseCase(transactionalRunner, employeeGateway, new AffiliationTypeResponseFactoryImpl());
         }
 
 

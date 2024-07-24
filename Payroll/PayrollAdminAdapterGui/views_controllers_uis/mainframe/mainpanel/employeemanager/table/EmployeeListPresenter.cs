@@ -59,7 +59,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 
             public EmployeeListPresenter of(DateTime currentDate, EmployeeListResponse response)
             {
-                throw new NotImplementedException();
+                return new EmployeeListPresenter(currentDate, response, new PaymentTypeResponseToStringFormatter()); //paymentTypeResponseToStringFormatter);
             }
         }
 

@@ -1,10 +1,12 @@
 ﻿using PayrollAdminAdapterGui;
+using PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel;
 namespace PayrollWinformsPrototype
 {
-    public class MainPanel : Panel
+    public class MainPanel : Panel, MainPanelView
     {
         private Panel employeeManagerPanelHolder = null;
         private Panel payDayPanelHolder;
+        private MainPanelViewListener listener;
         private string dateFormat = Constants.DATE_FORMAT;
         private DateTimePicker currentDateField;
 
@@ -76,38 +78,23 @@ namespace PayrollWinformsPrototype
 
         private void OnCurrentDateChanged()
         {
-            //listener?.OnChangedCurrentDate();
+            listener?.onChangedCurrentDate();
         }
 
-        //public void SetViewListener(IMainPanelViewListener viewListener)
-        //{
-        //    listener = viewListener;
-        //}
+        public void setViewListener(MainPanelViewListener listener)
+        {
+            this.listener = listener;
+        }
 
-        //public MainPanelViewModel GetModel()
-        //{
-        //    return new MainPanelViewModel(currentDateField.Value);
-        //}
+        public void setModel(MainPanelViewModel viewModel)
+        {
+            currentDateField.Value = viewModel.currentDate;
+        }
 
-        //public void setViewListener(MainPanelViewListener listener)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void setViewListener(ViewListener getViewListener)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void setModel(MainPanelViewModel viewModel)
-        //{
-        //    currentDateField.Value = viewModel.currentDate;
-        //}
-
-        //public PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.MainPanelViewModel getModel()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.MainPanelViewModel getModel()
+        {
+            return new MainPanelViewModel(currentDateField.Value);
+        }
     }
 
     public interface IMainPanelViewListener

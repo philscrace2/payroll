@@ -45,10 +45,12 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         public void setObservableSelectedEmployee(ObservableSelectedEmployee observableSelectedEployee)
         {
             this.observableSelectedEployee = observableSelectedEployee;
-            observableSelectedEployee.addChangeListener(() =>
-            {
-                onSelectedEmployeeIdChanged();
-            });
+            //observableSelectedEployee.addChangeListener(() =>
+            //{
+            //    onSelectedEmployeeIdChanged();
+            //});
+
+            onSelectedEmployeeIdChanged();
         }
 
         protected override EmployeeManagerView.EmployeeManagerViewListener GetViewListener()

@@ -15,7 +15,7 @@ namespace PayrollInteractors.usecases.employee.list
         public EmployeeListUseCase(
         TransactionalRunner transactionalRunner,
         EmployeeGateway employeeGateway,
-                AffiliationTypeResponseFactory affiliationTypeResponseFactory
+        AffiliationTypeResponseFactory affiliationTypeResponseFactory
                 ) : base(transactionalRunner, employeeGateway)
         {
 
@@ -24,7 +24,7 @@ namespace PayrollInteractors.usecases.employee.list
 
         protected override EmployeeListResponse ExecuteInTransaction(EmployeeListRequest request)
         {
-            return new EmployeeListResponseCreator(request.currentDate).ToResponse(employeeGateway.findAll());
+            return new EmployeeListResponseCreator(request.currentDate, affiliationTypeResponseFactory).ToResponse(employeeGateway.findAll());
         }
     }
 
@@ -60,7 +60,7 @@ namespace PayrollInteractors.usecases.employee.list
             response.name = employee.getName();
             response.address = employee.getAddress();
             response.paymentTypeResponse = employee.getPaymentType().accept(paymentTypeResponseFactory);
-            response.affiliationTypeResponse = affiliationTypeResponseFactory.create(employee.getAffiliation());
+            response.affiliationTypeResponse = this.affiliationTypeResponseFactory.create(employee.getAffiliation());
             response.nextPayDay = employee.getPaymentSchedule().getSameOrNextPayDate(baseDate);
             return response;
         }

@@ -59,10 +59,10 @@ namespace PayrollGuiWinformsImpl.viewimpl.mainframe.mainpanel
 
         private void setButtonsEnabled(ButtonEnabledStates states)
         {
-            btnDeleteEmployee.Enabled = states.deleteEmployee;
-            btnAddTimeCard.Enabled = states.addTimeCard;
-            btnAddSalesReceipt.Enabled = states.addSalesReceipt;
-            btnAddServiceCharge.Enabled = states.addServiceCharge;
+            //btnDeleteEmployee.Enabled = states.deleteEmployee;
+            //btnAddTimeCard.Enabled = states.addTimeCard;
+            //btnAddSalesReceipt.Enabled = states.addSalesReceipt;
+            //btnAddServiceCharge.Enabled = states.addServiceCharge;
         }
     }
 }
