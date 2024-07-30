@@ -43,7 +43,8 @@ namespace PayrollGuiWinformsImpl.viewimpl.mainframe.mainpanel.employeemanager
         {
             var lastSelectedEmployee = GetOptionalSelectedEmployeeViewItem();
             this.viewModel = viewModel;
-            //employeeDataGridView.DataSource = new BindingSource(new BindingList<EmployeeViewItem>(viewModel.EmployeeViewItems), null);
+
+            employeeDataGridView.Rows.Clear();
 
             foreach (var employee in viewModel.EmployeeViewItems)
             {
