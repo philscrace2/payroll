@@ -129,7 +129,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
                     Validate(model);
                     ExecuteAddEmployeeUseCase(model);
                     //model.PaymentMethod.Accept((new ExecuteChangePaymentMethodUseCaseExecutor(addEmployeeController, model.EmployeeId)));
-                    addEmployeeController.eventBus.Post(new AddedEmployeeEvent(model.EmployeeId.Value, model.Name));
+                    addEmployeeController.eventBus.Post(new AddedEmployeeEvent(model.EmployeeId.Value, model.Name) as EmployeeChangedEvent);
                     addEmployeeController.Close();
                 }
                 catch (FieldValidatorException e)

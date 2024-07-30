@@ -40,7 +40,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         }
 
         [Subscribe]
-        public void onEmployeeChanged(EmployeeChangedEvent e)
+        public void onEmployeeChanged(AddedEmployeeEvent e)
         {
             update();
         }
