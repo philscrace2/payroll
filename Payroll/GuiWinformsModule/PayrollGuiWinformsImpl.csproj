@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NGuava" Version="1.0.7" />
     <PackageReference Include="Ninject" Version="3.3.6" />
   </ItemGroup>
 

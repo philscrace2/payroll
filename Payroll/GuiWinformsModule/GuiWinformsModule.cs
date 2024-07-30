@@ -1,4 +1,5 @@
 ﻿using Ninject.Modules;
+using NGuava;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
 using PayrollAdminAdapterGui.views_controllers_uis.dialog.common.confirm;
 using PayrollAdminAdapterGui.views_controllers_uis.mainframe;
@@ -59,7 +60,7 @@ namespace PayrollGuiWinformsImpl
 
         private void bindEagerSingletons()
         {
-            //Bind<EventBus>().To<EventQueueAsyncEventBus>();
+            Bind<EventBus>().ToSelf().InSingletonScope();
             //bind(UncaugthExceptionHandler.class).asEagerSingleton();
         }
 
