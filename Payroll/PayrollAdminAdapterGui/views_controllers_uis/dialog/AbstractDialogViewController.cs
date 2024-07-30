@@ -1,3 +1,5 @@
+using NGuava;
+
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog
 {
     public abstract class AbstractDialogViewController<T, VL> : AbstractController<T, VL> where T : DialogView<VL> where VL : CloseableViewListener
@@ -40,7 +42,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog
 
         private void UnregisterThisFromEventBus()
         {
-            eventBus?.Unregister(this);
+            eventBus?.UnRegister(this);
         }
     }
 }

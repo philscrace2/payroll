@@ -1,3 +1,5 @@
+
+
 namespace PayrollAdminAdapterGui.views_controllers_uis
 {
     public abstract class AbstractController<V, VL> : Controller<V>, ViewListener where V : ControlView<VL> //where VL : CloseableViewListener
