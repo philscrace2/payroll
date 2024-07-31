@@ -131,9 +131,14 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
             OnOk();
         }
 
+        public void OnCancelTrigger(object o, EventArgs e)
+        {
+            OnCancel();
+        }
+
         public void OnCancel()
         {
-            listener.onCancel();
+            GetViewListener().onCancel();
         }
 
         public PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee.EmployeeViewModel getModel()
