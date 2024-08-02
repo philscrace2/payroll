@@ -29,15 +29,15 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog
         public void onCloseAction()
         {
             if (OnCloseActionShouldCloseAutomatically())
-                Close();
+                CloseDialog();
         }
 
         protected abstract bool OnCloseActionShouldCloseAutomatically();
 
-        protected void Close()
+        protected void CloseDialog()
         {
             UnregisterThisFromEventBus();
-            GetView().Close(); // Assuming the Close method is defined in IDialogView
+            GetView().close();
         }
 
         private void UnregisterThisFromEventBus()

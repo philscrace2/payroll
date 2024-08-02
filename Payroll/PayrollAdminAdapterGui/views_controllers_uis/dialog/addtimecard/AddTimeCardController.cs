@@ -81,7 +81,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
         }
         public void onCancel()
         {
-            Close();
+            CloseDialog();
         }
 
         private void validate(AddTimeCardViewOutputModel model)
@@ -127,7 +127,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addtimecard
         private void onAdded(AddTimeCardViewOutputModel model)
         {
             eventBus.Post(new AddedTimeCardEvent(getEmployeeName(), model.date));
-            Close();
+            CloseDialog();
         }
 
         private AddTimeCardRequest toAddRequest(AddTimeCardViewOutputModel model)

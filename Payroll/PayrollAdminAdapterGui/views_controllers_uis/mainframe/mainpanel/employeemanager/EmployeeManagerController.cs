@@ -17,19 +17,19 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
         private DeleteEmployeeUseCaseFactory deleteEmployeeUseCaseFactory;
         private EventBus eventBus;
 
-        private AddEmployeeUI<AddEmployeeView> addEmployeeUIProvider;
+        private Func<AddEmployeeUI<AddEmployeeView>> addEmployeeUIProvider;
         //private ConfirmDialogUI confirmDialogUIProvider;
         //private AddTimeCardUI<AddTimeCardView>.AddTimeCardUIFactory addTimeCardUIFactory;
         private ObservableSelectedEmployee observableSelectedEployee;
         private ConfirmMessageFormatter confirmMessageFormatter;
         private EmployeeManagerViewModel.ButtonEnabledStates buttonsEnabledStates;
 
-        //@Inject
+
         public EmployeeManagerController(
         DeleteEmployeeUseCaseFactory deleteEmployeeUseCaseFactory,
         GetEmployeeUseCaseFactory getEmployeeUseCaseFactory,
         EventBus eventBus,
-        AddEmployeeUI<AddEmployeeView> addEmployeeUIProvider,
+        Func<AddEmployeeUI<AddEmployeeView>> addEmployeeUIProvider,
         ConfirmDialogUI confirmDialogUIProvider,
         //AddTimeCardUI<AddTimeCardView>.AddTimeCardUIFactory addTimeCardUIFactory,
         ConfirmMessageFormatter confirmMessageFormatter
@@ -90,7 +90,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.mainframe.mainpanel.emplo
 
         public void onAddEmployeeAction()
         {
-            addEmployeeUIProvider.Show();
+            var addEmployeeUI = addEmployeeUIProvider();
+            addEmployeeUI.Show();
         }
 
 

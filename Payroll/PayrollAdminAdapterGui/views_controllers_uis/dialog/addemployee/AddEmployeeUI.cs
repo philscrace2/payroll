@@ -1,3 +1,5 @@
+using Ninject.Activation;
+
 namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 {
     public interface IAddEmployeeUI
@@ -19,6 +21,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
         {
             controller.Show();
         }
+
     }
 
 

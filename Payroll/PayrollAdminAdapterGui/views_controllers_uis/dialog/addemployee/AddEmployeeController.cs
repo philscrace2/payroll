@@ -52,7 +52,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
 
         public void onCancel()
         {
-            Close();
+            CloseDialog();
         }
 
         public class OnAddEmployeeHandlerExecutor : IEmployeeViewModelVisitor
@@ -130,7 +130,7 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
                     ExecuteAddEmployeeUseCase(model);
                     //model.PaymentMethod.Accept((new ExecuteChangePaymentMethodUseCaseExecutor(addEmployeeController, model.EmployeeId)));
                     addEmployeeController.eventBus.Post(new AddedEmployeeEvent(model.EmployeeId.Value, model.Name) as EmployeeChangedEvent);
-                    addEmployeeController.Close();
+                    addEmployeeController.CloseDialog();
                 }
                 catch (FieldValidatorException e)
                 {

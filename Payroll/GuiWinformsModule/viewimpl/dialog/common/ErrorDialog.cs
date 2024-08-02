@@ -28,6 +28,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.common
             textPane.SelectionLength = 0;
         }
 
+
         private void InitUI()
         {
             //this.Layout = new BorderLayout(); // BorderLayout doesn't exist in WinForms; you might need to use a different layout
@@ -86,6 +87,11 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog.common
         }
 
         public void showIt()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void close()
         {
             throw new NotImplementedException();
         }

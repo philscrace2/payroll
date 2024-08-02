@@ -1,4 +1,5 @@
-﻿using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
+﻿using Ninject.Activation;
+using PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee;
 
 namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee
 {

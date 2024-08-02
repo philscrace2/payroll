@@ -16,14 +16,14 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog
             //Modal = true;
             Size = new System.Drawing.Size(450, 360);
 
-            //FormClosing += (sender, e) =>
-            //{
-            //    if (e.CloseReason == CloseReason.UserClosing)
-            //    {
-            //        //listener.OnCloseAction();
-            //        e.Cancel = true; // Prevents the dialog from closing
-            //    }
-            //};
+            FormClosing += (sender, e) =>
+            {
+                if (e.CloseReason == CloseReason.UserClosing)
+                {
+                    listener.onCloseAction();
+                    e.Cancel = true; // Prevents the dialog from closing
+                }
+            };
         }
 
         private string BuildTitle(string title)
@@ -46,7 +46,7 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog
             CenterToParent();
         }
 
-        public void CloseDialog()
+        protected void close()
         {
             Dispose();
         }
@@ -69,6 +69,11 @@ namespace PayrollGuiWinformsImpl.viewimpl.dialog
             //    this.Show();
             //}));
             base.ShowDialog();
+        }
+
+        void Closeable.close()
+        {
+            Dispose();
         }
     }
 
