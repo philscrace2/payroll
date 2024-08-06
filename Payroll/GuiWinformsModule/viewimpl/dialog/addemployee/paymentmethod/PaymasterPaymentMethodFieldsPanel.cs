@@ -8,20 +8,16 @@ using System.Threading.Tasks;
 
 namespace PayrollGuiWinformsImpl.viewimpl.dialog.addemployee.paymentmethod
 {
-    public class PaymentMethodFieldsPanel<T> : FieldsPanel where T : PaymentMethod
+    public class PaymasterPaymentMethodFieldsPanel: PaymentMethodFieldsPanel<PaymentMethod>
     {
-        public PaymentMethodFieldsPanel()
+        public PaymasterPaymentMethodFieldsPanel()
         {
             //setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         }
 
-        public virtual PaymentMethod getModel()
+        public override PaymasterPaymentMethod getModel()
         {
-            //return default(T);
-
             return new PaymasterPaymentMethod();
         }
-
-
     }
 }

@@ -22,4 +22,9 @@
     <Folder Include="viewimpl\dialog\addunionmemberaffiliation\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="viewimpl\dialog\addemployee\paymentmethod\PaymasterPaymentMethodFieldsPanel.cs" />
+    <Compile Update="viewimpl\dialog\addemployee\paymentmethod\DirectPaymentMethodFieldsPanel.cs" />
+  </ItemGroup>
+
 </Project>

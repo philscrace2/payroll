@@ -75,9 +75,15 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
         T visit(DirectPaymentMethod paymentMethod);
     }
 
-    public interface IPaymentMethod
+    public interface PaymentMethod
     {
-        T Accept<T>(IPaymentMethodVisitor<T> visitor);
+        public abstract T Accept<T>(IPaymentMethodVisitor<T> visitor);
+
+        public interface IPaymentMethodVisitor<T>
+        {
+            public T visit(PaymasterPaymentMethod paymasterPaymentMethod);
+            public T visit(DirectPaymentMethod directPaymentMethod);
+        }
     }
 
     public interface IPaymentMethodVisitor<T>
@@ -86,12 +92,15 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
         T Visit(DirectPaymentMethod paymentMethod);
     }
 
-    public class PaymasterPaymentMethod : IPaymentMethod
+    public class PaymasterPaymentMethod : PaymentMethod
     {
-        public T Accept<T>(IPaymentMethodVisitor<T> visitor) => visitor.Visit(this);
+        public T Accept<T>(PaymentMethod.IPaymentMethodVisitor<T> visitor)
+        {
+            throw new NotImplementedException();
+        }
     }
 
-    public class DirectPaymentMethod : IPaymentMethod
+    public class DirectPaymentMethod : PaymentMethod
     {
         public string AccountNumber { get; set; }
 
@@ -99,8 +108,10 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
         {
             AccountNumber = accountNumber;
         }
-
-        public T Accept<T>(IPaymentMethodVisitor<T> visitor) => visitor.Visit(this);
+        public T Accept<T>(PaymentMethod.IPaymentMethodVisitor<T> visitor)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public interface IEmployeeViewModelVisitor
@@ -115,35 +126,8 @@ namespace PayrollAdminAdapterGui.views_controllers_uis.dialog.addemployee
         public int? EmployeeId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public IPaymentMethod PaymentMethod { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
         public abstract void Accept(IEmployeeViewModelVisitor visitor);
     }
-
-
-    //public int?erface PaymentMethod
-    //{
-    //    T accept<T>(PaymentMethodVisitor<T> visitor);
-
-    //}
-
-    //public class PaymasterPaymentMethod : PaymentMethod
-    //{
-
-    //    public T accept<T>(PaymentMethodVisitor<T> visitor)
-    //    {
-    //        return visitor.visit(this);
-    //    }
-    //}
-
-    //public class CommissionedEmployeeViewModel : EmployeeViewModel
-    //{
-    //    public int? biWeeklyBaseSalary;
-    //    public int? commissionRatePercentage;
-
-    //    public void accept(EmployeeViewModelVisitor visitor)
-    //    {
-    //        visitor.visit(this);
-    //    }
-    //}
 }
 
